@@ -1,5 +1,0 @@
-gradio==4.31.5
-scikit-learn
-joblib
-numpy
-pandas
