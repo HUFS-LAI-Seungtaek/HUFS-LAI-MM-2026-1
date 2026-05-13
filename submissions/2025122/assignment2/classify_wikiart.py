@@ -8,9 +8,7 @@ import os
 import time
 from pathlib import Path
 
-from datasets import load_dataset
-from openai import OpenAI
-from PIL import Image
+from PIL import Image, ImageDraw
 
 
 DEFAULT_MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
@@ -34,6 +32,58 @@ SCHEMA = {
     "required": ["has_human", "has_animal", "has_flower", "evidence"],
     "additionalProperties": False,
 }
+
+
+MOCK_PATTERNS = [
+    {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A simplified person shape stands in the center foreground, with no animals or flowers visible.",
+    },
+    {
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A small animal silhouette appears in the lower-right foreground, while no humans or flowers are shown.",
+    },
+    {
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "evidence": "Several flower shapes are placed near the lower-left foreground, with no humans or animals visible.",
+    },
+    {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A person is centered in the foreground and a small animal is visible near the lower-right edge.",
+    },
+    {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "evidence": "A person appears in the center and flowers are visible along the lower-left foreground.",
+    },
+    {
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "yes",
+        "evidence": "A small animal sits in the lower-right foreground and flowers appear at the lower-left.",
+    },
+    {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "yes",
+        "evidence": "The center foreground contains a person, with an animal at lower-right and flowers at lower-left.",
+    },
+    {
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Only abstract landscape blocks are visible across the center and background.",
+    },
+]
 
 
 def load_env(path=".env"):
@@ -109,6 +159,8 @@ def classify_image(client, image_data_url, model, request_timeout):
 
 
 def get_samples(limit):
+    from datasets import load_dataset
+
     dataset = load_dataset("huggan/wikiart", split="train", streaming=True)
     for index, item in enumerate(dataset.take(limit)):
         image = item["image"]
@@ -120,6 +172,54 @@ def get_samples(limit):
             "genre": item.get("genre", ""),
             "style": item.get("style", ""),
             "image": image,
+        }
+
+
+def draw_mock_image(index, labels, size=320):
+    image = Image.new("RGB", (size, size), (236, 231, 217))
+    draw = ImageDraw.Draw(image)
+
+    sky = (162 + index * 7) % 50
+    draw.rectangle((0, 0, size, size * 0.45), fill=(180 - sky // 3, 198, 210 + sky // 4))
+    draw.rectangle((0, size * 0.45, size, size), fill=(134, 143 + index % 30, 110))
+    draw.rectangle((30, 80, 290, 230), outline=(80, 73, 61), width=4)
+    draw.line((45, 210, 275, 120), fill=(103, 96, 81), width=3)
+
+    if labels["has_human"] == "yes":
+        draw.ellipse((142, 90, 178, 126), fill=(91, 64, 52))
+        draw.rectangle((150, 126, 170, 190), fill=(74, 93, 138))
+        draw.line((150, 145, 118, 168), fill=(74, 93, 138), width=7)
+        draw.line((170, 145, 202, 168), fill=(74, 93, 138), width=7)
+        draw.line((154, 190, 132, 244), fill=(52, 50, 58), width=7)
+        draw.line((166, 190, 188, 244), fill=(52, 50, 58), width=7)
+
+    if labels["has_animal"] == "yes":
+        draw.ellipse((222, 210, 278, 242), fill=(77, 70, 58))
+        draw.ellipse((260, 196, 290, 224), fill=(77, 70, 58))
+        draw.polygon((268, 197, 276, 182, 282, 200), fill=(77, 70, 58))
+        draw.line((222, 220, 195, 204), fill=(77, 70, 58), width=5)
+
+    if labels["has_flower"] == "yes":
+        for offset, color in [(0, (190, 58, 84)), (28, (216, 168, 51)), (56, (117, 72, 151))]:
+            x = 48 + offset
+            y = 230 - (offset % 2) * 16
+            draw.line((x, y + 20, x, y + 55), fill=(54, 113, 64), width=4)
+            draw.ellipse((x - 12, y - 10, x + 12, y + 14), fill=color)
+            draw.ellipse((x - 4, y - 2, x + 4, y + 6), fill=(244, 231, 128))
+
+    return image
+
+
+def get_mock_samples(limit):
+    for index in range(limit):
+        labels = MOCK_PATTERNS[index % len(MOCK_PATTERNS)]
+        yield {
+            "index": index,
+            "artist": f"mock_artist_{index % 5}",
+            "genre": "mock",
+            "style": "schema-guided-decoding-dry-run",
+            "image": draw_mock_image(index, labels),
+            "mock_labels": labels,
         }
 
 
@@ -210,6 +310,8 @@ def process_sample(sample, token, model, image_dir, max_size, request_timeout):
 
     error = ""
     try:
+        from openai import OpenAI
+
         client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=token)
         labels = classify_image(client, image_data_url, model, request_timeout)
     except Exception as exc:
@@ -231,6 +333,25 @@ def process_sample(sample, token, model, image_dir, max_size, request_timeout):
         "labels": labels,
         "error": error,
         "elapsed_seconds": round(elapsed, 3),
+    }
+
+
+def process_mock_sample(sample, image_dir, max_size):
+    started_at = time.perf_counter()
+    index = sample["index"]
+    jpeg_bytes = image_to_jpeg_bytes(sample["image"], max_size=max_size)
+    image_path = image_dir / f"sample_{index:03d}.jpg"
+    image_path.write_bytes(jpeg_bytes)
+    return {
+        "index": index,
+        "artist": sample["artist"],
+        "genre": sample["genre"],
+        "style": sample["style"],
+        "image_path": image_path.as_posix(),
+        "labels": sample["mock_labels"],
+        "error": "",
+        "elapsed_seconds": round(time.perf_counter() - started_at, 3),
+        "source": "mock",
     }
 
 
@@ -326,32 +447,40 @@ def main():
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--request-timeout", type=float, default=10.0)
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument(
+        "--mock",
+        action="store_true",
+        help="Generate deterministic mock images and labels without Hugging Face or OpenRouter.",
+    )
     args = parser.parse_args()
 
-    load_env()
-    token = os.environ.get("OPENROUTER_TOKEN")
-    if not token:
-        raise RuntimeError(
-            "OPENROUTER_TOKEN is missing. Put it in .env or set it as an environment variable."
-        )
     image_dir = Path(args.image_dir)
     image_dir.mkdir(parents=True, exist_ok=True)
 
     load_started_at = time.perf_counter()
-    samples = list(get_samples(args.limit))
+    samples = list(get_mock_samples(args.limit) if args.mock else get_samples(args.limit))
     load_elapsed = time.perf_counter() - load_started_at
     print(f"loaded {len(samples)} samples in {load_elapsed:.1f}s", flush=True)
 
     classify_started_at = time.perf_counter()
     results = []
 
-    if args.workers <= 1:
+    if args.mock:
+        results = [process_mock_sample(sample, image_dir, args.max_size) for sample in samples]
+    else:
+        load_env()
+        token = os.environ.get("OPENROUTER_TOKEN")
+        if not token:
+            raise RuntimeError(
+                "OPENROUTER_TOKEN is missing. Put it in .env or set it as an environment variable."
+            )
+    if not args.mock and args.workers <= 1:
         for sample in samples:
             results.append(
                 process_sample(sample, token, args.model, image_dir, args.max_size, args.request_timeout)
             )
             time.sleep(args.sleep)
-    else:
+    elif not args.mock:
         results = process_samples_parallel(
             samples,
             token,

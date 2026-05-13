@@ -1,142 +1,322 @@
 [
   {
     "index": 0,
-    "artist": 22,
-    "genre": 4,
-    "style": 21,
+    "artist": "mock_artist_0",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
     "image_path": "images/sample_000.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A simplified person shape stands in the center foreground, with no animals or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.084,
+    "source": "mock"
+  },
+  {
+    "index": 1,
+    "artist": "mock_artist_1",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_001.jpg",
     "labels": {
       "has_human": "no",
       "has_animal": "yes",
       "has_flower": "no",
-      "evidence": "A bird is visible in the sky near the top-left, confirming the presence of an animal, while no humans or flowers are apparent in the landscape."
+      "evidence": "A small animal silhouette appears in the lower-right foreground, while no humans or flowers are shown."
     },
-    "elapsed_seconds": 1.74
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
   },
   {
     "index": 2,
-    "artist": 16,
-    "genre": 6,
-    "style": 20,
+    "artist": "mock_artist_2",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
     "image_path": "images/sample_002.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "A human person is visible in the center of the painting, while no animals or flowers are present."
-    },
-    "elapsed_seconds": 1.064
-  },
-  {
-    "index": 6,
-    "artist": 22,
-    "genre": 10,
-    "style": 21,
-    "image_path": "images/sample_006.jpg",
     "labels": {
       "has_human": "no",
       "has_animal": "no",
       "has_flower": "yes",
-      "evidence": "The painting shows a vase with flowers in the center, but no humans or animals are visible."
+      "evidence": "Several flower shapes are placed near the lower-left foreground, with no humans or animals visible."
     },
-    "elapsed_seconds": 1.267
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
   },
   {
-    "index": 9,
-    "artist": 11,
-    "genre": 6,
-    "style": 21,
-    "image_path": "images/sample_009.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "The person is visible in the image, so it contains a human."
-    },
-    "elapsed_seconds": 0.961
-  },
-  {
-    "index": 10,
-    "artist": 9,
-    "genre": 4,
-    "style": 23,
-    "image_path": "images/sample_010.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "The image shows a sailboat with a person visible on the boat in the foreground."
-    },
-    "elapsed_seconds": 2.596
-  },
-  {
-    "index": 11,
-    "artist": 14,
-    "genre": 2,
-    "style": 24,
-    "image_path": "images/sample_011.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "Humans are visible as soldiers in the foreground near the castle walls, but no animals or flowers are present in the scene."
-    },
-    "elapsed_seconds": 1.699
-  },
-  {
-    "index": 13,
-    "artist": 1,
-    "genre": 6,
-    "style": 21,
-    "image_path": "images/sample_013.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "yes",
-      "evidence": "A human person is seated in the center of the image, a red flower is pinned to their lapel, and no animals are visible."
-    },
-    "elapsed_seconds": 1.004
-  },
-  {
-    "index": 17,
-    "artist": 7,
-    "genre": 3,
-    "style": 23,
-    "image_path": "images/sample_017.jpg",
-    "labels": {
-      "has_human": "yes",
-      "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "The image contains multiple human figures, including two people in the foreground and a group in the background, but no animals or flowers are visible."
-    },
-    "elapsed_seconds": 1.354
-  },
-  {
-    "index": 18,
-    "artist": 9,
-    "genre": 4,
-    "style": 23,
-    "image_path": "images/sample_018.jpg",
+    "index": 3,
+    "artist": "mock_artist_3",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_003.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "yes",
       "has_flower": "no",
-      "evidence": "A person on a donkey is in the center, and a group of people are in the foreground, but no flowers are visible."
+      "evidence": "A person is centered in the foreground and a small animal is visible near the lower-right edge."
     },
-    "elapsed_seconds": 1.853
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
   },
   {
-    "index": 19,
-    "artist": 7,
-    "genre": 3,
-    "style": 23,
-    "image_path": "images/sample_019.jpg",
+    "index": 4,
+    "artist": "mock_artist_4",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_004.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A person appears in the center and flowers are visible along the lower-left foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 5,
+    "artist": "mock_artist_0",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_005.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A small animal sits in the lower-right foreground and flowers appear at the lower-left."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 6,
+    "artist": "mock_artist_1",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_006.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "The center foreground contains a person, with an animal at lower-right and flowers at lower-left."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 7,
+    "artist": "mock_artist_2",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_007.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Only abstract landscape blocks are visible across the center and background."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 8,
+    "artist": "mock_artist_3",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_008.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
       "has_flower": "no",
-      "evidence": "Two human figures are visible in the foreground and background, but no animals or flowers are present in the image."
+      "evidence": "A simplified person shape stands in the center foreground, with no animals or flowers visible."
     },
-    "elapsed_seconds": 0.865
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 9,
+    "artist": "mock_artist_4",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_009.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A small animal silhouette appears in the lower-right foreground, while no humans or flowers are shown."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 10,
+    "artist": "mock_artist_0",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_010.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "Several flower shapes are placed near the lower-left foreground, with no humans or animals visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 11,
+    "artist": "mock_artist_1",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_011.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A person is centered in the foreground and a small animal is visible near the lower-right edge."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 12,
+    "artist": "mock_artist_2",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_012.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A person appears in the center and flowers are visible along the lower-left foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 13,
+    "artist": "mock_artist_3",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_013.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A small animal sits in the lower-right foreground and flowers appear at the lower-left."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 14,
+    "artist": "mock_artist_4",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_014.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "The center foreground contains a person, with an animal at lower-right and flowers at lower-left."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 15,
+    "artist": "mock_artist_0",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_015.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Only abstract landscape blocks are visible across the center and background."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 16,
+    "artist": "mock_artist_1",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_016.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A simplified person shape stands in the center foreground, with no animals or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 17,
+    "artist": "mock_artist_2",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_017.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A small animal silhouette appears in the lower-right foreground, while no humans or flowers are shown."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 18,
+    "artist": "mock_artist_3",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_018.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "Several flower shapes are placed near the lower-left foreground, with no humans or animals visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
+  },
+  {
+    "index": 19,
+    "artist": "mock_artist_4",
+    "genre": "mock",
+    "style": "schema-guided-decoding-dry-run",
+    "image_path": "images/sample_019.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A person is centered in the foreground and a small animal is visible near the lower-right edge."
+    },
+    "error": "",
+    "elapsed_seconds": 0.001,
+    "source": "mock"
   }
 ]
