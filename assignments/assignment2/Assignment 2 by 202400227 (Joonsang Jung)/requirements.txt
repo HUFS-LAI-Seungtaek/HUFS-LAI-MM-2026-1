@@ -1,5 +1,0 @@
-datasets
-openai
-python-dotenv
-pillow
-requests
