@@ -1,5 +1,6 @@
 # Assignment 2
-- Language & AI 융합전공 202402050 최재원**
+
+**Language & AI 융합전공 202402050 최재원**
 
 ---
 
@@ -59,11 +60,26 @@ OpenRouter 구현은 아래를 참고해
 
 ## 결과에서 흥미로웠던 사례 3개
 
-### 사례 1: TBD
+### 사례 1
+<div align="center">
+    <img src="images/sample_005.jpg" width="128px">
+</div>
 
-### 사례 2: TBD
+> 처음 봤을 때 꽃이 없는 것처럼 보였는데, 모델의 `reason`을 보고 다시 보니 파란 집 창문에 꽃이 있는 것을 알 수 있었음
 
-### 사례 3: TBD
+### 사례 2
+<div align="center">
+    <img src="images/sample_016.jpg" width="128px">
+</div>
+
+> 얼굴만 봤을 때는 사람보다 원숭이에 가까운데, 모델은 사진 내의 전반적인 특징을 통해 해당 객체가 사람이라고 인식한 것으로 보임
+
+### 사례 3
+<div align="center">
+    <img src="images/sample_010.jpg" width="128px">
+</div>
+
+> 구름이 마치 새가 날아가는 것처럼 보이나, 모델은 이를 오해하지 않고 `has_animal`을 `no`로 정확히 예측함
 
 ---
 
@@ -76,4 +92,16 @@ OpenRouter 구현은 아래를 참고해
 
 > 좌측 하단에 빨간색이 꽃으로 보이는데, 모델은 `has_flower`를 `no`로 예측했으며, `reason`으로 `No flowers are present in any part of the image.`라고 제시함
 
-### 문제 사례 2: TBD
+### 문제 사례 2
+<div align="center">
+    <img src="images/sample_004.jpg" width="128px">
+</div>
+
+> 사람이 있는 것은 제대로 인식했는데, 해안가에 사람이 3명(어른 둘에 아이 하나) 그리고 배에 타고 있는 사람이 2명(노를 젓는 사람과 그를 안고 있는 사람)이 보여 적어도 5명이 존재하는데, 모델은 `reason`으로 `In the foreground, three human figures are visible on the shore and in a small boat.`라고 제시함
+
+### 문제 사례 3
+<div align="center">
+    <img src="images/sample_017.jpg" width="128px">
+</div>
+
+> 확실하지 않지만, 좌측에 말이 있는 것으로 보이며 모델은 동물이 없는 것으로 예측함
