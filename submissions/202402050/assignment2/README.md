@@ -34,7 +34,7 @@ python classify_wikiart.py
 
 ## Agentic Coding 도구에 준 주요 지시문
 
-### 지시문 1: 가능한 모든 내용을 포함해 지시
+### 지시문 1 / 2: 가능한 모든 내용을 포함해 지시
 
 ```
 HF datasets `huggan/wikiart`의 초기 100개를 선택해 human, animal, flower의 세 가지가 존재하는지 분류해야 해
@@ -48,7 +48,7 @@ OpenRouter 구현은 아래를 참고해
 ```
 > 과제 내용 이해 및 기본 구현을 위함
 
-### 지시문 2: 불필요한 구조 제거
+### 지시문 2 / 2: 불필요한 구조 제거
 
 ```
 병렬 처리는 필요 없고, JSON 형태로 반환하지 못한 경우나 Timeout 등에 대해서는 다시 시도하도록 해줘
@@ -69,6 +69,11 @@ OpenRouter 구현은 아래를 참고해
 
 ## 모델이 헷갈렸거나 틀렸다고 생각되는 사례 2개
 
-### 문제 사례 1: TBD
+### 문제 사례 1
+<div align="center">
+    <img src="images/sample_014.jpg" width="128px">
+</div>
+
+> 좌측 하단에 빨간색이 꽃으로 보이는데, 모델은 `has_flower`를 `no`로 예측했으며, `reason`으로 `No flowers are present in any part of the image.`라고 제시함
 
 ### 문제 사례 2: TBD
