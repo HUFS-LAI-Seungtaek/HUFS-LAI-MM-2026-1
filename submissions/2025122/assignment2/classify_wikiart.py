@@ -3,9 +3,9 @@ import base64
 import html
 import io
 import json
+import multiprocessing as mp
 import os
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from datasets import load_dataset
@@ -197,7 +197,7 @@ def write_html(results, output_path, model):
     Path(output_path).write_text(document, encoding="utf-8")
 
 
-def process_sample(sample, client, model, image_dir, max_size, request_timeout):
+def process_sample(sample, token, model, image_dir, max_size, request_timeout):
     sample_started_at = time.perf_counter()
     index = sample["index"]
     print(f"classifying sample {index}...", flush=True)
@@ -210,6 +210,7 @@ def process_sample(sample, client, model, image_dir, max_size, request_timeout):
 
     error = ""
     try:
+        client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=token)
         labels = classify_image(client, image_data_url, model, request_timeout)
     except Exception as exc:
         labels = {}
@@ -233,6 +234,87 @@ def process_sample(sample, client, model, image_dir, max_size, request_timeout):
     }
 
 
+def process_sample_worker(queue, sample, token, model, image_dir, max_size, request_timeout):
+    queue.put(process_sample(sample, token, model, image_dir, max_size, request_timeout))
+
+
+def timeout_result(sample, image_dir, max_size, started_at, request_timeout):
+    index = sample["index"]
+    image_path = image_dir / f"sample_{index:03d}.jpg"
+    if not image_path.exists():
+        image_path.write_bytes(image_to_jpeg_bytes(sample["image"], max_size=max_size))
+    elapsed = time.perf_counter() - started_at
+    error = f"Timed out after {request_timeout:.1f}s"
+    print(f"failed sample {index} in {elapsed:.1f}s: {error}", flush=True)
+    return {
+        "index": index,
+        "artist": sample["artist"],
+        "genre": sample["genre"],
+        "style": sample["style"],
+        "image_path": image_path.as_posix(),
+        "labels": {},
+        "error": error,
+        "elapsed_seconds": round(elapsed, 3),
+    }
+
+
+def process_samples_parallel(samples, token, model, image_dir, max_size, request_timeout, workers, sleep):
+    results = []
+    result_queue = mp.Queue()
+    pending = []
+    sample_iter = iter(samples)
+
+    def start_next():
+        try:
+            sample = next(sample_iter)
+        except StopIteration:
+            return False
+        process = mp.Process(
+            target=process_sample_worker,
+            args=(result_queue, sample, token, model, image_dir, max_size, request_timeout),
+        )
+        process.start()
+        pending.append({"process": process, "sample": sample, "started_at": time.perf_counter()})
+        time.sleep(sleep)
+        return True
+
+    for _ in range(workers):
+        if not start_next():
+            break
+
+    while pending:
+        while not result_queue.empty():
+            results.append(result_queue.get())
+
+        still_pending = []
+        for item in pending:
+            process = item["process"]
+            process.join(timeout=0)
+            if not process.is_alive():
+                process.close()
+                continue
+
+            elapsed = time.perf_counter() - item["started_at"]
+            if elapsed > request_timeout:
+                process.terminate()
+                process.join(timeout=1)
+                process.close()
+                results.append(
+                    timeout_result(item["sample"], image_dir, max_size, item["started_at"], request_timeout)
+                )
+            else:
+                still_pending.append(item)
+        pending = still_pending
+        while len(pending) < workers:
+            if not start_next():
+                break
+        time.sleep(0.1)
+
+    while not result_queue.empty():
+        results.append(result_queue.get())
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=100)
@@ -252,7 +334,6 @@ def main():
         raise RuntimeError(
             "OPENROUTER_TOKEN is missing. Put it in .env or set it as an environment variable."
         )
-    client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=token)
     image_dir = Path(args.image_dir)
     image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -267,27 +348,20 @@ def main():
     if args.workers <= 1:
         for sample in samples:
             results.append(
-                process_sample(sample, client, args.model, image_dir, args.max_size, args.request_timeout)
+                process_sample(sample, token, args.model, image_dir, args.max_size, args.request_timeout)
             )
             time.sleep(args.sleep)
     else:
-        with ThreadPoolExecutor(max_workers=args.workers) as executor:
-            futures = []
-            for sample in samples:
-                futures.append(
-                    executor.submit(
-                        process_sample,
-                        sample,
-                        client,
-                        args.model,
-                        image_dir,
-                        args.max_size,
-                        args.request_timeout,
-                    )
-                )
-                time.sleep(args.sleep)
-            for future in as_completed(futures):
-                results.append(future.result())
+        results = process_samples_parallel(
+            samples,
+            token,
+            args.model,
+            image_dir,
+            args.max_size,
+            args.request_timeout,
+            args.workers,
+            args.sleep,
+        )
 
     classify_elapsed = time.perf_counter() - classify_started_at
     write_html(results, args.output_html, args.model)

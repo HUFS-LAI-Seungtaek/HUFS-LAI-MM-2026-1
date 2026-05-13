@@ -18,7 +18,7 @@ OpenRouter API와 agentic coding 도구(Codex 또는 Claude Code)를 사용해 W
 - OpenRouter API 사용
 - JSON Schema로 모델 응답 형식 고정
 - 프롬프트에 `has_human`, `has_animal`, `has_flower`의 의미를 명확히 설명
-- 샘플 100개 분류
+- 샘플 20개 분류
 - 결과를 하나의 HTML 파일로 정리
 
 ## 제출 위치

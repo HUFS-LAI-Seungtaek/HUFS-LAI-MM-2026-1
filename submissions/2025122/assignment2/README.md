@@ -31,7 +31,7 @@ python classify_wikiart.py --limit 100 --max-size 256 --workers 2 --request-time
 
 요청 제한이 걸리면 `--workers 1`로 낮춰서 실행하세요.
 이미지가 너무 작아 분류가 불안정하면 `--max-size 512`로 올려보세요.
-샘플 하나가 너무 오래 걸리면 timeout으로 처리하고 다음 샘플로 넘어갑니다.
+샘플 하나가 너무 오래 걸리면 별도 프로세스를 종료하고 timeout으로 기록한 뒤 다음 샘플로 넘어갑니다.
 
 다른 모델을 사용하려면:
 
