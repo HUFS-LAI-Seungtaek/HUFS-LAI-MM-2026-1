@@ -6,12 +6,102 @@
   <title>WikiArt Classification Results</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
-    code { background: #f3f3f3; padding: 2px 4px; }
+    h1 { margin-bottom: 4px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f3f3f3; position: sticky; top: 0; }
+    img { max-width: 160px; max-height: 160px; }
+    .yes { background: #e7f7e7; font-weight: bold; text-align: center; }
+    .no { background: #f7e7e7; font-weight: bold; text-align: center; }
   </style>
 </head>
 <body>
   <h1>WikiArt Classification Results</h1>
-  <p>This placeholder is replaced when you run <code>python classify_wikiart.py --limit 100</code>.</p>
-  <p>The generated report shows image thumbnails from <code>images/</code>, yes/no labels, evidence, and per-sample errors if any.</p>
+  <p>Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Metadata</th>
+        <th>Human</th>
+        <th>Animal</th>
+        <th>Flower</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0</td>
+        <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+        <td><div><strong>Artist</strong>: 22</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 21</div></td>
+        <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
+        <td>A bird is visible in the sky near the top-left, confirming the presence of an animal, while no humans or flowers are apparent in the landscape.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+        <td><div><strong>Artist</strong>: 16</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 20</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>A human person is visible in the center of the painting, while no animals or flowers are present.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+        <td><div><strong>Artist</strong>: 22</div><div><strong>Genre</strong>: 10</div><div><strong>Style</strong>: 21</div></td>
+        <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+        <td>The painting shows a vase with flowers in the center, but no humans or animals are visible.</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+        <td><div><strong>Artist</strong>: 11</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 21</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>The person is visible in the image, so it contains a human.</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+        <td><div><strong>Artist</strong>: 9</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 23</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>The image shows a sailboat with a person visible on the boat in the foreground.</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+        <td><div><strong>Artist</strong>: 14</div><div><strong>Genre</strong>: 2</div><div><strong>Style</strong>: 24</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>Humans are visible as soldiers in the foreground near the castle walls, but no animals or flowers are present in the scene.</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+        <td><div><strong>Artist</strong>: 1</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 21</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+        <td>A human person is seated in the center of the image, a red flower is pinned to their lapel, and no animals are visible.</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+        <td><div><strong>Artist</strong>: 7</div><div><strong>Genre</strong>: 3</div><div><strong>Style</strong>: 23</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>The image contains multiple human figures, including two people in the foreground and a group in the background, but no animals or flowers are visible.</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+        <td><div><strong>Artist</strong>: 9</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 23</div></td>
+        <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+        <td>A person on a donkey is in the center, and a group of people are in the foreground, but no flowers are visible.</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+        <td><div><strong>Artist</strong>: 7</div><div><strong>Genre</strong>: 3</div><div><strong>Style</strong>: 23</div></td>
+        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+        <td>Two human figures are visible in the foreground and background, but no animals or flowers are present in the image.</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
