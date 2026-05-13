@@ -1,0 +1,4 @@
+openai==2.36.0
+datasets==4.8.5
+Pillow==12.2.0
+python-dotenv==1.2.2
