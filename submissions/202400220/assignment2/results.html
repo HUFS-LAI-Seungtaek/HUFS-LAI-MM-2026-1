@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Classification — 202400220</title>
+  <style>
+    body { font-family: sans-serif; margin: 24px; color: #222; }
+    h1 { margin-bottom: 4px; }
+    p.meta { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f0f0f0; position: sticky; top: 0; }
+    img { max-width: 180px; max-height: 180px; object-fit: contain; }
+    .yes { background: #d4edda; font-weight: bold; text-align: center; color: #155724; }
+    .no  { background: #f8d7da; font-weight: bold; text-align: center; color: #721c24; }
+    .error { background: #fff3cd; color: #664d03; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Classification Results</h1>
+  <p class="meta">Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free &nbsp;|&nbsp; Samples: 20 &nbsp;|&nbsp; Student: Yeonjoo Yoo (202400220)</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Image</th><th>Metadata</th>
+        <th>Human</th><th>Animal</th><th>Flower</th><th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>0</td>
+          <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+          <td>
+            <div><strong>Artist:</strong> 22</div>
+            <div><strong>Genre:</strong> 4</div>
+            <div><strong>Style:</strong> 21</div>
+          </td>
+          <td class="no">no</td><td class="yes">yes</td><td class="no">no</td><td>No human figures are visible in any part of the artwork. Two birds are visible in the top-left sky area. No flowers are present in the trees, ground, or water areas.</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td><img src="images/sample_001.jpg" alt="sample 1"></td>
+          <td>
+            <div><strong>Artist:</strong> 20</div>
+            <div><strong>Genre:</strong> 7</div>
+            <div><strong>Style:</strong> 4</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td><td>A human figure stands in the lower-right the message: The user wants to the user. Wait, no, the evidence must be a single sentence. Let&#x27;s make it: </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+          <td>
+            <div><strong>Artist:</strong> 16</div>
+            <div><strong>Genre:</strong> 6</div>
+            <div><strong>Style:</strong> 20</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>A human figure is prominently featured in the center foreground.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><img src="images/sample_003.jpg" alt="sample 3"></td>
+          <td>
+            <div><strong>Artist:</strong> 17</div>
+            <div><strong>Genre:</strong> 2</div>
+            <div><strong>Style:</strong> 12</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td><td>A person is visible in the foreground center, and flowers are present in the background left area.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><img src="images/sample_004.jpg" alt="sample 4"></td>
+          <td>
+            <div><strong>Artist:</strong> 9</div>
+            <div><strong>Genre:</strong> 10</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>Three human figures are visible on the shore in the foreground (two standing together and one possibly sitting), with no animals or flowers visible in the scene.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><img src="images/sample_005.jpg" alt="sample 5"></td>
+          <td>
+            <div><strong>Artist:</strong> 1</div>
+            <div><strong>Genre:</strong> 2</div>
+            <div><strong>Style:</strong> 3</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td><td>Humans are visible in the foreground and mid-ground (e.g., central group), a cow is in the lower right foreground, and flowers appear in the window box of the blue house on the right.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+          <td>
+            <div><strong>Artist:</strong> 22</div>
+            <div><strong>Genre:</strong> 10</div>
+            <div><strong>Style:</strong> 21</div>
+          </td>
+          <td class="no">no</td><td class="no">no</td><td class="yes">yes</td><td>A bouquet of flowers is prominently displayed in the center of the image, with additional flowers visible on the table in the foreground.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><img src="images/sample_007.jpg" alt="sample 7"></td>
+          <td>
+            <div><strong>Artist:</strong> 9</div>
+            <div><strong>Genre:</strong> 4</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td><td>A human figure is visible in the mid-left area; multiple cows are present in the foreground and mid-ground; no flowers are visible in the scene.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><img src="images/sample_008.jpg" alt="sample 8"></td>
+          <td>
+            <div><strong>Artist:</strong> 25</div>
+            <div><strong>Genre:</strong> 7</div>
+            <div><strong>Style:</strong> 17</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>Multiple human figures are depicted in the central and foreground regions, while no animals or flowers are visible.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+          <td>
+            <div><strong>Artist:</strong> 11</div>
+            <div><strong>Genre:</strong> 6</div>
+            <div><strong>Style:</strong> 21</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>The central figure is a human, with no animals or flowers present in the composition.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+          <td>
+            <div><strong>Artist:</strong> 9</div>
+            <div><strong>Genre:</strong> 4</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>Human figures are visible on the sailboat in the foreground.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+          <td>
+            <div><strong>Artist:</strong> 14</div>
+            <div><strong>Genre:</strong> 2</div>
+            <div><strong>Style:</strong> 24</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>The image shows soldiers in armor, indicating humans are present, while no animals or flowers are mentioned.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><img src="images/sample_012.jpg" alt="sample 12"></td>
+          <td>
+            <div><strong>Artist:</strong> 14</div>
+            <div><strong>Genre:</strong> 4</div>
+            <div><strong>Style:</strong> 24</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td><td>A human figure is visible riding a horse in the foreground left, and a horse (non-human animal) is present there, while no flowers are visible in the scene.</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+          <td>
+            <div><strong>Artist:</strong> 1</div>
+            <div><strong>Genre:</strong> 6</div>
+            <div><strong>Style:</strong> 21</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td><td>A bearded man in a black coat sits centrally, with a red flower pinned to his left lapel.</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td><img src="images/sample_014.jpg" alt="sample 14"></td>
+          <td>
+            <div><strong>Artist:</strong> 17</div>
+            <div><strong>Genre:</strong> 6</div>
+            <div><strong>Style:</strong> 12</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td><td>A person is visible in the center foreground, a bird (non-human animal) appears in the background right, and no flowers are visible.</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><img src="images/sample_015.jpg" alt="sample 15"></td>
+          <td>
+            <div><strong>Artist:</strong> 12</div>
+            <div><strong>Genre:</strong> 9</div>
+            <div><strong>Style:</strong> 15</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td><td>A bird is visible in the top-left corner, two human figures are in the lower right, and flowers are in the large arrangement on the left and smaller bouquet in the background.</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td><img src="images/sample_016.jpg" alt="sample 16"></td>
+          <td>
+            <div><strong>Artist:</strong> 22</div>
+            <div><strong>Genre:</strong> 8</div>
+            <div><strong>Style:</strong> 21</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>The central area of the artwork contains a human figure wrapped in a cloak.</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+          <td>
+            <div><strong>Artist:</strong> 7</div>
+            <div><strong>Genre:</strong> 3</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td><td>The foreground contains two human figures, and the background includes multiple human figures and horseback riders, confirming human presence; the horseback riders indicate non-human animals (horses) are visible; no flowers are present in the image.</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+          <td>
+            <div><strong>Artist:</strong> 9</div>
+            <div><strong>Genre:</strong> 4</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td><td>In the lower left foreground, a group of people in white robes stands near a stone structure, and in the center foreground, a person rides a horse; a horse is visible in the center of the painting, carrying a rider; no flowers are visible in the foreground, midground, or background of the scene.</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+          <td>
+            <div><strong>Artist:</strong> 7</div>
+            <div><strong>Genre:</strong> 3</div>
+            <div><strong>Style:</strong> 23</div>
+          </td>
+          <td class="yes">yes</td><td class="no">no</td><td class="no">no</td><td>Two human figures stand in the background near a tomb where another human figure emerges.</td>
+        </tr>
+    </tbody>
+  </table>
+</body>
+</html>
