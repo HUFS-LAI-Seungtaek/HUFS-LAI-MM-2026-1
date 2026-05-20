@@ -197,15 +197,9 @@ def parse_classification_response(response_payload: dict, sample: dict) -> dict:
     return {**sample, **parsed}
 
 
-def build_payload(sample: dict, model: str, use_schema: bool) -> dict:
+def build_payload(sample: dict, model: str) -> dict:
     image_path = OUTPUT_DIR / sample["image_file"]
     prompt_text = "Classify this WikiArt image for human, animal, flower, and AI-generated appearance."
-    if not use_schema:
-        prompt_text = (
-            "Classify this WikiArt image. Return only compact valid JSON with these exact keys: "
-            "has_human, has_animal, has_flower, looks_ai_generated, reason, ai_reason. "
-            "Use only yes or no for the four label fields."
-        )
     payload = {
         "model": model,
         "messages": [
@@ -224,14 +218,16 @@ def build_payload(sample: dict, model: str, use_schema: bool) -> dict:
                 ],
             },
         ],
+        "response_format": {
+            "type": "json_schema",
+            "json_schema": CLASSIFICATION_SCHEMA,
+        },
+        "provider": {
+            "require_parameters": True,
+        },
         "temperature": 0,
         "max_tokens": 300,
     }
-    if use_schema:
-        payload["response_format"] = {
-            "type": "json_schema",
-            "json_schema": CLASSIFICATION_SCHEMA,
-        }
     return payload
 
 
@@ -239,31 +235,28 @@ def classify_image(api_key: str, sample: dict) -> dict:
     last_error = None
     models = [MODEL, *FALLBACK_MODELS]
     for model in models:
-        for attempt_label, use_schema in [("schema-guided", True), ("fallback-json", False)]:
-            try:
-                response_payload = request_json(
-                    "https://openrouter.ai/api/v1/chat/completions",
-                    method="POST",
-                    headers={
-                        "Authorization": f"Bearer {api_key}",
-                        "HTTP-Referer": "https://github.com/",
-                        "X-Title": "Assignment 2 Schema-Guided WikiArt Classification",
-                    },
-                    payload=build_payload(sample, model, use_schema),
-                )
-                result = parse_classification_response(response_payload, sample)
-                result["model_used"] = model
-                if model != MODEL:
-                    result["status"] = "ok_after_model_fallback"
-                elif attempt_label == "fallback-json":
-                    result["status"] = "ok_after_fallback"
-                return result
-            except Exception as exc:
-                last_error = exc
-                print(f"{model} {attempt_label} attempt failed for sample {sample['sample_id']}: {exc}")
+        try:
+            response_payload = request_json(
+                "https://openrouter.ai/api/v1/chat/completions",
+                method="POST",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "HTTP-Referer": "https://github.com/",
+                    "X-Title": "Assignment 2 Schema-Guided WikiArt Classification",
+                },
+                payload=build_payload(sample, model),
+            )
+            result = parse_classification_response(response_payload, sample)
+            result["model_used"] = model
+            if model != MODEL:
+                result["status"] = "ok_after_model_fallback"
+            return result
+        except Exception as exc:
+            last_error = exc
+            print(f"{model} schema-guided attempt failed for sample {sample['sample_id']}: {exc}")
         if model != models[-1]:
             time.sleep(2)
-    raise RuntimeError(f"Both classification attempts failed: {last_error}") from last_error
+    raise RuntimeError(f"All schema-guided classification attempts failed: {last_error}") from last_error
 
 
 def skipped_result(sample: dict, reason: str, status: str = "skipped") -> dict:

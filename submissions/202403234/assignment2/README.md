@@ -44,9 +44,11 @@ open results.html
 
 1. `has_human`, `has_animal`, `has_flower`, `looks_ai_generated`, `reason`, `ai_reason` 필드를 가진 JSON Schema를 정의하고, OpenRouter API의 `response_format`으로 응답 형식을 강제하도록 작성하라. 프롬프트에는 각 필드의 정의를 명확히 설명하고, 위치 표현(center, foreground, top-left 등)을 포함한 근거를 작성하게 하라.
 
-2. HuggingFace datasets HTTP API에서 이미지 URL을 가져와 로컬에 저장하고, base64로 인코딩해서 OpenRouter vision 모델에 전송하라. API 응답이 비어있을 경우 fallback 모델로 재시도하고, 그래도 실패하면 스킵 후 계속 진행하도록 에러 핸들링을 추가하라.
+2. HuggingFace datasets HTTP API에서 이미지 URL을 가져와 로컬에 저장하고, base64로 인코딩해서 OpenRouter vision 모델에 전송하라. 모든 요청은 OpenRouter structured outputs 문서 형식에 맞춰 `response_format`의 `type`을 `json_schema`로 설정하라.
 
-3. 모델이 "이 그림이 AI가 그린 것처럼 보이냐"를 판단하도록 프롬프트에 추가하라. 판단 근거로 texture consistency, anatomical accuracy, brushstroke irregularity 같은 시각적 단서를 사용하게 하라. 모든 이미지가 실제로는 역사적 인간 작품임을 명시하라.
+3. API 응답이 비어있을 경우 fallback 모델로 재시도하되, fallback 모델에서도 같은 JSON Schema를 사용하라. 그래도 실패하면 스킵 후 계속 진행하도록 에러 핸들링을 추가하라.
+
+4. 모델이 "이 그림이 AI가 그린 것처럼 보이냐"를 판단하도록 프롬프트에 추가하라. 판단 근거로 texture consistency, anatomical accuracy, brushstroke irregularity 같은 시각적 단서를 사용하게 하라. 모든 이미지가 실제로는 역사적 인간 작품임을 명시하라.
 
 ## 결과에서 흥미로웠던 사례
 
@@ -60,4 +62,10 @@ open results.html
 
 1. **Sample 1**: 하늘에 작은 새 두 마리가 있다는 이유로 `has_animal: yes`로 분류했는데 실제로 이미지에서 새는 매우 작고 풍경의 일부에 해당해서 동물 분류 기준이 얼마나 엄격한지에 따라 결과가 달라질 수 있는 애매한 케이스였다.
 
-2. **Sample 5, 6, 8, 9 등 다수**: Nemotron 모델이 응답을 반환하지 않았다... fallback인 Gemini도 404 에러로 실패했다. 코드 로직 문제가 아니라 무료 모델의 가용성 문제로 스킵이 발생했다. 실제 이미지를 보면 충분히 분류 가능한 작품들이라 모델 불안정성이 아쉬웠다. (일부 샘플은 코덱스 요금 한도를 초과해 추가 개선 없이 제출되었습니다!)
+2. **Sample 5, 6, 8, 9 등 다수**: 일부 샘플은 모델 응답이 비어 있거나 JSON이 완성되지 않아 스킵되었다. 같은 코드와 스키마를 써도 무료 모델의 응답 안정성이 샘플마다 달라지는 점이 아쉬웠다.
+
+## PR 제목
+
+```text
+Assignment 2 by 202403234 (Jihyun Yang)
+```
