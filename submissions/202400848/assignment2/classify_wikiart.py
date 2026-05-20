@@ -162,7 +162,7 @@ def main():
         print(f"[{idx+1}/{args.limit}] Classifying image {idx}...")
         res = classify_image(b64_img, args.model, args.request_timeout)
         
-        result_entry = {"id": idx, "image_path": image_path}
+        result_entry = {"id": idx, "image_path": image_path, "b64_img": b64_img}
         if "error" in res:
             result_entry["error"] = res["error"]
             print(f"  -> Error: {res['error']}")
@@ -215,7 +215,10 @@ def main():
     for r in results:
         html_lines.append("<tr>")
         html_lines.append(f"<td>{r['id']}</td>")
-        html_lines.append(f"<td><img src='{r['image_path']}' alt='Image {r['id']}'></td>")
+        
+        # b64_img가 있으면 이미지를 직접 삽입하고, 없으면 기존 경로를 사용 (하위 호환성)
+        img_src = f"data:image/jpeg;base64,{r['b64_img']}" if 'b64_img' in r else r['image_path']
+        html_lines.append(f"<td><img src='{img_src}' alt='Image {r['id']}'></td>")
         
         if "error" in r:
             html_lines.append(f"<td colspan='4' class='error'>Error / Timeout: {r['error']}</td>")
