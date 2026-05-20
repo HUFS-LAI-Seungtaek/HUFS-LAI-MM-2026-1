@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WikiArt Visual Classification</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; color: #1f2933; }
+    h1 { margin-bottom: 4px; }
+    .subtitle { margin-top: 0; color: #52606d; }
+    .card { display: grid; grid-template-columns: 140px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid #d9e2ec; }
+    img { width: 120px; max-height: 140px; object-fit: contain; background: #f5f7fa; }
+    h2 { margin: 0 0 8px; font-size: 20px; }
+    .meta { color: #616e7c; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Visual Classification</h1>
+  <p class="subtitle">Dataset: huggan/wikiart | Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+  <section class="card">
+    <img src="images/wikiart_01.svg" alt="WikiArt sample 1">
+    <div>
+      <h2>Sample 1</h2>
+      <p><strong>has_human:</strong> false<br><strong>has_animal:</strong> true<br><strong>has_flower:</strong> false</p>
+      <p>Landscape with birds in sky, no humans visible.</p>
+      <p class="meta">artist: 22 | genre: 4 | style: 21</p>
+    </div>
+  </section>
+  <section class="card">
+    <img src="images/wikiart_02.svg" alt="WikiArt sample 2">
+    <div>
+      <h2>Sample 2</h2>
+      <p><strong>has_human:</strong> true<br><strong>has_animal:</strong> false<br><strong>has_flower:</strong> false</p>
+      <p>A human figure is visible in the lower part of the image.</p>
+      <p class="meta">artist: 20 | genre: 7 | style: 4</p>
+    </div>
+  </section>
+  <section class="card">
+    <img src="images/wikiart_03.svg" alt="WikiArt sample 3">
+    <div>
+      <h2>Sample 3</h2>
+      <p><strong>has_human:</strong> true<br><strong>has_animal:</strong> false<br><strong>has_flower:</strong> false</p>
+      <p>The image depicts a human figure in a painted portrait.</p>
+      <p class="meta">artist: 16 | genre: 6 | style: 20</p>
+    </div>
+  </section>
+</body>
+</html>
