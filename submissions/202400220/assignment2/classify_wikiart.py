@@ -11,6 +11,7 @@ from pathlib import Path
 from datasets import load_dataset
 from openai import OpenAI
 from PIL import Image
+from weasyprint import HTML as WeasyHTML
 
 
 DEFAULT_MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
@@ -259,6 +260,91 @@ def build_html(results: list, output_path: str, model: str):
     Path(output_path).write_text(doc, encoding="utf-8")
 
 
+def build_pdf(results: list, output_path: str, model: str):
+    rows = []
+    for row in sorted(results, key=lambda r: r["index"]):
+        labels = row.get("labels", {})
+        error = row.get("error", "")
+
+        img_path = Path(row["image_path"])
+        if img_path.exists():
+            img_b64 = base64.b64encode(img_path.read_bytes()).decode()
+            img_tag = f'<img src="data:image/jpeg;base64,{img_b64}" alt="sample {row["index"]}">'
+        else:
+            img_tag = "<em>image not found</em>"
+
+        if error:
+            cells = (
+                "<td class='error'>—</td>" * 3
+                + f"<td class='error'>{html.escape(error)}</td>"
+            )
+        else:
+            cells = (
+                f"<td class=\"{labels['has_human']}\">{labels['has_human']}</td>"
+                f"<td class=\"{labels['has_animal']}\">{labels['has_animal']}</td>"
+                f"<td class=\"{labels['has_flower']}\">{labels['has_flower']}</td>"
+                f"<td>{html.escape(labels.get('evidence', ''))}</td>"
+            )
+        rows.append(f"""
+        <tr>
+          <td>{row['index']}</td>
+          <td>{img_tag}</td>
+          <td>
+            <div><strong>Artist:</strong> {html.escape(str(row['artist']))}</div>
+            <div><strong>Genre:</strong> {html.escape(str(row['genre']))}</div>
+            <div><strong>Style:</strong> {html.escape(str(row['style']))}</div>
+          </td>
+          {cells}
+        </tr>""")
+
+    doc = f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WikiArt Classification — 202400220</title>
+  <style>
+    @page {{ size: A4 landscape; margin: 1cm; }}
+    body {{ font-family: sans-serif; font-size: 9pt; color: #222; }}
+    h1 {{ font-size: 14pt; margin-bottom: 4px; }}
+    p.meta {{ color: #555; margin-top: 0; font-size: 8pt; }}
+    table {{ border-collapse: collapse; width: 100%; table-layout: fixed; }}
+    th, td {{ border: 1px solid #ccc; padding: 5px; vertical-align: top; word-wrap: break-word; }}
+    th {{ background: #f0f0f0; font-size: 8pt; }}
+    col.c-idx  {{ width: 3%; }}
+    col.c-img  {{ width: 14%; }}
+    col.c-meta {{ width: 18%; }}
+    col.c-yn   {{ width: 7%; }}
+    col.c-ev   {{ width: 51%; }}
+    img {{ max-width: 100%; max-height: 110px; object-fit: contain; display: block; }}
+    .yes {{ background: #d4edda; font-weight: bold; text-align: center; color: #155724; }}
+    .no  {{ background: #f8d7da; font-weight: bold; text-align: center; color: #721c24; }}
+    .error {{ background: #fff3cd; color: #664d03; }}
+  </style>
+</head>
+<body>
+  <h1>WikiArt Classification Results</h1>
+  <p class="meta">Model: {html.escape(model)} &nbsp;|&nbsp; Samples: {len(results)} &nbsp;|&nbsp; Student: Yeonjoo Yoo (202400220)</p>
+  <table>
+    <colgroup>
+      <col class="c-idx"><col class="c-img"><col class="c-meta">
+      <col class="c-yn"><col class="c-yn"><col class="c-yn"><col class="c-ev">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>#</th><th>Image</th><th>Metadata</th>
+        <th>Human</th><th>Animal</th><th>Flower</th><th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(rows)}
+    </tbody>
+  </table>
+</body>
+</html>
+"""
+    WeasyHTML(string=doc).write_pdf(output_path)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Classify WikiArt images via OpenRouter")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Number of images to classify")
@@ -358,9 +444,11 @@ def main():
     Path(args.output_json).write_text(
         json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+    pdf_path = Path(args.output_html).with_suffix(".pdf")
+    build_pdf(results, str(pdf_path), args.model)
     ok = sum(1 for r in results if not r["error"])
     print(f"\nDone. {ok}/{len(results)} classified successfully.")
-    print(f"Output: {args.output_html}, {args.output_json}")
+    print(f"Output: {args.output_html}, {args.output_json}, {pdf_path}")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
 datasets
 openai
 pillow
+weasyprint
