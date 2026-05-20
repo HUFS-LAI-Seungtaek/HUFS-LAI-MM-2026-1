@@ -1,0 +1,302 @@
+[
+  {
+    "index": 0,
+    "artist": 22,
+    "genre": 4,
+    "style": 21,
+    "image_path": "images/sample_000.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "No humans are visible; two birds (animals) appear in the top-left sky area; no flowers are present in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 13.153
+  },
+  {
+    "index": 1,
+    "artist": 20,
+    "genre": 7,
+    "style": 4,
+    "image_path": "images/sample_001.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A human figure is visible in the lower center foreground and an angelic human in the upper left, animals are present in the lower right, and no flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 10.962
+  },
+  {
+    "index": 2,
+    "artist": 16,
+    "genre": 6,
+    "style": 20,
+    "image_path": "images/sample_002.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The artwork shows a human subject in the center foreground, while no animals or flowers are visible in the image."
+    },
+    "error": "",
+    "elapsed_seconds": 7.689
+  },
+  {
+    "index": 3,
+    "artist": 17,
+    "genre": 2,
+    "style": 12,
+    "image_path": "images/sample_003.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A person is visible in the center foreground, but there are no animals or clearly identifiable flowers in the image."
+    },
+    "error": "",
+    "elapsed_seconds": 7.181
+  },
+  {
+    "index": 4,
+    "artist": 9,
+    "genre": 10,
+    "style": 23,
+    "image_path": "images/sample_004.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Humans are visible in the foreground on the shore and in the small boat; no animals or flowers are present in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 3.635
+  },
+  {
+    "index": 5,
+    "artist": 1,
+    "genre": 2,
+    "style": 3,
+    "image_path": "images/sample_005.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "Humans are visible in the foreground group and background, an animal (cow) is in the lower-right, and no flowers are clearly visible."
+    },
+    "error": "",
+    "elapsed_seconds": 8.351
+  },
+  {
+    "index": 6,
+    "artist": 22,
+    "genre": 10,
+    "style": 21,
+    "image_path": "images/sample_006.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "The painting shows a vase of flowers with no humans or animals visible."
+    },
+    "error": "",
+    "elapsed_seconds": 5.197
+  },
+  {
+    "index": 7,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_007.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "No humans are visible in the scene, but animals (sheep) are present in the lower right foreground and elsewhere, while no flowers can be seen in the landscape."
+    },
+    "error": "",
+    "elapsed_seconds": 5.269
+  },
+  {
+    "index": 8,
+    "artist": 25,
+    "genre": 7,
+    "style": 17,
+    "image_path": "images/sample_008.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains multiple human figures (e.g., central figure in armor, others around), but no animals or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 5.633
+  },
+  {
+    "index": 9,
+    "artist": 11,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_009.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image shows a person in the center foreground, with no animals or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 5.884
+  },
+  {
+    "index": 10,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_010.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human/person is visible in the foreground on the boat. No animal is visible in the scene. No flower is visible in the artwork."
+    },
+    "error": "",
+    "elapsed_seconds": 5.73
+  },
+  {
+    "index": 11,
+    "artist": 14,
+    "genre": 2,
+    "style": 24,
+    "image_path": "images/sample_011.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Humans are visible as figures near the castle walls in the lower-middle and right areas; no animals or flowers are clearly identifiable in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 3.261
+  },
+  {
+    "index": 12,
+    "artist": 14,
+    "genre": 4,
+    "style": 24,
+    "image_path": "images/sample_012.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A person is visible riding a horse in the lower-left foreground, and the horse is an animal, but there are no flowers present."
+    },
+    "error": "",
+    "elapsed_seconds": 3.101
+  },
+  {
+    "index": 13,
+    "artist": 1,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_013.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "The image shows a seated man (human) with a red flower on his lapel, and no animals are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 3.196
+  },
+  {
+    "index": 14,
+    "artist": 17,
+    "genre": 6,
+    "style": 12,
+    "image_path": "images/sample_014.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A woman (human) is centered in the foreground, a bird (animal) is in the background right, and no flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 5.418
+  },
+  {
+    "index": 15,
+    "artist": 12,
+    "genre": 9,
+    "style": 15,
+    "image_path": "images/sample_015.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A human figure is visible in the lower-right, a bird is in the top-left, and flowers are in the center-left."
+    },
+    "error": "",
+    "elapsed_seconds": 3.643
+  },
+  {
+    "index": 16,
+    "artist": 22,
+    "genre": 8,
+    "style": 21,
+    "image_path": "images/sample_016.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image shows a human figure in the center, confirming has_human as yes, while no animals or flowers are visible, so has_animal and has_flower are no."
+    },
+    "error": "",
+    "elapsed_seconds": 4.836
+  },
+  {
+    "index": 17,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_017.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains multiple human figures (e.g., two in the foreground, others in the background), but no visible animals or flowers."
+    },
+    "error": "",
+    "elapsed_seconds": 11.761
+  },
+  {
+    "index": 18,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_018.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "Humans are visible near the arch and on the horse in the foreground; an animal (horse) is present with a rider; no flowers are visible in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 3.492
+  },
+  {
+    "index": 19,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_019.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Two standing figures and one in the tomb are humans (center/right), no animals or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 3.115
+  }
+]
