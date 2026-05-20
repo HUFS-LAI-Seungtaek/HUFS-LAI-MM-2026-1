@@ -13,6 +13,7 @@
     img { max-width: 160px; max-height: 160px; }
     .yes { background: #e7f7e7; font-weight: bold; text-align: center; }
     .no { background: #f7e7e7; font-weight: bold; text-align: center; }
+    .error { background: #fff3cd; color: #664d03; }
   </style>
 </head>
 <body>
@@ -31,76 +32,247 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>0</td>
-        <td><img src="images/sample_000.jpg" alt="sample 0"></td>
-        <td><div><strong>Artist</strong>: 22</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 21</div></td>
-        <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
-        <td>A bird is visible in the sky near the top-left, confirming the presence of an animal, while no humans or flowers are apparent in the landscape.</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><img src="images/sample_002.jpg" alt="sample 2"></td>
-        <td><div><strong>Artist</strong>: 16</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 20</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>A human person is visible in the center of the painting, while no animals or flowers are present.</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td><img src="images/sample_006.jpg" alt="sample 6"></td>
-        <td><div><strong>Artist</strong>: 22</div><div><strong>Genre</strong>: 10</div><div><strong>Style</strong>: 21</div></td>
-        <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
-        <td>The painting shows a vase with flowers in the center, but no humans or animals are visible.</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td><img src="images/sample_009.jpg" alt="sample 9"></td>
-        <td><div><strong>Artist</strong>: 11</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 21</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>The person is visible in the image, so it contains a human.</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td><img src="images/sample_010.jpg" alt="sample 10"></td>
-        <td><div><strong>Artist</strong>: 9</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 23</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>The image shows a sailboat with a person visible on the boat in the foreground.</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td><img src="images/sample_011.jpg" alt="sample 11"></td>
-        <td><div><strong>Artist</strong>: 14</div><div><strong>Genre</strong>: 2</div><div><strong>Style</strong>: 24</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>Humans are visible as soldiers in the foreground near the castle walls, but no animals or flowers are present in the scene.</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td><img src="images/sample_013.jpg" alt="sample 13"></td>
-        <td><div><strong>Artist</strong>: 1</div><div><strong>Genre</strong>: 6</div><div><strong>Style</strong>: 21</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
-        <td>A human person is seated in the center of the image, a red flower is pinned to their lapel, and no animals are visible.</td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td><img src="images/sample_017.jpg" alt="sample 17"></td>
-        <td><div><strong>Artist</strong>: 7</div><div><strong>Genre</strong>: 3</div><div><strong>Style</strong>: 23</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>The image contains multiple human figures, including two people in the foreground and a group in the background, but no animals or flowers are visible.</td>
-      </tr>
-      <tr>
-        <td>18</td>
-        <td><img src="images/sample_018.jpg" alt="sample 18"></td>
-        <td><div><strong>Artist</strong>: 9</div><div><strong>Genre</strong>: 4</div><div><strong>Style</strong>: 23</div></td>
-        <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
-        <td>A person on a donkey is in the center, and a group of people are in the foreground, but no flowers are visible.</td>
-      </tr>
-      <tr>
-        <td>19</td>
-        <td><img src="images/sample_019.jpg" alt="sample 19"></td>
-        <td><div><strong>Artist</strong>: 7</div><div><strong>Genre</strong>: 3</div><div><strong>Style</strong>: 23</div></td>
-        <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
-        <td>Two human figures are visible in the foreground and background, but no animals or flowers are present in the image.</td>
-      </tr>
+      
+            <tr>
+              <td>0</td>
+              <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 1</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: portrait</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>1</td>
+              <td><img src="images/sample_001.jpg" alt="sample 1"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 2</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: landscape</div>
+              </td>
+              <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
+              <td>no clear person-like figure is visible; a small animal-like form is implied near the lower-right; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>2</td>
+              <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 3</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: still-life</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>3</td>
+              <td><img src="images/sample_003.jpg" alt="sample 3"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 4</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: symbolism</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>4</td>
+              <td><img src="images/sample_004.jpg" alt="sample 4"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 5</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: portrait</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>5</td>
+              <td><img src="images/sample_005.jpg" alt="sample 5"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 1</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: landscape</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="no">no</td>
+              <td>no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>6</td>
+              <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 2</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: still-life</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td>
+              <td>a central oval figure suggests a person; a small animal-like form is implied near the lower-right; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>7</td>
+              <td><img src="images/sample_007.jpg" alt="sample 7"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 3</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: symbolism</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>8</td>
+              <td><img src="images/sample_008.jpg" alt="sample 8"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 4</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: portrait</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>9</td>
+              <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 5</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: landscape</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="no">no</td>
+              <td>no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>10</td>
+              <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 1</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: still-life</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>11</td>
+              <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 2</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: symbolism</div>
+              </td>
+              <td class="no">no</td><td class="yes">yes</td><td class="yes">yes</td>
+              <td>no clear person-like figure is visible; a small animal-like form is implied near the lower-right; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>12</td>
+              <td><img src="images/sample_012.jpg" alt="sample 12"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 3</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: portrait</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>13</td>
+              <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 4</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: landscape</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="no">no</td>
+              <td>no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>14</td>
+              <td><img src="images/sample_014.jpg" alt="sample 14"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 5</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: still-life</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>15</td>
+              <td><img src="images/sample_015.jpg" alt="sample 15"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 1</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: symbolism</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>16</td>
+              <td><img src="images/sample_016.jpg" alt="sample 16"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 2</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: portrait</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>a central oval figure suggests a person; a small animal-like form is implied near the lower-right; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>17</td>
+              <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 3</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: landscape</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="no">no</td>
+              <td>no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible.</td>
+            </tr>
+            
+            <tr>
+              <td>18</td>
+              <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 4</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: still-life</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
+            <tr>
+              <td>19</td>
+              <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+              <td>
+                <div><strong>Artist</strong>: Mock Artist 5</div>
+                <div><strong>Genre</strong>: mock-study</div>
+                <div><strong>Style</strong>: symbolism</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground.</td>
+            </tr>
+            
     </tbody>
   </table>
 </body>

@@ -8,6 +8,18 @@ OpenRouter API로 `huggan/wikiart` 이미지 100개를 분류하고, 결과를 �
 nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
 ```
 
+## Mock-first PR
+
+The first PR can be opened without spending API calls by generating local mock samples:
+
+```bash
+python classify_wikiart.py --mock --limit 20
+```
+
+This creates deterministic placeholder images under `images/`, then writes `results.json`
+and `results.html` with schema-shaped labels. For the final run, set `OPENROUTER_TOKEN`
+in `.env` or the shell environment and run without `--mock`.
+
 참고: 이 reference 코드는 분류 속도를 위해 `reasoning.enabled`를 켜지 않습니다. 모델을 바꾸고 싶다면 `--model` 옵션을 사용하세요.
 
 ## 실행 방법

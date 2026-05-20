@@ -1,142 +1,302 @@
 [
   {
     "index": 0,
-    "artist": 22,
-    "genre": 4,
-    "style": 21,
+    "artist": "Mock Artist 1",
+    "genre": "mock-study",
+    "style": "portrait",
     "image_path": "images/sample_000.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 1,
+    "artist": "Mock Artist 2",
+    "genre": "mock-study",
+    "style": "landscape",
+    "image_path": "images/sample_001.jpg",
     "labels": {
       "has_human": "no",
       "has_animal": "yes",
       "has_flower": "no",
-      "evidence": "A bird is visible in the sky near the top-left, confirming the presence of an animal, while no humans or flowers are apparent in the landscape."
+      "evidence": "no clear person-like figure is visible; a small animal-like form is implied near the lower-right; no distinct flower shape is visible."
     },
-    "elapsed_seconds": 1.74
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
     "index": 2,
-    "artist": 16,
-    "genre": 6,
-    "style": 20,
+    "artist": "Mock Artist 3",
+    "genre": "mock-study",
+    "style": "still-life",
     "image_path": "images/sample_002.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "A human person is visible in the center of the painting, while no animals or flowers are present."
+      "has_flower": "yes",
+      "evidence": "a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 1.064
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
-    "index": 6,
-    "artist": 22,
-    "genre": 10,
-    "style": 21,
-    "image_path": "images/sample_006.jpg",
+    "index": 3,
+    "artist": "Mock Artist 4",
+    "genre": "mock-study",
+    "style": "symbolism",
+    "image_path": "images/sample_003.jpg",
     "labels": {
       "has_human": "no",
       "has_animal": "no",
       "has_flower": "yes",
-      "evidence": "The painting shows a vase with flowers in the center, but no humans or animals are visible."
+      "evidence": "no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 1.267
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
-    "index": 9,
-    "artist": 11,
-    "genre": 6,
-    "style": 21,
-    "image_path": "images/sample_009.jpg",
+    "index": 4,
+    "artist": "Mock Artist 5",
+    "genre": "mock-study",
+    "style": "portrait",
+    "image_path": "images/sample_004.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
       "has_flower": "no",
-      "evidence": "The person is visible in the image, so it contains a human."
+      "evidence": "a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible."
     },
-    "elapsed_seconds": 0.961
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 5,
+    "artist": "Mock Artist 1",
+    "genre": "mock-study",
+    "style": "landscape",
+    "image_path": "images/sample_005.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 6,
+    "artist": "Mock Artist 2",
+    "genre": "mock-study",
+    "style": "still-life",
+    "image_path": "images/sample_006.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "a central oval figure suggests a person; a small animal-like form is implied near the lower-right; flower-like color blocks appear in the foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 7,
+    "artist": "Mock Artist 3",
+    "genre": "mock-study",
+    "style": "symbolism",
+    "image_path": "images/sample_007.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 8,
+    "artist": "Mock Artist 4",
+    "genre": "mock-study",
+    "style": "portrait",
+    "image_path": "images/sample_008.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 9,
+    "artist": "Mock Artist 5",
+    "genre": "mock-study",
+    "style": "landscape",
+    "image_path": "images/sample_009.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
     "index": 10,
-    "artist": 9,
-    "genre": 4,
-    "style": 23,
+    "artist": "Mock Artist 1",
+    "genre": "mock-study",
+    "style": "still-life",
     "image_path": "images/sample_010.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "The image shows a sailboat with a person visible on the boat in the foreground."
+      "has_flower": "yes",
+      "evidence": "a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 2.596
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
     "index": 11,
-    "artist": 14,
-    "genre": 2,
-    "style": 24,
+    "artist": "Mock Artist 2",
+    "genre": "mock-study",
+    "style": "symbolism",
     "image_path": "images/sample_011.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "no clear person-like figure is visible; a small animal-like form is implied near the lower-right; flower-like color blocks appear in the foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 12,
+    "artist": "Mock Artist 3",
+    "genre": "mock-study",
+    "style": "portrait",
+    "image_path": "images/sample_012.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
       "has_flower": "no",
-      "evidence": "Humans are visible as soldiers in the foreground near the castle walls, but no animals or flowers are present in the scene."
+      "evidence": "a central oval figure suggests a person; no animal form is visible; no distinct flower shape is visible."
     },
-    "elapsed_seconds": 1.699
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
     "index": 13,
-    "artist": 1,
-    "genre": 6,
-    "style": 21,
+    "artist": "Mock Artist 4",
+    "genre": "mock-study",
+    "style": "landscape",
     "image_path": "images/sample_013.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 14,
+    "artist": "Mock Artist 5",
+    "genre": "mock-study",
+    "style": "still-life",
+    "image_path": "images/sample_014.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
       "has_flower": "yes",
-      "evidence": "A human person is seated in the center of the image, a red flower is pinned to their lapel, and no animals are visible."
+      "evidence": "a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 1.004
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
-    "index": 17,
-    "artist": 7,
-    "genre": 3,
-    "style": 23,
-    "image_path": "images/sample_017.jpg",
+    "index": 15,
+    "artist": "Mock Artist 1",
+    "genre": "mock-study",
+    "style": "symbolism",
+    "image_path": "images/sample_015.jpg",
     "labels": {
-      "has_human": "yes",
+      "has_human": "no",
       "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "The image contains multiple human figures, including two people in the foreground and a group in the background, but no animals or flowers are visible."
+      "has_flower": "yes",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 1.354
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
-    "index": 18,
-    "artist": 9,
-    "genre": 4,
-    "style": 23,
-    "image_path": "images/sample_018.jpg",
+    "index": 16,
+    "artist": "Mock Artist 2",
+    "genre": "mock-study",
+    "style": "portrait",
+    "image_path": "images/sample_016.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "yes",
       "has_flower": "no",
-      "evidence": "A person on a donkey is in the center, and a group of people are in the foreground, but no flowers are visible."
+      "evidence": "a central oval figure suggests a person; a small animal-like form is implied near the lower-right; no distinct flower shape is visible."
     },
-    "elapsed_seconds": 1.853
+    "error": "",
+    "elapsed_seconds": 0.0
   },
   {
-    "index": 19,
-    "artist": 7,
-    "genre": 3,
-    "style": 23,
-    "image_path": "images/sample_019.jpg",
+    "index": 17,
+    "artist": "Mock Artist 3",
+    "genre": "mock-study",
+    "style": "landscape",
+    "image_path": "images/sample_017.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; no distinct flower shape is visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 18,
+    "artist": "Mock Artist 4",
+    "genre": "mock-study",
+    "style": "still-life",
+    "image_path": "images/sample_018.jpg",
     "labels": {
       "has_human": "yes",
       "has_animal": "no",
-      "has_flower": "no",
-      "evidence": "Two human figures are visible in the foreground and background, but no animals or flowers are present in the image."
+      "has_flower": "yes",
+      "evidence": "a central oval figure suggests a person; no animal form is visible; flower-like color blocks appear in the foreground."
     },
-    "elapsed_seconds": 0.865
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 19,
+    "artist": "Mock Artist 5",
+    "genre": "mock-study",
+    "style": "symbolism",
+    "image_path": "images/sample_019.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "no clear person-like figure is visible; no animal form is visible; flower-like color blocks appear in the foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
   }
 ]

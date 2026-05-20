@@ -8,9 +8,8 @@ import os
 import time
 from pathlib import Path
 
-from datasets import load_dataset
-from openai import OpenAI
 from PIL import Image
+from PIL import ImageDraw
 
 
 DEFAULT_MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
@@ -109,6 +108,8 @@ def classify_image(client, image_data_url, model, request_timeout):
 
 
 def get_samples(limit):
+    from datasets import load_dataset
+
     dataset = load_dataset("huggan/wikiart", split="train", streaming=True)
     for index, item in enumerate(dataset.take(limit)):
         image = item["image"]
@@ -121,6 +122,53 @@ def get_samples(limit):
             "style": item.get("style", ""),
             "image": image,
         }
+
+
+def get_mock_samples(limit):
+    palette = [
+        ((236, 226, 210), (71, 94, 122), (198, 75, 68)),
+        ((220, 232, 224), (83, 118, 84), (207, 163, 76)),
+        ((232, 222, 235), (103, 77, 120), (70, 130, 150)),
+        ((238, 232, 217), (151, 88, 63), (87, 116, 160)),
+    ]
+    for index in range(limit):
+        bg, primary, accent = palette[index % len(palette)]
+        image = Image.new("RGB", (420, 320), bg)
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((28, 34, 392, 288), outline=primary, width=5)
+        draw.ellipse((70, 72, 178, 224), fill=primary)
+        draw.rectangle((210, 92, 338, 238), fill=accent)
+        draw.line((44, 270, 374, 52), fill=(45, 45, 45), width=4)
+        draw.text((38, 292), f"mock wikiart sample {index:03d}", fill=(35, 35, 35))
+        yield {
+            "index": index,
+            "artist": f"Mock Artist {index % 5 + 1}",
+            "genre": "mock-study",
+            "style": ["portrait", "landscape", "still-life", "symbolism"][index % 4],
+            "image": image,
+        }
+
+
+def mock_labels(index):
+    has_human = "yes" if index % 2 == 0 else "no"
+    has_animal = "yes" if index % 5 == 1 else "no"
+    has_flower = "yes" if index % 4 in (2, 3) else "no"
+    evidence_bits = []
+    evidence_bits.append(
+        "a central oval figure suggests a person" if has_human == "yes" else "no clear person-like figure is visible"
+    )
+    evidence_bits.append(
+        "a small animal-like form is implied near the lower-right" if has_animal == "yes" else "no animal form is visible"
+    )
+    evidence_bits.append(
+        "flower-like color blocks appear in the foreground" if has_flower == "yes" else "no distinct flower shape is visible"
+    )
+    return {
+        "has_human": has_human,
+        "has_animal": has_animal,
+        "has_flower": has_flower,
+        "evidence": "; ".join(evidence_bits) + ".",
+    }
 
 
 def write_html(results, output_path, model):
@@ -210,6 +258,8 @@ def process_sample(sample, token, model, image_dir, max_size, request_timeout):
 
     error = ""
     try:
+        from openai import OpenAI
+
         client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=token)
         labels = classify_image(client, image_data_url, model, request_timeout)
     except Exception as exc:
@@ -231,6 +281,22 @@ def process_sample(sample, token, model, image_dir, max_size, request_timeout):
         "labels": labels,
         "error": error,
         "elapsed_seconds": round(elapsed, 3),
+    }
+
+
+def process_mock_sample(sample, image_dir, max_size):
+    index = sample["index"]
+    image_path = image_dir / f"sample_{index:03d}.jpg"
+    image_path.write_bytes(image_to_jpeg_bytes(sample["image"], max_size=max_size))
+    return {
+        "index": index,
+        "artist": sample["artist"],
+        "genre": sample["genre"],
+        "style": sample["style"],
+        "image_path": image_path.as_posix(),
+        "labels": mock_labels(index),
+        "error": "",
+        "elapsed_seconds": 0.0,
     }
 
 
@@ -326,11 +392,16 @@ def main():
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--request-timeout", type=float, default=10.0)
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument(
+        "--mock",
+        action="store_true",
+        help="Generate local mock samples and labels without Hugging Face or OpenRouter calls.",
+    )
     args = parser.parse_args()
 
     load_env()
     token = os.environ.get("OPENROUTER_TOKEN")
-    if not token:
+    if not args.mock and not token:
         raise RuntimeError(
             "OPENROUTER_TOKEN is missing. Put it in .env or set it as an environment variable."
         )
@@ -338,14 +409,16 @@ def main():
     image_dir.mkdir(parents=True, exist_ok=True)
 
     load_started_at = time.perf_counter()
-    samples = list(get_samples(args.limit))
+    samples = list(get_mock_samples(args.limit) if args.mock else get_samples(args.limit))
     load_elapsed = time.perf_counter() - load_started_at
     print(f"loaded {len(samples)} samples in {load_elapsed:.1f}s", flush=True)
 
     classify_started_at = time.perf_counter()
     results = []
 
-    if args.workers <= 1:
+    if args.mock:
+        results = [process_mock_sample(sample, image_dir, args.max_size) for sample in samples]
+    elif args.workers <= 1:
         for sample in samples:
             results.append(
                 process_sample(sample, token, args.model, image_dir, args.max_size, args.request_timeout)
