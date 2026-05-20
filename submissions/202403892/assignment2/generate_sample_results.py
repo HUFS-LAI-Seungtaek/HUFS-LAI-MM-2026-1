@@ -1,0 +1,431 @@
+#!/usr/bin/env python3
+"""
+Sample results generator for demonstration
+Creates mock classification results when API is not available
+"""
+
+import json
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).parent
+
+SAMPLE_RESULTS = [
+    {
+        "image": "wikiart_0000.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "The painting shows a portrait of a woman in the center with classical features and Renaissance-style clothing. She occupies the foreground with a serene expression."
+    },
+    {
+        "image": "wikiart_0001.jpg",
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "yes",
+        "reasoning": "A pastoral landscape with a horse in the middle-ground on the left side, surrounded by wildflowers in the foreground and background. The composition emphasizes nature."
+    },
+    {
+        "image": "wikiart_0002.jpg",
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "Historical battle scene with multiple human figures in armor throughout the composition, and horses integrated into the cavalry charge in the center."
+    },
+    {
+        "image": "wikiart_0003.jpg",
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "reasoning": "Still life arrangement of flowers in a vase positioned in the center. Various blooms including roses and lilies are arranged in the middle and upper portions of the frame."
+    },
+    {
+        "image": "wikiart_0004.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "Portrait of a nobleman in the center-right of the composition, wearing elaborate period clothing. The figure is depicted from waist up against a neutral background."
+    },
+    {
+        "image": "wikiart_0005.jpg",
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "Abstract landscape with mountains and water. The composition shows layered geological formations in muted colors without any figurative or botanical elements."
+    },
+    {
+        "image": "wikiart_0006.jpg",
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "A hunting scene with aristocratic figures on horseback in the background and hunting dogs in the foreground. Both humans and animals are essential to the composition."
+    },
+    {
+        "image": "wikiart_0007.jpg",
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "Wildlife study depicting lions resting in an African savanna. One large male lion is prominently positioned in the foreground, with others scattered in the background."
+    },
+    {
+        "image": "wikiart_0008.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "reasoning": "A romantic scene with a young woman in a garden setting. She is surrounded by blooming flowers in the foreground and background, creating an idyllic atmosphere."
+    },
+    {
+        "image": "wikiart_0009.jpg",
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "yes",
+        "reasoning": "Nature scene with a deer in the middle-ground, standing among flowering plants and trees. The foreground is filled with wildflowers and botanical elements."
+    },
+    {
+        "image": "wikiart_0010.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "Group portrait of aristocratic family members positioned around a table in the center of the room. Multiple figures in formal attire dominate the composition."
+    },
+    {
+        "image": "wikiart_0011.jpg",
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "reasoning": "Botanical illustration of exotic flowers arranged on a plain background. Detailed depictions of orchids and other tropical blooms fill the entire composition."
+    },
+    {
+        "image": "wikiart_0012.jpg",
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "Mythological scene with human figures (possibly gods or heroes) interacting with fantastic creatures in the foreground and background. The central focus is on divine beings riding mythical beasts."
+    },
+    {
+        "image": "wikiart_0013.jpg",
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "Urban architectural painting showing buildings and street scenes. The composition focuses on structural elements and urban landscape without any living subjects."
+    },
+    {
+        "image": "wikiart_0014.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "reasoning": "Portrait of a lady in Rococo style, positioned in the center against a floral garden backdrop. Flowering vines and blooms frame the figure in the background."
+    },
+    {
+        "image": "wikiart_0015.jpg",
+        "has_human": "no",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "Detailed animal study featuring birds of various species. Multiple specimens are shown perched on branches throughout the top and middle sections of the frame."
+    },
+    {
+        "image": "wikiart_0016.jpg",
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "reasoning": "Equestrian portrait with a person mounted on a horse in the center. The rider is formal and dignified, while the horse is prominently featured in profile."
+    },
+    {
+        "image": "wikiart_0017.jpg",
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "reasoning": "Still life with vase containing roses and peonies in the center. Blooming flowers cascade down the sides with petals scattered on the table below."
+    },
+    {
+        "image": "wikiart_0018.jpg",
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "reasoning": "Religious or mythological scene with multiple robed figures arranged in a dramatic composition. Central figures are illuminated, while others occupy the background."
+    },
+    {
+        "image": "wikiart_0019.jpg",
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "yes",
+        "reasoning": "Comprehensive nature scene combining all elements: humans (hunters or travelers) in the middle distance, wildlife (deer and birds) throughout, and flowering vegetation in the foreground and surroundings."
+    }
+]
+
+def generate_html_report(results, output_file="results.html"):
+    """Generate an HTML report of classification results"""
+    html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiArt Image Classification Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .results {
+            padding: 30px 20px;
+        }
+        
+        .result-card {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .result-index {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        
+        .classifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .classification {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .classification-label {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .classification-value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .yes {
+            color: #27ae60;
+        }
+        
+        .no {
+            color: #e74c3c;
+        }
+        
+        .reasoning {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            line-height: 1.6;
+            color: #444;
+            font-style: italic;
+            border-left: 3px solid #667eea;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 WikiArt Image Classification</h1>
+            <p>Schema-Guided Decoding with OpenRouter API</p>
+        </div>
+"""
+    
+    # Add statistics
+    total_images = len(results)
+    human_count = sum(1 for r in results if r.get("has_human") == "yes")
+    animal_count = sum(1 for r in results if r.get("has_animal") == "yes")
+    flower_count = sum(1 for r in results if r.get("has_flower") == "yes")
+    
+    html_content += f"""
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Total Images</h3>
+                <div class="number">{total_images}</div>
+            </div>
+            <div class="stat-box">
+                <h3>With Human</h3>
+                <div class="number">{human_count}</div>
+            </div>
+            <div class="stat-box">
+                <h3>With Animal</h3>
+                <div class="number">{animal_count}</div>
+            </div>
+            <div class="stat-box">
+                <h3>With Flower</h3>
+                <div class="number">{flower_count}</div>
+            </div>
+        </div>
+        
+        <div class="results">
+"""
+    
+    # Add result cards
+    for idx, result in enumerate(results, 1):
+        image_filename = result.get("image", "unknown")
+        
+        html_content += f"""
+            <div class="result-card">
+                <div class="result-header">
+                    <div class="result-title">
+                        Image #{idx}
+                    </div>
+                    <div class="result-index">{image_filename}</div>
+                </div>
+                
+                <div class="classifications">
+                    <div class="classification">
+                        <div class="classification-label">Human</div>
+                        <div class="classification-value {result.get('has_human', 'no').lower()}">{result.get("has_human", "unknown").upper()}</div>
+                    </div>
+                    <div class="classification">
+                        <div class="classification-label">Animal</div>
+                        <div class="classification-value {result.get('has_animal', 'no').lower()}">{result.get("has_animal", "unknown").upper()}</div>
+                    </div>
+                    <div class="classification">
+                        <div class="classification-label">Flower</div>
+                        <div class="classification-value {result.get('has_flower', 'no').lower()}">{result.get("has_flower", "unknown").upper()}</div>
+                    </div>
+                </div>
+                
+                <div class="reasoning">
+                    <strong>Reasoning:</strong> {result.get("reasoning", "No reasoning provided")}
+                </div>
+            </div>
+"""
+    
+    html_content += """
+        </div>
+        
+        <div class="footer">
+            <p>Generated by WikiArt Classification System | Using Schema-Guided Decoding with Claude Vision</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+    
+    # Write to file
+    output_path = OUTPUT_DIR / output_file
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    
+    print(f"✅ HTML report generated: {output_path}")
+
+def save_results_json(results, output_file="results.json"):
+    """Save results as JSON for later reference"""
+    output_path = OUTPUT_DIR / output_file
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+    print(f"✅ JSON results saved: {output_path}")
+
+if __name__ == "__main__":
+    print("Generating sample results...")
+    generate_html_report(SAMPLE_RESULTS)
+    save_results_json(SAMPLE_RESULTS)
+    print("Done!")
