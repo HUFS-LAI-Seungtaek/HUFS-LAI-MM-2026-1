@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 2 - WikiArt Image Classification</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f4ef;
+      color: #202124;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    p {
+      margin: 0 0 24px;
+      color: #555;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #ddd8cd;
+      border-radius: 8px;
+    }
+    .image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+      background: #f1eee8;
+    }
+    img {
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
+    }
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #262626;
+      color: #fff;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+    }
+    .card-body {
+      padding: 14px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    .labels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .labels span {
+      padding: 7px 8px;
+      background: #f6f4ef;
+      border: 1px solid #e7e1d6;
+      border-radius: 6px;
+    }
+    .card p {
+      margin: 10px 0 0;
+      color: #333;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WikiArt Schema-Guided Image Classification</h1>
+    <p>Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free | Samples: 20 | Student: 202403234 Jihyun Yang</p>
+    <section class="grid">
+      
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_001.jpg" alt="WikiArt sample 1">
+              </div>
+              <div class="card-body">
+                <h2>Sample 1</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>yes</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> The image shows a landscape with trees and water, and two birds flying in the top-left sky. The texture is consistent with traditional etching or drawing, showing clear hand-drawn lines and shading. The anatomical structure of the trees and water reflections appears natural and human-made, with no surreal or inconsistent elements typical of AI generation.</p>
+                <p><strong>AI appearance reason:</strong> The image shows consistent hand-drawn texture, naturalistic composition, and realistic elements like birds and trees, indicating it is a traditional human artwork rather than AI-generated.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_002.jpg" alt="WikiArt sample 2">
+              </div>
+              <div class="card-body">
+                <h2>Sample 2</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>yes</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> The image contains human figures (angel in upper left, shepherds in lower right) and animals (cows, dogs in lower right), with no visible flowers. It is a detailed etching showing traditional human artistry with consistent textures and anatomical accuracy, indicating it is human-made rather than AI-generated.</p>
+                <p><strong>AI appearance reason:</strong> The artwork displays intricate etching techniques, realistic human and animal anatomy, and classical composition typical of historical human art, with no signs of AI-generated inconsistencies like texture uniformity or surreal distortions.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_003.jpg" alt="WikiArt sample 3">
+              </div>
+              <div class="card-body">
+                <h2>Sample 3</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> The image features a human figure in the center with visible brushstrokes and artistic style typical of human-made paintings, not AI-generated textures.</p>
+                <p><strong>AI appearance reason:</strong> The artwork shows clear human brushwork, anatomical details, and artistic style inconsistent with AI generation, indicating it is a historical human artwork.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_004.jpg" alt="WikiArt sample 4">
+              </div>
+              <div class="card-body">
+                <h2>Sample 4</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>yes</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Human figure in center-left, flowers in background, traditional brushwork</p>
+                <p><strong>AI appearance reason:</strong> Visible brushstrokes and canvas texture indicate human-made artwork</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_005.jpg" alt="WikiArt sample 5">
+              </div>
+              <div class="card-body">
+                <h2>Sample 5</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_006.jpg" alt="WikiArt sample 6">
+              </div>
+              <div class="card-body">
+                <h2>Sample 6</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_007.jpg" alt="WikiArt sample 7">
+              </div>
+              <div class="card-body">
+                <h2>Sample 7</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>yes</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Thick impasto brushstrokes form flowers in center against red background, clearly human-made.</p>
+                <p><strong>AI appearance reason:</strong> Visible brushstrokes and textured petals show human-made technique, not AI smoothing.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_008.jpg" alt="WikiArt sample 8">
+              </div>
+              <div class="card-body">
+                <h2>Sample 8</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_009.jpg" alt="WikiArt sample 9">
+              </div>
+              <div class="card-body">
+                <h2>Sample 9</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_010.jpg" alt="WikiArt sample 10">
+              </div>
+              <div class="card-body">
+                <h2>Sample 10</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> The image is a traditional portrait of a human figure (center, upper part) with realistic anatomy, lighting, and texture, indicating it is human-made rather than AI-generated.</p>
+                <p><strong>AI appearance reason:</strong> The artwork shows realistic human features, consistent brushwork, and proper anatomical details typical of historical human art, not AI-generated characteristics like texture inconsistency or surreal elements.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_011.jpg" alt="WikiArt sample 11">
+              </div>
+              <div class="card-body">
+                <h2>Sample 11</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_012.jpg" alt="WikiArt sample 12">
+              </div>
+              <div class="card-body">
+                <h2>Sample 12</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> The image shows human figures (soldiers) near a stone castle in a snowy landscape, with no animals or flowers visible. The textured brushwork and detailed stone architecture indicate a human-made historical artwork, not AI-generated.</p>
+                <p><strong>AI appearance reason:</strong> The image has consistent texture, anatomical accuracy in human figures, and realistic stone details, which are characteristic of human-made art rather than AI generation.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_013.jpg" alt="WikiArt sample 13">
+              </div>
+              <div class="card-body">
+                <h2>Sample 13</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_014.jpg" alt="WikiArt sample 14">
+              </div>
+              <div class="card-body">
+                <h2>Sample 14</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_015.jpg" alt="WikiArt sample 15">
+              </div>
+              <div class="card-body">
+                <h2>Sample 15</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_016.jpg" alt="WikiArt sample 16">
+              </div>
+              <div class="card-body">
+                <h2>Sample 16</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_017.jpg" alt="WikiArt sample 17">
+              </div>
+              <div class="card-body">
+                <h2>Sample 17</h2>
+                <div class="labels">
+                  <span>Human: <strong>yes</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Human figure with face and body visible, wrapped in a cloak, centered.</p>
+                <p><strong>AI appearance reason:</strong> Traditional sketch style with consistent shading and anatomical details, clearly human-made.</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_018.jpg" alt="WikiArt sample 18">
+              </div>
+              <div class="card-body">
+                <h2>Sample 18</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_019.jpg" alt="WikiArt sample 19">
+              </div>
+              <div class="card-body">
+                <h2>Sample 19</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="image-wrap">
+                
+                <img src="images/wikiart_020.jpg" alt="WikiArt sample 20">
+              </div>
+              <div class="card-body">
+                <h2>Sample 20</h2>
+                <div class="labels">
+                  <span>Human: <strong>no</strong></span>
+                  <span>Animal: <strong>no</strong></span>
+                  <span>Flower: <strong>no</strong></span>
+                  <span>AI-like: <strong>no</strong></span>
+                </div>
+                <p><strong>Classification reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+                <p><strong>AI appearance reason:</strong> Skipped because classification failed: Both classification attempts failed: HTTP 404 from https://openrouter.ai/api/v1/chat/completions: {&quot;error&quot;:{&quot;message&quot;:&quot;No endpoints found for google/gemini-2.0-flash-exp:free.&quot;,&quot;code&quot;:404},&quot;user_id&quot;:&quot;user_3DepytpLdJFTNEnHKta2qWadS3Z&quot;}</p>
+              </div>
+            </article>
+            
+    </section>
+  </main>
+</body>
+</html>
