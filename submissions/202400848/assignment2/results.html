@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<title>WikiArt Classification Report</title>
+<style>
+body { font-family: sans-serif; margin: 20px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+th { background-color: #eee; }
+img { max-width: 100%; height: auto; border-radius: 4px; }
+.yes { color: blue; font-weight: bold; }
+.no { color: red; }
+.error { color: orange; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>WikiArt Image Classification Results</h1>
+<table>
+<tr><th>ID</th><th>Thumbnail</th><th>Human</th><th>Animal</th><th>Flower</th><th>Reasoning / Error</th></tr>
+<tr>
+<td>0</td>
+<td><img src='images/image_0.jpg' alt='Image 0'></td>
+<td class='no'>no</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>사람: no (전체 화면에 사람 형태가 전혀 없음)
+동물: yes (좌측 상단 상공에 두 마리 새가 날고 있음)
+꽃: no (전체 화면에 꽃이 전혀 보이지 않음)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><img src='images/image_1.jpg' alt='Image 1'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>좌측 상단에 빛을 발산하는 인간형 천사 figure가 보이고, 우측 하단 암석 위에서 서 있는 인간 figure가 존재합니다. 동물은 이미지 전체에 명확히 구분된 형태가 없으며, 주로 인간과 자연 풍경만 나타납니다. 꽃과 같은 구체적인 식물 형태는 전혀 드러나지 않고, 배경은 흐릿한 나무와 관목에 불과합니다.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><img src='images/image_2.jpg' alt='Image 2'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>사람: yes. 그림 중앙에 사람이 보입니다. 동물: no. 그림에 동물이 없습니다. 꽃: no. 그림에 꽃이 없습니다.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><img src='images/image_3.jpg' alt='Image 3'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>인간 – 중앙 하단에 앉아 있는 여성 인물이 보입니다. 동물 –画 전체에 동물은 전혀 나타나지 않습니다. 꽃 – 좌측 상단과 배경의 녹색 식물은 있지만 구체적인 꽃은 없습니다.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><img src='images/image_4.jpg' alt='Image 4'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>좌측 하단 해변에 서 있는 인물과 중앙에 작은 배에 탄 인물이 사람이다. 이미지에 동물은 전혀 보이지 않으며, 꽃도 표현되어 있지 않다.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><img src='images/image_5.jpg' alt='Image 5'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>사람: 중앙에 여러 명이 모여 conversation 중.
+동물: 우측 하단에 검은색과 흰색 소가 서 있다.
+꽃: 꽃은 화면에 명시적으로 나타나지 않음.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><img src='images/image_6.jpg' alt='Image 6'></td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td class='yes'>yes</td>
+<td>사람: 이미지에 사람이 나타나지 않았습니다. 동물: 이미지에 동물이 나타나지 않았습니다. 꽃: 중앙(center)에 꽃병에 꽂힌 꽃과 바닥 주변(bottom)에는 꽃이 흩어져 있습니다.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><img src='images/image_7.jpg' alt='Image 7'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>사람: 좌측 먼 거리에 작은 인물이 보입니다. 동물: 우측 하단에 동물들이 보입니다. 꽃: 화면에는 꽃이 없습니다.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><img src='images/image_8.jpg' alt='Image 8'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>사람: yes. 중앙에 굽혀진 인물과 좌측, 우측에 여러 명이 보입니다. 동물: yes. 좌측 하단에 작은 동물이 보입니다. 꽃: no. 꽃은 보이지 않습니다.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><img src='images/image_9.jpg' alt='Image 9'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>인물은 중앙에 서 있는 사람이기 때문에 'yes'입니다. 동물은 이미지에 전혀 나타나지 않아 'no'입니다. 꽃도 그려져 있지 않아 'no'입니다.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><img src='images/image_10.jpg' alt='Image 10'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>인간: 좌측 상단에 돛배에 사람들이 보이며, 인간 형태가 확인됩니다. 동물:画面에 명시된 동물은 보이지 않으며, 새 등 동물 형태가 명확히 구분되지 않아서 아니요. 꽃:画面에 꽃은 전혀 나타나지 않음.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><img src='images/image_11.jpg' alt='Image 11'></td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>The image shows a stone fortress with a gate and sandy ground. There are no humans, animals, or flowers visible in the image. The central area contains only the fortress structure and sand, with no signs of life forms or vegetation.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><img src='images/image_12.jpg' alt='Image 12'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>The image shows a person riding a white horse, which includes both a person and an animal, while no flowers are visible.</td>
+</tr>
+<tr>
+<td>13</td>
+<td><img src='images/image_13.jpg' alt='Image 13'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='yes'>yes</td>
+<td>사람: 중앙에 앉은 남성이 보입니다. 동물:画面에 동물이 없습니다. 꽃: 좌측 가슴 부위에 빨간 꽃이 보입니다.</td>
+</tr>
+<tr>
+<td>14</td>
+<td><img src='images/image_14.jpg' alt='Image 14'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>A woman is clearly visible in the image, sitting and wearing a white dress, so a person is present.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><img src='images/image_15.jpg' alt='Image 15'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td>꽃은 좌측에 있는 다발의 꽃들(분홍색 점)이 보입니다. 동물은 중앙 상단에 있는 새 모양의 그림(검정색 몸체에 초록색 날개)이 보입니다. 사람은 우측에 그려진 인물들(노란색 얼굴과 검은색 몸체)이 보입니다.</td>
+</tr>
+<tr>
+<td>16</td>
+<td><img src='images/image_16.jpg' alt='Image 16'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>이미지 중앙에 사람 형태의 인물이 그려져 있어 human이 보입니다. 동물이나 꽃은 전혀 나타나지 않았습니다.</td>
+</tr>
+<tr>
+<td>17</td>
+<td><img src='images/image_17.jpg' alt='Image 17'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>인간: 좌측 상단과 중앙 하단에 두 명 이상의 사람이 서 있는 모습이 보입니다. 동물: 중앙 상단에 말을 탄 인물과 주변에 있는 동물로 추정되는 형상이 보입니다. 꽃: 이미지 내부에 꽃의 형태나 색상이 전혀 나타나지 않습니다.</td>
+</tr>
+<tr>
+<td>18</td>
+<td><img src='images/image_18.jpg' alt='Image 18'></td>
+<td class='yes'>yes</td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td>The image contains a group of people (humans) on the left side and a horse (animal) on the right side. The first row of text mentions 'human' and 'animal', so the answer is 'yes' for both.</td>
+</tr>
+<tr>
+<td>19</td>
+<td><img src='images/image_19.jpg' alt='Image 19'></td>
+<td class='yes'>yes</td>
+<td class='no'>no</td>
+<td class='no'>no</td>
+<td>우측 상단에 두 명의 사람이 서 있고, 좌측 하단 무덤 내부에 한 명이 앉아 있는 모습이 보입니다. 동물은 이미지 내에서 전혀 보이지 않으며, 꽃도 전혀 존재하지 않습니다.</td>
+</tr>
+</table></body></html>
