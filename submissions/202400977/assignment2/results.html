@@ -7,41 +7,51 @@
     body { font-family: Arial, sans-serif; margin: 32px; color: #1f2933; }
     h1 { margin-bottom: 4px; }
     .subtitle { margin-top: 0; color: #52606d; }
-    .card { display: grid; grid-template-columns: 140px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid #d9e2ec; }
-    img { width: 120px; max-height: 140px; object-fit: contain; background: #f5f7fa; }
-    h2 { margin: 0 0 8px; font-size: 20px; }
-    .meta { color: #616e7c; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 14px; }
+    th, td { border: 1px solid #d9e2ec; padding: 10px; vertical-align: top; }
+    th { background: #f5f7fa; text-align: left; }
+    .true { color: #0b7285; font-weight: 700; }
+    .false { color: #52606d; }
+    .note { margin-top: 18px; color: #52606d; font-size: 13px; }
   </style>
 </head>
 <body>
   <h1>WikiArt Visual Classification</h1>
-  <p class="subtitle">Dataset: huggan/wikiart | Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
-  <section class="card">
-    <img src="images/wikiart_01.svg" alt="WikiArt sample 1">
-    <div>
-      <h2>Sample 1</h2>
-      <p><strong>has_human:</strong> false<br><strong>has_animal:</strong> true<br><strong>has_flower:</strong> false</p>
-      <p>Landscape with birds in sky, no humans visible.</p>
-      <p class="meta">artist: 22 | genre: 4 | style: 21</p>
-    </div>
-  </section>
-  <section class="card">
-    <img src="images/wikiart_02.svg" alt="WikiArt sample 2">
-    <div>
-      <h2>Sample 2</h2>
-      <p><strong>has_human:</strong> true<br><strong>has_animal:</strong> false<br><strong>has_flower:</strong> false</p>
-      <p>A human figure is visible in the lower part of the image.</p>
-      <p class="meta">artist: 20 | genre: 7 | style: 4</p>
-    </div>
-  </section>
-  <section class="card">
-    <img src="images/wikiart_03.svg" alt="WikiArt sample 3">
-    <div>
-      <h2>Sample 3</h2>
-      <p><strong>has_human:</strong> true<br><strong>has_animal:</strong> false<br><strong>has_flower:</strong> false</p>
-      <p>The image depicts a human figure in a painted portrait.</p>
-      <p class="meta">artist: 16 | genre: 6 | style: 20</p>
-    </div>
-  </section>
+  <p class="subtitle">Dataset: huggan/wikiart | Samples: 20 | Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Sample</th>
+        <th>Metadata</th>
+        <th>has_human</th>
+        <th>has_animal</th>
+        <th>has_flower</th>
+        <th>Brief reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>artist: 22<br>genre: 4<br>style: 21</td><td class="false">false</td><td class="false">false</td><td class="false">false</td><td>Model returned empty visible content.</td></tr>
+      <tr><td>2</td><td>artist: 20<br>genre: 7<br>style: 4</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>An angel (human-like figure) is visible in the upper left, confirming has_human. No animals or flowers are clearly identifiable.</td></tr>
+      <tr><td>3</td><td>artist: 16<br>genre: 6<br>style: 20</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>The image shows a human figure (a person in a hat and coat), so has_human is true. No animals or flowers are visible.</td></tr>
+      <tr><td>4</td><td>artist: 17<br>genre: 2<br>style: 12</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>A human figure is clearly visible sitting in the foreground. No animals are present, and while the landscape has vegetation, no distinct flowers are identifiable due to the impressionistic style.</td></tr>
+      <tr><td>5</td><td>artist: 9<br>genre: 10<br>style: 23</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>Humans are visible on the shore and in the boat; no animals or flowers are present.</td></tr>
+      <tr><td>6</td><td>artist: 1<br>genre: 2<br>style: 3</td><td class="true">true</td><td class="true">true</td><td class="false">false</td><td>Humans are visible in the foreground and background; a cow (animal) is present in the lower right; no flowers are clearly visible.</td></tr>
+      <tr><td>7</td><td>artist: 22<br>genre: 10<br>style: 21</td><td class="false">false</td><td class="false">false</td><td class="true">true</td><td>The image shows a bouquet of flowers in a vase, with no human or animal figures present.</td></tr>
+      <tr><td>8</td><td>artist: 9<br>genre: 4<br>style: 23</td><td class="false">false</td><td class="true">true</td><td class="false">false</td><td>Visible animals (cows) in the lower part of the scene; no humans or flowers are present.</td></tr>
+      <tr><td>9</td><td>artist: 25<br>genre: 7<br>style: 17</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>The image contains multiple human figures (e.g., people in clothing, interacting), but no animals or flowers are visible.</td></tr>
+      <tr><td>10</td><td>artist: 11<br>genre: 6<br>style: 21</td><td class="false">false</td><td class="false">false</td><td class="false">false</td><td>Model returned empty visible content.</td></tr>
+      <tr><td>11</td><td>artist: 9<br>genre: 4<br>style: 23</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>Human figures are visible on the boat; no animals or flowers are evident.</td></tr>
+      <tr><td>12</td><td>artist: 14<br>genre: 2<br>style: 24</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>Human figures (soldiers) are visible near the castle; no animals or flowers are present.</td></tr>
+      <tr><td>13</td><td>artist: 14<br>genre: 4<br>style: 24</td><td class="true">true</td><td class="true">true</td><td class="false">false</td><td>A small human figure (person) is visible on the left side, and a horse (animal) is shown next to it, indicating presence of both. No flowers are visible in the chart.</td></tr>
+      <tr><td>14</td><td>artist: 1<br>genre: 6<br>style: 21</td><td class="true">true</td><td class="false">false</td><td class="true">true</td><td>The image shows a human figure (a man in formal attire) and a red flower (likely a rose) on his lapel, with no animals present.</td></tr>
+      <tr><td>15</td><td>artist: 17<br>genre: 6<br>style: 12</td><td class="false">false</td><td class="false">false</td><td class="false">false</td><td>Model returned empty visible content.</td></tr>
+      <tr><td>16</td><td>artist: 12<br>genre: 9<br>style: 15</td><td class="true">true</td><td class="true">true</td><td class="true">true</td><td>The image contains a human figure (a person), a bird, and a flower.</td></tr>
+      <tr><td>17</td><td>artist: 22<br>genre: 8<br>style: 21</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>The image depicts a human figure (a person in a hooded garment), so has_human is true. No animals or flowers are visible.</td></tr>
+      <tr><td>18</td><td>artist: 7<br>genre: 3<br>style: 23</td><td class="true">true</td><td class="false">false</td><td class="false">false</td><td>The image contains multiple human figures, including two prominent figures in the foreground and a group in the background. No animals or flowers are visible.</td></tr>
+      <tr><td>19</td><td>artist: 9<br>genre: 4<br>style: 23</td><td class="true">true</td><td class="true">true</td><td class="false">false</td><td>Human figures are visible (one riding a horse, others standing), and a horse (animal) is present. No flowers or floral elements are visible.</td></tr>
+      <tr><td>20</td><td>artist: 7<br>genre: 3<br>style: 23</td><td class="false">false</td><td class="false">false</td><td class="false">false</td><td>Model returned empty visible content.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Rows marked with "Model returned empty visible content" came from successful OpenRouter calls where the provider returned no visible JSON content for that sample. The script includes a reasoning fallback and retry path for this behavior.</p>
 </body>
 </html>

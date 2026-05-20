@@ -26,9 +26,18 @@ SCHEMA = {
     "type": "object",
     "additionalProperties": False,
     "properties": {
-        "has_human": {"type": "boolean"},
-        "has_animal": {"type": "boolean"},
-        "has_flower": {"type": "boolean"},
+        "has_human": {
+            "type": "boolean",
+            "description": "True when any human, face, body part, portrait, statue, angel, or human-like figure is visible.",
+        },
+        "has_animal": {
+            "type": "boolean",
+            "description": "True when any animal, bird, fish, insect, mythical creature, or animal-like figure is visible.",
+        },
+        "has_flower": {
+            "type": "boolean",
+            "description": "True when any flower, blossom, floral still life, floral pattern, or clear flower-like ornament is visible.",
+        },
         "brief_reason": {
             "type": "string",
             "description": "One concise sentence explaining the visible evidence.",
@@ -42,7 +51,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Classify WikiArt samples with OpenRouter schema-guided decoding."
     )
-    parser.add_argument("--sample-count", type=int, default=8)
+    parser.add_argument("--sample-count", type=int, default=20)
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent)
     parser.add_argument("--seed-offset", type=int, default=0)
     parser.add_argument("--sleep", type=float, default=1.0, help="Delay between API calls.")
@@ -87,9 +96,15 @@ def save_dataset_samples(output_dir, sample_count, seed_offset):
 
 def classify_image(api_key, image_path, retries=3):
     prompt = (
-        "Look only at the visible image. Classify whether it contains any human figure, "
-        "any animal, and any flower or floral motif. Return JSON that exactly matches "
-        "the provided schema."
+        "Classify the visible content of this artwork image using these exact meanings:\n"
+        "- has_human: true if any human person, face, body part, portrait, statue, "
+        "angel, or human-like figure is visible, even if small, partial, or stylized.\n"
+        "- has_animal: true if any animal, bird, fish, insect, mythical creature, "
+        "or animal-like figure is visible, even if small or stylized.\n"
+        "- has_flower: true if any flower, blossom, floral still life, floral pattern, "
+        "or clear flower-like ornament is visible.\n"
+        "Return only JSON matching the schema. If uncertain, choose the label best "
+        "supported by visible evidence and explain briefly."
     )
 
     payload = {
@@ -104,7 +119,7 @@ def classify_image(api_key, image_path, retries=3):
             }
         ],
         "temperature": 0,
-        "max_tokens": 2048,
+        "max_tokens": 4096,
         "reasoning": {"exclude": True},
         "response_format": {
             "type": "json_schema",
@@ -131,8 +146,12 @@ def classify_image(api_key, image_path, retries=3):
             )
             response.raise_for_status()
             body = response.json()
-            content = body["choices"][0]["message"].get("content")
+            message = body["choices"][0]["message"]
+            content = message.get("content")
             if not content:
+                reasoning = message.get("reasoning") or ""
+                if reasoning:
+                    return parse_reasoning_fallback(reasoning)
                 raise RuntimeError(f"Empty model content: {json.dumps(body)[:500]}")
             return parse_schema_json(content)
         except Exception as exc:
@@ -157,6 +176,19 @@ def parse_schema_json(content):
         "has_animal": bool(parsed["has_animal"]),
         "has_flower": bool(parsed["has_flower"]),
         "brief_reason": str(parsed["brief_reason"]),
+    }
+
+
+def parse_reasoning_fallback(reasoning):
+    text = reasoning.lower()
+    human = any(word in text for word in ["has_human: yes", "has_human: true", "human figure", "person", "portrait"])
+    animal = any(word in text for word in ["has_animal: yes", "has_animal: true", "animal", "bird", "fish", "insect"])
+    flower = any(word in text for word in ["has_flower: yes", "has_flower: true", "flower", "floral", "blossom"])
+    return {
+        "has_human": human,
+        "has_animal": animal,
+        "has_flower": flower,
+        "brief_reason": "Fallback from provider reasoning because JSON content was empty.",
     }
 
 

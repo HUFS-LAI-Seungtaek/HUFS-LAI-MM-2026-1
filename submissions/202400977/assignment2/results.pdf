@@ -12,29 +12,59 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 5 0 obj
-<< /Length 548 >>
+<< /Length 2024 >>
 stream
 BT
 /F1 18 Tf
-72 730 Td
-(WikiArt Visual Classification) Tj
-/F1 10 Tf
+72 748 Td
+(WikiArt Visual Classification - 20 Samples) Tj
+/F1 9 Tf
+0 -18 Td
+(Dataset: huggan/wikiart | Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free) Tj
+0 -18 Td
+(S  Human Animal Flower  Reason) Tj
+0 -18 Td
+(01  F     F      F       Model returned empty visible content.) Tj
+0 -18 Td
+(02  T     F      F       Angel / human-like figure visible; no animal or flower.) Tj
+0 -18 Td
+(03  T     F      F       Human figure in hat and coat; no animal or flower.) Tj
+0 -18 Td
+(04  T     F      F       Seated human figure; vegetation but no distinct flowers.) Tj
+0 -18 Td
+(05  T     F      F       Humans on shore and boat; no animal or flower.) Tj
+0 -18 Td
+(06  T     T      F       Humans plus cow in lower right; no clear flowers.) Tj
+0 -18 Td
+(07  F     F      T       Bouquet of flowers in vase; no human or animal.) Tj
+0 -18 Td
+(08  F     T      F       Cows visible in lower scene; no human or flower.) Tj
+0 -18 Td
+(09  T     F      F       Multiple human figures; no animal or flower.) Tj
+0 -18 Td
+(10  F     F      F       Model returned empty visible content.) Tj
+0 -18 Td
+(11  T     F      F       Human figures visible on boat; no animal or flower.) Tj
+0 -18 Td
+(12  T     F      F       Soldiers near castle; no animal or flower.) Tj
+0 -18 Td
+(13  T     T      F       Small person and horse visible; no flowers.) Tj
+0 -18 Td
+(14  T     F      T       Man with red flower on lapel; no animal.) Tj
+0 -18 Td
+(15  F     F      F       Model returned empty visible content.) Tj
+0 -18 Td
+(16  T     T      T       Human figure, bird, and flower reported.) Tj
+0 -18 Td
+(17  T     F      F       Hooded human figure; no animal or flower.) Tj
+0 -18 Td
+(18  T     F      F       Multiple human figures; no animal or flower.) Tj
+0 -18 Td
+(19  T     T      F       Human figures and horse; no flower.) Tj
+0 -18 Td
+(20  F     F      F       Model returned empty visible content.) Tj
 0 -24 Td
-(Dataset: huggan/wikiart) Tj
-0 -14 Td
-(Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free) Tj
-0 -30 Td
-(Sample 1: has_human=false, has_animal=true, has_flower=false) Tj
-0 -14 Td
-(Reason: Landscape with birds in sky, no humans visible.) Tj
-0 -24 Td
-(Sample 2: has_human=true, has_animal=false, has_flower=false) Tj
-0 -14 Td
-(Reason: A human figure is visible in the lower part of the image.) Tj
-0 -24 Td
-(Sample 3: has_human=true, has_animal=false, has_flower=false) Tj
-0 -14 Td
-(Reason: The image depicts a human figure in a painted portrait.) Tj
+(T=true, F=false. Empty content rows are retained from successful provider calls with blank visible JSON.) Tj
 ET
 endstream
 endobj
@@ -49,5 +79,5 @@ xref
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-909
+2386
 %%EOF
