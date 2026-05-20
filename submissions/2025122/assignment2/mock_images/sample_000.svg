@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+  <rect width="320" height="165" fill="#c7d7e0"/>
+  <rect y="165" width="320" height="75" fill="#b2bea4"/>
+  <text x="12" y="28" font-family="Arial, sans-serif" font-size="16" fill="#30373d">mock sample 0</text>
+  
+        <circle cx="160" cy="78" r="22" fill="#734e3d"/>
+        <rect x="148" y="98" width="24" height="60" fill="#3e6491"/>
+        <path d="M148 115 L118 140 M172 115 L202 140" stroke="#3e6491" stroke-width="5"/>
+        <path d="M152 158 L132 210 M168 158 L188 210" stroke="#2a425a" stroke-width="5"/>
+        
+  
+  
+</svg>

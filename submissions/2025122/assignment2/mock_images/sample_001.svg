@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+  <rect width="320" height="165" fill="#c7d7e0"/>
+  <rect y="165" width="320" height="75" fill="#b2bea4"/>
+  <text x="12" y="28" font-family="Arial, sans-serif" font-size="16" fill="#30373d">mock sample 1</text>
+  
+  
+        <ellipse cx="255" cy="168" rx="32" ry="23" fill="#5c5846"/>
+        <ellipse cx="287" cy="148" rx="18" ry="17" fill="#5c5846"/>
+        <path d="M292 133 L300 115 L304 138 Z" fill="#5c5846"/>
+        <path d="M230 188 L222 215 M278 188 L286 215" stroke="#38342b" stroke-width="4"/>
+        
+  
+</svg>

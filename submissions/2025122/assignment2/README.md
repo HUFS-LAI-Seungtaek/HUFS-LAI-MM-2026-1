@@ -63,3 +63,13 @@ OpenRouter API를 사용해서 WikiArt 이미지 분류 스크립트를 만들�
 코드를 간단하게 유지해줘. .env에서 OPENROUTER_TOKEN을 읽고,
 Hugging Face datasets에서 huggan/wikiart 샘플을 가져와서 100개만 처리하게 해줘.
 ```
+
+## Mock Data Dry Run
+
+OpenRouter token and Hugging Face access are not required for a local smoke test:
+
+```bash
+python classify_wikiart.py --mock --limit 8 --output-html mock_results.html --output-json mock_results.json --image-dir mock_images
+```
+
+This creates deterministic mock images and schema-shaped labels so the JSON/HTML output path can be reviewed before running the full API workflow.

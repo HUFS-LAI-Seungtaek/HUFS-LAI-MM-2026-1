@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+  <rect width="320" height="165" fill="#c7d7e0"/>
+  <rect y="165" width="320" height="75" fill="#b2bea4"/>
+  <text x="12" y="28" font-family="Arial, sans-serif" font-size="16" fill="#30373d">mock sample 3</text>
+  
+        <circle cx="160" cy="78" r="22" fill="#734e3d"/>
+        <rect x="148" y="98" width="24" height="60" fill="#3e6491"/>
+        <path d="M148 115 L118 140 M172 115 L202 140" stroke="#3e6491" stroke-width="5"/>
+        <path d="M152 158 L132 210 M168 158 L188 210" stroke="#2a425a" stroke-width="5"/>
+        
+  
+        <ellipse cx="255" cy="168" rx="32" ry="23" fill="#5c5846"/>
+        <ellipse cx="287" cy="148" rx="18" ry="17" fill="#5c5846"/>
+        <path d="M292 133 L300 115 L304 138 Z" fill="#5c5846"/>
+        <path d="M230 188 L222 215 M278 188 L286 215" stroke="#38342b" stroke-width="4"/>
+        
+  
+        <g stroke="#307045" stroke-width="4">
+          <line x1="42" y1="198" x2="42" y2="222"/>
+          <line x1="72" y1="186" x2="72" y2="222"/>
+          <line x1="100" y1="204" x2="100" y2="222"/>
+        </g>
+        <circle cx="42" cy="180" r="13" fill="#c74557"/>
+        <circle cx="72" cy="168" r="13" fill="#dfa740"/>
+        <circle cx="100" cy="186" r="13" fill="#844c9a"/>
+        <g fill="#edd757">
+          <circle cx="42" cy="180" r="5"/>
+          <circle cx="72" cy="168" r="5"/>
+          <circle cx="100" cy="186" r="5"/>
+        </g>
+        
+</svg>

@@ -1,0 +1,122 @@
+[
+  {
+    "index": 0,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_000.svg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A simplified human figure is visible in the center foreground, with no animals or flowers present."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 1,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_001.svg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A simplified animal silhouette appears near the lower-right foreground, with no humans or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 2,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_002.svg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A group of flower shapes is visible in the lower-left foreground, with no humans or animals present."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 3,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_003.svg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A human figure stands near the center, an animal is on the right, and flowers appear in the lower-left foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 4,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_004.svg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A simplified human figure is visible in the center foreground, with no animals or flowers present."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 5,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_005.svg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A simplified animal silhouette appears near the lower-right foreground, with no humans or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 6,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_006.svg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A group of flower shapes is visible in the lower-left foreground, with no humans or animals present."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  },
+  {
+    "index": 7,
+    "artist": "mock-artist",
+    "genre": "mock-genre",
+    "style": "mock-style",
+    "image_path": "submissions/2025122/assignment2/mock_images/sample_007.svg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A human figure stands near the center, an animal is on the right, and flowers appear in the lower-left foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 0.0
+  }
+]
