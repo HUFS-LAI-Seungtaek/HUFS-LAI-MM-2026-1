@@ -4,16 +4,29 @@ import html
 import json
 import os
 import time
-from io import BytesIO
 from pathlib import Path
 
 import requests
-from datasets import load_dataset
-from PIL import Image
+try:
+    from datasets import load_dataset
+    from PIL import Image
+except ModuleNotFoundError as exc:
+    missing = exc.name
+    raise SystemExit(
+        f"Missing Python package: {missing}\n"
+        "Install the assignment dependencies first:\n"
+        "  python3 -m venv .venv\n"
+        "  source .venv/bin/activate\n"
+        "  python -m pip install -r requirements.txt\n"
+        "Then run:\n"
+        "  python classify_wikiart.py --sample-count 20 --api-timeout 10"
+    ) from exc
+
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.lib.utils import ImageReader
 from reportlab.platypus import Image as PdfImage
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 from tqdm import tqdm
@@ -21,6 +34,7 @@ from tqdm import tqdm
 
 MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_KEY_CHECK_URL = "https://openrouter.ai/api/v1/auth/key"
 
 SCHEMA = {
     "type": "object",
@@ -55,6 +69,12 @@ def parse_args():
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent)
     parser.add_argument("--seed-offset", type=int, default=0)
     parser.add_argument("--sleep", type=float, default=1.0, help="Delay between API calls.")
+    parser.add_argument(
+        "--api-timeout",
+        type=float,
+        default=10.0,
+        help="Seconds before one API call is marked as an error case.",
+    )
     return parser.parse_args()
 
 
@@ -65,14 +85,17 @@ def ensure_rgb(image):
 
 
 def image_to_data_url(image_path):
-    data = image_path.read_bytes()
-    encoded = base64.b64encode(data).decode("ascii")
+    encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
     return f"data:image/jpeg;base64,{encoded}"
 
 
 def save_dataset_samples(output_dir, sample_count, seed_offset):
     images_dir = output_dir / "images"
     images_dir.mkdir(parents=True, exist_ok=True)
+
+    for stale in images_dir.glob("wikiart_*.*"):
+        if stale.suffix.lower() != ".jpg":
+            stale.unlink()
 
     stream = load_dataset("huggan/wikiart", split="train", streaming=True)
     samples = []
@@ -94,7 +117,7 @@ def save_dataset_samples(output_dir, sample_count, seed_offset):
     return samples
 
 
-def classify_image(api_key, image_path, retries=3):
+def classify_image(api_key, image_path, timeout=10.0):
     prompt = (
         "Classify the visible content of this artwork image using these exact meanings:\n"
         "- has_human: true if any human person, face, body part, portrait, statue, "
@@ -138,27 +161,32 @@ def classify_image(api_key, image_path, retries=3):
         "X-Title": "HUFS-LAI-MM-2026-1 Assignment 2",
     }
 
-    last_error = None
-    for attempt in range(1, retries + 1):
-        try:
-            response = requests.post(
-                OPENROUTER_URL, headers=headers, json=payload, timeout=120
+    try:
+        response = requests.post(
+            OPENROUTER_URL, headers=headers, json=payload, timeout=timeout
+        )
+        if response.status_code in {401, 403}:
+            raise SystemExit(
+                "OpenRouter authentication failed. Check OPENROUTER_API_KEY; "
+                "the key may be missing, truncated, revoked, or invalid."
             )
-            response.raise_for_status()
-            body = response.json()
-            message = body["choices"][0]["message"]
-            content = message.get("content")
-            if not content:
-                reasoning = message.get("reasoning") or ""
-                if reasoning:
-                    return parse_reasoning_fallback(reasoning)
-                raise RuntimeError(f"Empty model content: {json.dumps(body)[:500]}")
-            return parse_schema_json(content)
-        except Exception as exc:
-            last_error = exc
-            if attempt < retries:
-                time.sleep(2 * attempt)
-    raise RuntimeError(f"OpenRouter classification failed for {image_path}: {last_error}")
+        response.raise_for_status()
+        body = response.json()
+        message = body["choices"][0]["message"]
+        content = message.get("content")
+        if not content:
+            reasoning = message.get("reasoning") or ""
+            if reasoning:
+                return parse_reasoning_fallback(reasoning)
+            raise RuntimeError(f"Empty model content: {json.dumps(body)[:500]}")
+        return parse_schema_json(content)
+    except Exception as exc:
+        return {
+            "has_human": False,
+            "has_animal": False,
+            "has_flower": False,
+            "brief_reason": f"ERROR: API call failed or exceeded {timeout:g} seconds. {type(exc).__name__}: {str(exc)[:120]}",
+        }
 
 
 def parse_schema_json(content):
@@ -181,9 +209,18 @@ def parse_schema_json(content):
 
 def parse_reasoning_fallback(reasoning):
     text = reasoning.lower()
-    human = any(word in text for word in ["has_human: yes", "has_human: true", "human figure", "person", "portrait"])
-    animal = any(word in text for word in ["has_animal: yes", "has_animal: true", "animal", "bird", "fish", "insect"])
-    flower = any(word in text for word in ["has_flower: yes", "has_flower: true", "flower", "floral", "blossom"])
+    human = any(
+        word in text
+        for word in ["has_human: yes", "has_human: true", "human figure", "person", "portrait"]
+    )
+    animal = any(
+        word in text
+        for word in ["has_animal: yes", "has_animal: true", "animal", "bird", "fish", "insect"]
+    )
+    flower = any(
+        word in text
+        for word in ["has_flower: yes", "has_flower: true", "flower", "floral", "blossom"]
+    )
     return {
         "has_human": human,
         "has_animal": animal,
@@ -240,7 +277,7 @@ def render_html(output_dir, rows):
 </head>
 <body>
   <h1>WikiArt Visual Classification</h1>
-  <p class="subtitle">Dataset: huggan/wikiart | Model: {MODEL}</p>
+  <p class="subtitle">Dataset: huggan/wikiart | Samples: {len(rows)} | Model: {MODEL}</p>
   {''.join(cards)}
 </body>
 </html>
@@ -250,9 +287,23 @@ def render_html(output_dir, rows):
     return html_path
 
 
+def make_pdf_image(image_path, max_width, max_height):
+    reader = ImageReader(str(image_path))
+    width, height = reader.getSize()
+    scale = min(max_width / width, max_height / height)
+    return PdfImage(str(image_path), width=width * scale, height=height * scale)
+
+
 def render_pdf(output_dir, rows):
     pdf_path = output_dir / "results.pdf"
-    doc = SimpleDocTemplate(str(pdf_path), pagesize=A4, rightMargin=36, leftMargin=36)
+    doc = SimpleDocTemplate(
+        str(pdf_path),
+        pagesize=A4,
+        rightMargin=36,
+        leftMargin=36,
+        topMargin=36,
+        bottomMargin=36,
+    )
     styles = getSampleStyleSheet()
     story = [
         Paragraph("WikiArt Visual Classification", styles["Title"]),
@@ -268,7 +319,7 @@ def render_pdf(output_dir, rows):
             f"<b>has_flower:</b> {result['has_flower']}<br/><br/>"
             f"{html.escape(result['brief_reason'])}"
         )
-        image = PdfImage(str(row["path"]), width=1.8 * inch, height=1.8 * inch)
+        image = make_pdf_image(row["path"], max_width=1.8 * inch, max_height=1.8 * inch)
         table = Table(
             [[image, Paragraph(f"<b>Sample {row['index']}</b><br/>{labels}", styles["BodyText"])]],
             colWidths=[2.0 * inch, 4.8 * inch],
@@ -293,13 +344,14 @@ def main():
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         raise SystemExit("Set OPENROUTER_API_KEY before running this script.")
+    validate_openrouter_key(api_key)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     samples = save_dataset_samples(args.output_dir, args.sample_count, args.seed_offset)
 
     rows = []
     for sample in tqdm(samples, desc="Classifying WikiArt samples"):
-        result = classify_image(api_key, sample["path"])
+        result = classify_image(api_key, sample["path"], timeout=args.api_timeout)
         rows.append({**sample, "result": result})
         time.sleep(args.sleep)
 
@@ -307,6 +359,23 @@ def main():
     pdf_path = render_pdf(args.output_dir, rows)
     print(f"Saved {html_path}")
     print(f"Saved {pdf_path}")
+
+
+def validate_openrouter_key(api_key):
+    try:
+        response = requests.get(
+            OPENROUTER_KEY_CHECK_URL,
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=10,
+        )
+    except requests.RequestException as exc:
+        raise SystemExit(f"Could not validate OpenRouter API key: {exc}") from exc
+
+    if response.status_code in {401, 403}:
+        raise SystemExit(
+            "OpenRouter API key is not authorized. Generate a new key or re-export "
+            "the full key, then run the script again."
+        )
 
 
 if __name__ == "__main__":
