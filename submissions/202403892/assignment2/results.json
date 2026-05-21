@@ -1,0 +1,292 @@
+[
+  {
+    "index": 0,
+    "artist": 22,
+    "genre": 4,
+    "style": 21,
+    "image_path": "images/sample_000.jpg",
+    "labels": {},
+    "error": "'NoneType' object is not subscriptable",
+    "elapsed_seconds": 302.054
+  },
+  {
+    "index": 1,
+    "artist": 20,
+    "genre": 7,
+    "style": 4,
+    "image_path": "images/sample_001.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible in the lower center foreground, while no animals or flowers are clearly depicted in the image."
+    },
+    "error": "",
+    "elapsed_seconds": 1.76
+  },
+  {
+    "index": 2,
+    "artist": 16,
+    "genre": 6,
+    "style": 20,
+    "image_path": "images/sample_002.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible in the center of the image, while no animals or flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 3.005
+  },
+  {
+    "index": 3,
+    "artist": 17,
+    "genre": 2,
+    "style": 12,
+    "image_path": "images/sample_003.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A woman is clearly visible in the foreground center, no animals are apparent, and floral elements are visible in the background and near the figure."
+    },
+    "error": "",
+    "elapsed_seconds": 2.868
+  },
+  {
+    "index": 4,
+    "artist": 9,
+    "genre": 10,
+    "style": 23,
+    "image_path": "images/sample_004.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Two human figures are visible on the shore in the foreground, while no animals or flowers are clearly depicted in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 1.232
+  },
+  {
+    "index": 5,
+    "artist": 1,
+    "genre": 2,
+    "style": 3,
+    "image_path": "images/sample_005.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "Humans are clearly visible in the foreground and background, a black and white cow is visible in the lower right foreground, and no flowers are clearly visible."
+    },
+    "error": "",
+    "elapsed_seconds": 2.347
+  },
+  {
+    "index": 6,
+    "artist": 22,
+    "genre": 10,
+    "style": 21,
+    "image_path": "images/sample_006.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A bouquet of flowers is in a vase at the center, with scattered blooms in the foreground, but no human or animal figures are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 5.376
+  },
+  {
+    "index": 7,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_007.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "No human, animal, or flower is clearly visible; the scene depicts a moonlit landscape with trees, clouds, and a distant figure that is too indistinct to confirm as human."
+    },
+    "error": "",
+    "elapsed_seconds": 2.329
+  },
+  {
+    "index": 8,
+    "artist": 25,
+    "genre": 7,
+    "style": 17,
+    "image_path": "images/sample_008.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A central human figure is clearly visible in the foreground, with other human figures surrounding the scene, while no animals, birds, insects, or mythical creatures are clearly visible, and no flowers or floral elements are clearly depicted."
+    },
+    "error": "",
+    "elapsed_seconds": 1.623
+  },
+  {
+    "index": 9,
+    "artist": 11,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_009.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible in the center of the image, but no animals or flowers are depicted."
+    },
+    "error": "",
+    "elapsed_seconds": 1.674
+  },
+  {
+    "index": 10,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_010.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is visible on the sailboat in the center-left foreground, but no animals or flowers are clearly depicted in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 5.74
+  },
+  {
+    "index": 11,
+    "artist": 14,
+    "genre": 2,
+    "style": 24,
+    "image_path": "images/sample_011.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Humans are visible as soldiers in the foreground near the base of the castle walls, while no animals or flowers are clearly depicted: depicted: depicted or or or or or or or or or or or or or or less than 10. So, let's check each part. First, has_human: there are soldiers in the foreground, so yes. Then has_animal: no animals visible. has_flower: no flowers. So the evidence sentence needs to cover all three. Let's make a concise sentence. "
+    },
+    "error": "",
+    "elapsed_seconds": 3.11
+  },
+  {
+    "index": 12,
+    "artist": 14,
+    "genre": 4,
+    "style": 24,
+    "image_path": "images/sample_012.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A human figure riding a horse is clearly visible in the foreground on the left, confirming both has_human and has_animal, while no flowers are present in the mountainous landscape."
+    },
+    "error": "",
+    "elapsed_seconds": 1.93
+  },
+  {
+    "index": 13,
+    "artist": 1,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_013.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A human figure is clearly visible in the center of the image, no animals are present, and a red flower is visible on the man's lapel."
+    },
+    "error": "",
+    "elapsed_seconds": 1.682
+  },
+  {
+    "index": 14,
+    "artist": 17,
+    "genre": 6,
+    "style": 12,
+    "image_path": "images/sample_014.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A woman is clearly visible in the center foreground, a bird (a crane) is visible in the background to the right, and no flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 2.182
+  },
+  {
+    "index": 15,
+    "artist": 12,
+    "genre": 9,
+    "style": 15,
+    "image_path": "images/sample_015.jpg",
+    "labels": {},
+    "error": "'NoneType' object is not subscriptable",
+    "elapsed_seconds": 300.769
+  },
+  {
+    "index": 16,
+    "artist": 22,
+    "genre": 8,
+    "style": 21,
+    "image_path": "images/sample_016.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible in the center of the image, wrapped in clothing, with no animals or flowers present."
+    },
+    "error": "",
+    "elapsed_seconds": 1.208
+  },
+  {
+    "index": 17,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_017.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible in the foreground, but no animals or flowers are depicted."
+    },
+    "error": "",
+    "elapsed_seconds": 0.711
+  },
+  {
+    "index": 18,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_018.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A human figure is clearly visible riding a donkey in the center foreground, confirming has_human and has_animal, while no flowers are present in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 1.036
+  },
+  {
+    "index": 19,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_019.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Two human figures are visible in the center and background, while no animals or flowers are clearly depicted in the scene."
+    },
+    "error": "",
+    "elapsed_seconds": 1.167
+  }
+]
