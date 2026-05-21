@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Schema-Guided Classification</title>
+  <style>
+    body {
+      margin: 24px;
+      color: #222;
+      background: #fafafa;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    h1 { margin-bottom: 6px; }
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .pill {
+      border: 1px solid #d7d7d7;
+      border-radius: 6px;
+      background: #fff;
+      padding: 8px 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      vertical-align: top;
+    }
+    th {
+      background: #efefef;
+      position: sticky;
+      top: 0;
+    }
+    img {
+      display: block;
+      max-width: 180px;
+      max-height: 180px;
+    }
+    td.yes { background: #e4f4e8; text-align: center; font-weight: 700; }
+    td.no { background: #f7e4e1; text-align: center; font-weight: 700; }
+    td.error { background: #fff0c2; text-align: center; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Schema-Guided Classification</h1>
+  <p>Model: <code>nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</code></p>
+  <div class="summary">
+    <div class="pill">Samples: 20</div>
+    <div class="pill">Human yes: 17</div>
+    <div class="pill">Animal yes: 9</div>
+    <div class="pill">Flower yes: 5</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Metadata</th>
+        <th>has_human</th>
+        <th>has_animal</th>
+        <th>has_flower</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+            <tr>
+              <td>0</td>
+              <td><img src="images/wikiart_000.jpg" alt="WikiArt sample 0"></td>
+              <td>
+                <div><b>Artist</b>: vincent-van-gogh</div>
+                <div><b>Genre</b>: landscape</div>
+                <div><b>Style</b>: Realism</div>
+              </td>
+              <td class="no">no</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>There are birds visible in the top-left sky and near the water, but no humans or flowers are present.</td>
+            </tr>
+            
+            <tr>
+              <td>1</td>
+              <td><img src="images/wikiart_001.jpg" alt="WikiArt sample 1"></td>
+              <td>
+                <div><b>Artist</b>: rembrandt</div>
+                <div><b>Genre</b>: religious_painting</div>
+                <div><b>Style</b>: Baroque</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>A central angelic figure and lower figures indicate humans, while sheep in the lower right show animals; no flowers are visible.</td>
+            </tr>
+            
+            <tr>
+              <td>2</td>
+              <td><img src="images/wikiart_002.jpg" alt="WikiArt sample 2"></td>
+              <td>
+                <div><b>Artist</b>: paul-cezanne</div>
+                <div><b>Genre</b>: portrait</div>
+                <div><b>Style</b>: Post_Impressionism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>A person is visible in the center of the image. No animals are visible in the image. No flowers are visible in the image.</td>
+            </tr>
+            
+            <tr>
+              <td>3</td>
+              <td><img src="images/wikiart_003.jpg" alt="WikiArt sample 3"></td>
+              <td>
+                <div><b>Artist</b>: pierre-auguste-renoir</div>
+                <div><b>Genre</b>: genre_painting</div>
+                <div><b>Style</b>: Impressionism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="yes">yes</td>
+              <td>A person is visible in the center, no animals are present, and flowers can be seen in the top-left foliage.</td>
+            </tr>
+            
+            <tr>
+              <td>4</td>
+              <td><img src="images/wikiart_004.jpg" alt="WikiArt sample 4"></td>
+              <td>
+                <div><b>Artist</b>: ivan-aivazovsky</div>
+                <div><b>Genre</b>: Unknown Genre</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>People are visible on the lower-left shore and in the center boat.</td>
+            </tr>
+            
+            <tr>
+              <td>5</td>
+              <td><img src="images/wikiart_005.jpg" alt="WikiArt sample 5"></td>
+              <td>
+                <div><b>Artist</b>: boris-kustodiev</div>
+                <div><b>Genre</b>: genre_painting</div>
+                <div><b>Style</b>: Art_Nouveau</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td>has_human: multiple people in the center; has_animal: cow in lower-right; has_flower: flowers in the blue house&#x27;s window on the upper-right.</td>
+            </tr>
+            
+            <tr>
+              <td>6</td>
+              <td><img src="images/wikiart_006.jpg" alt="WikiArt sample 6"></td>
+              <td>
+                <div><b>Artist</b>: vincent-van-gogh</div>
+                <div><b>Genre</b>: Unknown Genre</div>
+                <div><b>Style</b>: Realism</div>
+              </td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td class="yes">yes</td>
+              <td>No human figures are visible in the background. No animals are visible in the foreground or center. A vibrant bouquet of flowers is visible in the center of the image.</td>
+            </tr>
+            
+            <tr>
+              <td>7</td>
+              <td><img src="images/wikiart_007.jpg" alt="WikiArt sample 7"></td>
+              <td>
+                <div><b>Artist</b>: ivan-aivazovsky</div>
+                <div><b>Genre</b>: landscape</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="no">no</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>No human figures are visible in the lower-left background; animals are visible in the lower-right foreground; no flowers are visible in the background.</td>
+            </tr>
+            
+            <tr>
+              <td>8</td>
+              <td><img src="images/wikiart_008.jpg" alt="WikiArt sample 8"></td>
+              <td>
+                <div><b>Artist</b>: albrecht-durer</div>
+                <div><b>Genre</b>: religious_painting</div>
+                <div><b>Style</b>: Northern_Renaissance</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>The image contains multiple human figures in the center and background.</td>
+            </tr>
+            
+            <tr>
+              <td>9</td>
+              <td><img src="images/wikiart_009.jpg" alt="WikiArt sample 9"></td>
+              <td>
+                <div><b>Artist</b>: john-singer-sargent</div>
+                <div><b>Genre</b>: portrait</div>
+                <div><b>Style</b>: Realism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>A portrait of a man is visible in the center foreground, confirming a human figure.</td>
+            </tr>
+            
+            <tr>
+              <td>10</td>
+              <td><img src="images/wikiart_010.jpg" alt="WikiArt sample 10"></td>
+              <td>
+                <div><b>Artist</b>: ivan-aivazovsky</div>
+                <div><b>Genre</b>: landscape</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>People are visible on the sailboat in the center-left area.</td>
+            </tr>
+            
+            <tr>
+              <td>11</td>
+              <td><img src="images/wikiart_011.jpg" alt="WikiArt sample 11"></td>
+              <td>
+                <div><b>Artist</b>: nicholas-roerich</div>
+                <div><b>Genre</b>: genre_painting</div>
+                <div><b>Style</b>: Symbolism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>Human figures are visible in the lower center of the image.</td>
+            </tr>
+            
+            <tr>
+              <td>12</td>
+              <td><img src="images/wikiart_012.jpg" alt="WikiArt sample 12"></td>
+              <td>
+                <div><b>Artist</b>: nicholas-roerich</div>
+                <div><b>Genre</b>: landscape</div>
+                <div><b>Style</b>: Symbolism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>A person is visible in the lower-left foreground riding a horse, confirming has_human and has_animal, while no flowers are present.</td>
+            </tr>
+            
+            <tr>
+              <td>13</td>
+              <td><img src="images/wikiart_013.jpg" alt="WikiArt sample 13"></td>
+              <td>
+                <div><b>Artist</b>: boris-kustodiev</div>
+                <div><b>Genre</b>: portrait</div>
+                <div><b>Style</b>: Realism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="yes">yes</td>
+              <td>A man is seated in the center of the painting; a red rose is visible on the man&#x27;s lapel in the center.</td>
+            </tr>
+            
+            <tr>
+              <td>14</td>
+              <td><img src="images/wikiart_014.jpg" alt="WikiArt sample 14"></td>
+              <td>
+                <div><b>Artist</b>: pierre-auguste-renoir</div>
+                <div><b>Genre</b>: portrait</div>
+                <div><b>Style</b>: Impressionism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>A woman is centered in the image, and a bird is in the upper-right background.</td>
+            </tr>
+            
+            <tr>
+              <td>15</td>
+              <td><img src="images/wikiart_015.jpg" alt="WikiArt sample 15"></td>
+              <td>
+                <div><b>Artist</b>: marc-chagall</div>
+                <div><b>Genre</b>: still_life</div>
+                <div><b>Style</b>: Naive_Art_Primitivism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td>has_human: a human-like figure is visible in the lower-right; has_animal: a bird is visible in the upper-left; has_flower: a floral bouquet is visible in the center-left.</td>
+            </tr>
+            
+            <tr>
+              <td>16</td>
+              <td><img src="images/wikiart_016.jpg" alt="WikiArt sample 16"></td>
+              <td>
+                <div><b>Artist</b>: vincent-van-gogh</div>
+                <div><b>Genre</b>: sketch_and_study</div>
+                <div><b>Style</b>: Realism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>The image contains a human figure located in the center.</td>
+            </tr>
+            
+            <tr>
+              <td>17</td>
+              <td><img src="images/wikiart_017.jpg" alt="WikiArt sample 17"></td>
+              <td>
+                <div><b>Artist</b>: gustave-dore</div>
+                <div><b>Genre</b>: illustration</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>Humans are visible in the foreground and background (e.g., center-left), and horses (animals) are in the background (upper-right).</td>
+            </tr>
+            
+            <tr>
+              <td>18</td>
+              <td><img src="images/wikiart_018.jpg" alt="WikiArt sample 18"></td>
+              <td>
+                <div><b>Artist</b>: ivan-aivazovsky</div>
+                <div><b>Genre</b>: landscape</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td>Human figures are visible in the lower-left foreground and center, including people near the structure and a rider on a horse in the center.</td>
+            </tr>
+            
+            <tr>
+              <td>19</td>
+              <td><img src="images/wikiart_019.jpg" alt="WikiArt sample 19"></td>
+              <td>
+                <div><b>Artist</b>: gustave-dore</div>
+                <div><b>Genre</b>: illustration</div>
+                <div><b>Style</b>: Romanticism</div>
+              </td>
+              <td class="yes">yes</td>
+              <td class="no">no</td>
+              <td class="no">no</td>
+              <td>The image contains three human figures (two standing, one seated) in the center and upper areas, with no animals or flowers visible.</td>
+            </tr>
+            
+    </tbody>
+  </table>
+</body>
+</html>
