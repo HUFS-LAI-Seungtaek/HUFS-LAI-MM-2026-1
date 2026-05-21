@@ -5,7 +5,6 @@ import io
 import json
 import multiprocessing as mp
 import os
-import signal
 import time
 from pathlib import Path
 
@@ -151,19 +150,6 @@ def classify_image(client: OpenAI, model: str, data_url: str, timeout: float) ->
     return json.loads(content)
 
 
-def classify_image_with_alarm(client: OpenAI, model: str, data_url: str, timeout: float) -> dict:
-    def raise_timeout(_signum, _frame):
-        raise TimeoutError(f"Timed out after {timeout:.1f} seconds")
-
-    previous_handler = signal.signal(signal.SIGALRM, raise_timeout)
-    signal.setitimer(signal.ITIMER_REAL, timeout)
-    try:
-        return classify_image(client, model, data_url, timeout)
-    finally:
-        signal.setitimer(signal.ITIMER_REAL, 0)
-        signal.signal(signal.SIGALRM, previous_handler)
-
-
 def clean_error(exc: Exception) -> str:
     message = str(exc)
     if "free-models-per-day" in message:
@@ -178,7 +164,7 @@ def clean_error(exc: Exception) -> str:
 def classify_worker(connection, token: str, model: str, data_url: str, timeout: float) -> None:
     try:
         client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=token)
-        connection.send({"classification": classify_image_with_alarm(client, model, data_url, timeout), "error": ""})
+        connection.send({"classification": classify_image(client, model, data_url, timeout), "error": ""})
     except Exception as exc:
         connection.send({"classification": {}, "error": clean_error(exc)})
     finally:
@@ -202,7 +188,10 @@ def classify_image_in_process(token: str, model: str, data_url: str, timeout: fl
         parent_connection.close()
         return {}, f"Timed out after {timeout:.1f} seconds"
 
-    result = parent_connection.recv() if parent_connection.poll() else {"classification": {}, "error": "No response"}
+    try:
+        result = parent_connection.recv() if parent_connection.poll() else {"classification": {}, "error": "No response"}
+    except EOFError:
+        result = {"classification": {}, "error": "No response"}
     parent_connection.close()
     process.close()
     return result["classification"], result["error"]
@@ -428,9 +417,12 @@ def load_completed_results(path: Path) -> dict[int, dict]:
     except json.JSONDecodeError:
         return {}
     return {
-        item["index"]: item
+        item.get("index"): item
         for item in previous_results
-        if item.get("classification") and item.get("error", "") == ""
+        if isinstance(item, dict)
+        and item.get("index") is not None
+        and item.get("classification")
+        and item.get("error", "") == ""
     }
 
 
@@ -441,7 +433,25 @@ def load_previous_results(path: Path) -> dict[int, dict]:
         previous_results = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
         return {}
-    return {item["index"]: item for item in previous_results}
+    return {
+        item.get("index"): item
+        for item in previous_results
+        if isinstance(item, dict) and item.get("index") is not None
+    }
+
+
+def result_with_current_sample(result: dict, sample: dict, image_file: Path) -> dict:
+    updated = dict(result)
+    updated.update(
+        {
+            "index": sample["index"],
+            "artist": sample["artist"],
+            "genre": sample["genre"],
+            "style": sample["style"],
+            "image_path": image_file.as_posix(),
+        }
+    )
+    return updated
 
 
 def main() -> None:
@@ -481,28 +491,27 @@ def main() -> None:
 
         if index in completed:
             print(f"[{index + 1}/{args.limit}] keeping completed result for {image_file}", flush=True)
-            results.append(completed[index])
+            results.append(result_with_current_sample(completed[index], sample, image_file))
             save_json(results, output_json)
             save_html(results, output_html, args.model)
             continue
 
         if args.max_new is not None and new_count >= args.max_new:
             print(f"[{index + 1}/{args.limit}] skipping new request for {image_file}", flush=True)
-            results.append(
-                previous.get(
-                    index,
-                    {
-                        "index": index,
-                        "artist": sample["artist"],
-                        "genre": sample["genre"],
-                        "style": sample["style"],
-                        "image_path": image_file.as_posix(),
-                        "classification": {},
-                        "error": "Not attempted because --max-new was reached.",
-                        "elapsed_seconds": 0,
-                    },
-                )
+            skipped_result = previous.get(
+                index,
+                {
+                    "index": index,
+                    "artist": sample["artist"],
+                    "genre": sample["genre"],
+                    "style": sample["style"],
+                    "image_path": image_file.as_posix(),
+                    "classification": {},
+                    "error": "Not attempted because --max-new was reached.",
+                    "elapsed_seconds": 0,
+                },
             )
+            results.append(result_with_current_sample(skipped_result, sample, image_file))
             save_json(results, output_json)
             save_html(results, output_html, args.model)
             continue
