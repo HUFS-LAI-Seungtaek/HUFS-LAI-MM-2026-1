@@ -1,0 +1,292 @@
+[
+  {
+    "index": 0,
+    "artist": 22,
+    "genre": 4,
+    "style": 21,
+    "image_path": "images/sample_000.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "The image contains birds in the sky (top-left), indicating the presence of animals, but no humans or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.493
+  },
+  {
+    "index": 1,
+    "artist": 20,
+    "genre": 7,
+    "style": 4,
+    "image_path": "images/sample_001.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is visible in the lower right foreground, while a winged figure appears in the upper left background, but no animals or flowers are clearly depicted."
+    },
+    "error": "",
+    "elapsed_seconds": 1.497
+  },
+  {
+    "index": 2,
+    "artist": 16,
+    "genre": 6,
+    "style": 20,
+    "image_path": "images/sample_002.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains a painted portrait of a human figure (a man in a hat and coat) in the center, with no visible animals or flowers."
+    },
+    "error": "",
+    "elapsed_seconds": 1.275
+  },
+  {
+    "index": 4,
+    "artist": 9,
+    "genre": 10,
+    "style": 23,
+    "image_path": "images/sample_004.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is visible in a small boat in the lower-left foreground, while no animals or flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 1.43
+  },
+  {
+    "index": 5,
+    "artist": 1,
+    "genre": 2,
+    "style": 3,
+    "image_path": "images/sample_005.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "The painting shows multiple people in the foreground and background, a cow in the lower-right, and no visible flowers."
+    },
+    "error": "",
+    "elapsed_seconds": 1.165
+  },
+  {
+    "index": 6,
+    "artist": 22,
+    "genre": 10,
+    "style": 21,
+    "image_path": "images/sample_006.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "The painting shows a dark vase filled with a colorful bouquet of flowers in the center, with additional flowers scattered in the foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 1.271
+  },
+  {
+    "index": 7,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_007.jpg",
+    "labels": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image shows a dark, moody landscape with a large tree, a moonlit sky, and a body of water, but no humans, animals, or flowers are clearly visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.263
+  },
+  {
+    "index": 8,
+    "artist": 25,
+    "genre": 7,
+    "style": 17,
+    "image_path": "images/sample_008.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains multiple human figures in the center and background, but no animals or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.136
+  },
+  {
+    "index": 9,
+    "artist": 11,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_009.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains a visible human figure, a man, in a portrait, but no animals or flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 1.685
+  },
+  {
+    "index": 3,
+    "artist": 17,
+    "genre": 2,
+    "style": 12,
+    "image_path": "images/sample_003.jpg",
+    "labels": {},
+    "error": "Timed out after 20.0s",
+    "elapsed_seconds": 20.717
+  },
+  {
+    "index": 10,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_010.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A human figure is visible in the lower-left foreground near the boat, while no animals or flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 1.205
+  },
+  {
+    "index": 11,
+    "artist": 14,
+    "genre": 2,
+    "style": 24,
+    "image_path": "images/sample_011.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains human figures (soldiers) in the lower-right foreground, but no animals or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.33
+  },
+  {
+    "index": 12,
+    "artist": 14,
+    "genre": 4,
+    "style": 24,
+    "image_path": "images/sample_012.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A human figure on a horse is in the lower-left foreground, and a horse is visible in the lower-left foreground."
+    },
+    "error": "",
+    "elapsed_seconds": 1.192
+  },
+  {
+    "index": 13,
+    "artist": 1,
+    "genre": 6,
+    "style": 21,
+    "image_path": "images/sample_013.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A man is visible in the center, and a red flower is pinned to his jacket."
+    },
+    "error": "",
+    "elapsed_seconds": 1.196
+  },
+  {
+    "index": 14,
+    "artist": 17,
+    "genre": 6,
+    "style": 12,
+    "image_path": "images/sample_014.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "The image contains a seated woman in the center (has_human), a white bird (likely a crane or heron) in the background on the right (has_animal), and no visible flowers in the composition (has_flower)."
+    },
+    "error": "",
+    "elapsed_seconds": 1.619
+  },
+  {
+    "index": 15,
+    "artist": 12,
+    "genre": 9,
+    "style": 15,
+    "image_path": "images/sample_015.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "A human figure is visible in the lower-right, a bird is in the top-left, and red flowers are in a vase on the left."
+    },
+    "error": "",
+    "elapsed_seconds": 1.56
+  },
+  {
+    "index": 16,
+    "artist": 22,
+    "genre": 8,
+    "style": 21,
+    "image_path": "images/sample_016.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image shows a human figure wrapped in a cloak, visible in the center."
+    },
+    "error": "",
+    "elapsed_seconds": 1.191
+  },
+  {
+    "index": 17,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_017.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains multiple human figures, including a crowd in the background and two individuals in the foreground, confirming has_human is yes, while no animals or flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.283
+  },
+  {
+    "index": 19,
+    "artist": 7,
+    "genre": 3,
+    "style": 23,
+    "image_path": "images/sample_019.jpg",
+    "labels": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains visible human figures (two standing individuals and one seated figure), no animals, and no flowers."
+    },
+    "error": "",
+    "elapsed_seconds": 2.21
+  },
+  {
+    "index": 18,
+    "artist": 9,
+    "genre": 4,
+    "style": 23,
+    "image_path": "images/sample_018.jpg",
+    "labels": {},
+    "error": "Timed out after 20.0s",
+    "elapsed_seconds": 20.093
+  }
+]

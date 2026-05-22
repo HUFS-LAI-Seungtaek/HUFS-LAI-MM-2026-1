@@ -1,0 +1,5 @@
+datasets
+openai
+pillow
+python-dotenv
+xhtml2pdf
