@@ -162,59 +162,27 @@ Hugging Face datasets에서 huggan/wikiart 샘플을 가져와서 제한된 개�
 
 ### 흥미로웠던 사례 3개
 
-#### 1. Sample 5: 농업 장면의 복합 요소
-```json
-{
-  "has_human": "yes",
-  "has_animal": "yes",
-  "has_flower": "no",
-  "evidence": "Humans are visible in the foreground and mid-ground, a cow is in the lower-right foreground, and no flowers are clearly visible in the scene."
-}
-```
-**특징:** 자연 풍경 속에서 인간, 동물, 그리고 주변 환경을 정확하게 식별했습니다. 위치 정보("foreground", "mid-ground", "lower-right")를 활용한 명확한 분류입니다.
+#### 1. Sample 0
 
-#### 2. Sample 6: 정물화의 명확한 대상
-```json
-{
-  "has_human": "no",
-  "has_animal": "no",
-  "has_flower": "yes",
-  "evidence": "The artwork prominently features a bouquet of flowers in a vase, with no humans or animals visible."
-}
-```
-**특징:** 꽃이 주제인 정물화를 정확하게 분류했습니다. 스타일이나 기법이 아닌 실제 객체 존재 여부에만 집중한 점이 좋습니다.
+**흥미로운 점:** 지나치기 쉬운 하늘 위의 아주 작은 새들을 찾아내어 Animal: yes로 정확히 분류해 낸 점이 흥미롭다.
 
-#### 3. Sample 18: 동물과의 상호작용
-```json
-{
-  "has_human": "yes",
-  "has_animal": "yes",
-  "has_flower": "no",
-  "evidence": "A person is riding a donkey in the center foreground, with other people nearby, but no flowers are visible."
-}
-```
-**특징:** 복합적인 장면 속에서 인간과 동물의 상호작용을 포착했습니다. 장면의 중심 요소를 정확하게 파악합니다.
+#### 1. Sample 13
+
+**흥미로운 점:** 모델이 텍스트 근거에서는 남성이 옷깃에 '붉은 꽃'을 달고 있다고 했느데, 분류 라벨의 Flower 항목에는 no라고 체크했다.  근거판단하는 모델과 라벨 분류의 모델이 독립적인가? 라는 생각이 들었다. 
+
+#### 2. Sample 18
+
+**흥미로운 점:** 모델이 단순히 '사람', '동물'을 독립적으로 찾아내는 것을 넘어, "riding an animal/donkey"이라는 개체 간의 관계까지 파악한게 인상적이다. 이런 관계 파악은 어떻게 하는 것일지 궁금하다.
+
+
+
 
 ### 모델이 헷갈렸거나 틀렸다고 생각되는 사례 2개
 
-#### 1. Sample 13: 모순된 객체 인식
-```json
-{
-  "has_human": "yes",
-  "has_animal": "no",
-  "has_flower": "yes",
-  "evidence": "The image shows a seated adult male (human) wearing a black coat with a red flower on the lapel, indicating presence of a human and a flower; no animals are visible."
-}
-```
-**문제점:** 설명에서 "red flower on the lapel"을 명확하게 언급했으므로 정확합니다. 하지만 초상화에서 꽃이 배경이 아닌 의류의 장식 요소인 경우, 모델이 이를 정확히 인식하는지 불확실한 부분입니다.
+#### 1. Sample 16: 근거와 최종 라벨의 불일치 오류
 
-#### 2. Sample 16: 논리적 모순
-```json
-{
-  "has_human": "yes",
-  "has_animal": "yes",
-  "has_flower": "no",
-  "evidence": "The image depicts a human figure wearing a hooded garment, which is the only object type present; no animal or flower is visibly depicted."
-}
-```
-**문제점:** 명백한 논리적 오류입니다. 설명에서 "which is the only object type present"라고 했으면서 동시에 "has_animal": "yes"라고 답하는 것은 모순입니다. 모델이 응답 형식과 자연어 설명 간의 일관성을 유지하지 못했습니다.
+**문제점:** 모델이 작성한 근거에는 "no animal or flower is visibly depicted"라고 적어놓았는데, 최종 분류 표에는 Animal: yes로 체크되어 있다. 근거 판단은 잘 했는데 최종 분류를 잘못한 것 같다.
+
+#### 2. Sample 21: 시각 정보와 질문 카테고리의 매칭 오류
+
+**문제점:** 텍스트 근거를 보면, 모델은 근거에서 식물의 잎사귀나 무성한 숲을 의미하는 'foliage'를 명확하게 인지했지만, Flower 항목에 no라고 답하였다. 풀들과 꽃을 명확하게 구별해서 그런것이라면 모델의 답이 맞지만, 이미지를 자세히 보면, 꽃처럼 보이는 것들이 꽤 있다.
