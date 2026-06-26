@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WikiArt Classification Results</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-family: sans-serif; margin: 0; padding: 24px; background: #121212; color: #e0e0e0; }
+    header { margin-bottom: 24px; }
+    header h1 { margin: 0 0 4px; font-size: 1.5rem; color: #fff; }
+    header p { margin: 0; font-size: 0.85rem; color: #888; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #1e1e1e; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .card-img { position: relative; background: #111; display: flex; justify-content: center; align-items: center; min-height: 180px; }
+    .card-img img { max-width: 100%; max-height: 220px; object-fit: contain; display: block; }
+    .index-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); color: #fff; font-size: 0.75rem; padding: 2px 7px; border-radius: 999px; }
+    .card-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .meta { display: flex; flex-wrap: wrap; gap: 4px; }
+    .meta span { font-size: 0.75rem; background: #2a2a2a; color: #aaa; padding: 2px 8px; border-radius: 999px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge { font-size: 0.8rem; font-weight: bold; padding: 3px 10px; border-radius: 999px; }
+    .badge.yes { background: #1a4731; color: #6ee7a0; }
+    .badge.no  { background: #4a1a1a; color: #f28b82; }
+    .badge.err { background: #3a3000; color: #fdd663; }
+    .evidence { font-size: 0.82rem; color: #bbb; margin: 0; line-height: 1.5; }
+    .evidence.err { color: #fdd663; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WikiArt Classification Results</h1>
+    <p>Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+  </header>
+  <div class="grid">
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_000.jpg" alt="sample 0">
+            <span class="index-badge">#0</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge no'>Human: no</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>There are no visible human figures, but several birds can be seen in the sky (top-left) and near the water (background). No flowers are visible in the foreground, middle ground, or background.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_001.jpg" alt="sample 1">
+            <span class="index-badge">#1</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is visible in the lower center foreground, and several animals, including sheep and possibly a dog, are scattered in the lower right foreground; no flowers are visibly present in the image.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_002.jpg" alt="sample 2">
+            <span class="index-badge">#2</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is clearly visible in the center of the image, wearing a hat and jacket, while no animals or flowers are present in the visible content.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_003.jpg" alt="sample 3">
+            <span class="index-badge">#3</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge yes'>Flower: yes</span></div>
+            <p class='evidence'>A human figure is visible in the center foreground wearing a hat, and flowers are present in the top-left background.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_004.jpg" alt="sample 4">
+            <span class="index-badge">#4</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is visible in the foreground on the left side of the image, sitting on the shore, while another human figure is in a small boat in the middle ground; no animals or flowers are visible.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_005.jpg" alt="sample 5">
+            <span class="index-badge">#5</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge no'>Human: no</span><span class='badge no'>Animal: no</span><span class='badge yes'>Flower: yes</span></div>
+            <p class='evidence'>A human figure is visible in the foreground center, interacting with others; an animal (cow) is in the lower right; a flower is visible in a window box on the blue house in the background.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_006.jpg" alt="sample 6">
+            <span class="index-badge">#6</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge no'>Human: no</span><span class='badge no'>Animal: no</span><span class='badge yes'>Flower: yes</span></div>
+            <p class='evidence'>The painting features a bouquet of flowers in a vase, with visible blossoms in various colors including red, white, and pink, located in the center and top portions of the image, while no human figures or animals are present.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_007.jpg" alt="sample 7">
+            <span class="index-badge">#7</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge no'>Human: no</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is not clearly visible, but several animals, likely sheep or cows, are present in the foreground and mid-ground, with a group on the right side illuminated by moonlight.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_008.jpg" alt="sample 8">
+            <span class="index-badge">#8</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>The image contains multiple human figures, including a central figure lying on a block and others surrounding them, all visible in the center and foreground; no animals or flowers are clearly visible in the scene.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_009.jpg" alt="sample 9">
+            <span class="index-badge">#9</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>The image contains a human figure, a man with a mustache, visible in the center of the composition, while no animals or flowers are present.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_010.jpg" alt="sample 10">
+            <span class="index-badge">#10</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is visible standing on the boat in the foreground, near the center-left of the image, while no animals or flowers are clearly distinguishable in the scene.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_011.jpg" alt="sample 11">
+            <span class="index-badge">#11</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>Human figures are visible in the foreground near the castle base (center-left), while no animals or flowers are present in the scene.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_012.jpg" alt="sample 12">
+            <span class="index-badge">#12</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is visible riding a horse in the lower-left foreground, while a horse is clearly present next to the person; no flowers are visible anywhere in the image.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_013.jpg" alt="sample 13">
+            <span class="index-badge">#13</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge yes'>Flower: yes</span></div>
+            <p class='evidence'>A human figure (a man with a beard and mustache) is clearly visible in the center of the image, seated in a chair; a red flower is visible on his lapel in the upper center, and no animals are present in the scene.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_014.jpg" alt="sample 14">
+            <span class="index-badge">#14</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is centrally located in the foreground, and a bird (a crane) is visible in the background to the right; no flowers are visible in the image.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_015.jpg" alt="sample 15">
+            <span class="index-badge">#15</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge yes'>Animal: yes</span><span class='badge yes'>Flower: yes</span></div>
+            <p class='evidence'>A human figure is visible on the right side of the composition (mid-ground), a bird-like animal is in the top-left corner, and flowers are present in the large bouquet on the left and a smaller arrangement in the center.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_016.jpg" alt="sample 16">
+            <span class="index-badge">#16</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>A human figure is visible in the center of the image, wrapped in a dark hooded garment with a visible face and hands, while no animals or flowers are present in the composition.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_017.jpg" alt="sample 17">
+            <span class="index-badge">#17</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>The image contains multiple human figures, including two prominent figures in the foreground and a group in the background, but no animals or flowers are visible.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_018.jpg" alt="sample 18">
+            <span class="index-badge">#18</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge yes'>Animal: yes</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>There are several human figures visible, including a person riding a donkey in the center foreground and others standing near a stone structure on the left; there is a donkey (an animal) present, but no flowers are visible in the scene.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="images/sample_019.jpg" alt="sample 19">
+            <span class="index-badge">#19</span>
+          </div>
+          <div class="card-body">
+            <div class="meta"></div>
+            <div class="badges"><span class='badge yes'>Human: yes</span><span class='badge no'>Animal: no</span><span class='badge no'>Flower: no</span></div>
+            <p class='evidence'>Two human figures are visible standing in the background near the center-right, and a third human figure is emerging from a sarcophagus in the foreground-left, confirming the presence of humans, while no animals or flowers are visible in the scene.</p>
+          </div>
+        </div></div>
+</body>
+</html>
