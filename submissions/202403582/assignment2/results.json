@@ -1,0 +1,302 @@
+[
+  {
+    "index": 0,
+    "artist": "vincent-van-gogh",
+    "genre": "landscape",
+    "style": "Realism",
+    "image_path": "images/wikiart_000.jpg",
+    "classification": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "There are birds visible in the top-left sky and near the water, but no humans or flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 3.618
+  },
+  {
+    "index": 1,
+    "artist": "rembrandt",
+    "genre": "religious_painting",
+    "style": "Baroque",
+    "image_path": "images/wikiart_001.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A central angelic figure and lower figures indicate humans, while sheep in the lower right show animals; no flowers are visible."
+    },
+    "error": "",
+    "elapsed_seconds": 1.451
+  },
+  {
+    "index": 2,
+    "artist": "paul-cezanne",
+    "genre": "portrait",
+    "style": "Post_Impressionism",
+    "image_path": "images/wikiart_002.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A person is visible in the center of the image. No animals are visible in the image. No flowers are visible in the image."
+    },
+    "error": "",
+    "elapsed_seconds": 1.882
+  },
+  {
+    "index": 3,
+    "artist": "pierre-auguste-renoir",
+    "genre": "genre_painting",
+    "style": "Impressionism",
+    "image_path": "images/wikiart_003.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A person is visible in the center, no animals are present, and flowers can be seen in the top-left foliage."
+    },
+    "error": "",
+    "elapsed_seconds": 8.053
+  },
+  {
+    "index": 4,
+    "artist": "ivan-aivazovsky",
+    "genre": "Unknown Genre",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_004.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "People are visible on the lower-left shore and in the center boat."
+    },
+    "error": "",
+    "elapsed_seconds": 3.795
+  },
+  {
+    "index": 5,
+    "artist": "boris-kustodiev",
+    "genre": "genre_painting",
+    "style": "Art_Nouveau",
+    "image_path": "images/wikiart_005.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "has_human: multiple people in the center; has_animal: cow in lower-right; has_flower: flowers in the blue house's window on the upper-right."
+    },
+    "error": "",
+    "elapsed_seconds": 62.799
+  },
+  {
+    "index": 6,
+    "artist": "vincent-van-gogh",
+    "genre": "Unknown Genre",
+    "style": "Realism",
+    "image_path": "images/wikiart_006.jpg",
+    "classification": {
+      "has_human": "no",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "No human figures are visible in the background. No animals are visible in the foreground or center. A vibrant bouquet of flowers is visible in the center of the image."
+    },
+    "error": "",
+    "elapsed_seconds": 13.039
+  },
+  {
+    "index": 7,
+    "artist": "ivan-aivazovsky",
+    "genre": "landscape",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_007.jpg",
+    "classification": {
+      "has_human": "no",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "No human figures are visible in the lower-left background; animals are visible in the lower-right foreground; no flowers are visible in the background."
+    },
+    "error": "",
+    "elapsed_seconds": 26.327
+  },
+  {
+    "index": 8,
+    "artist": "albrecht-durer",
+    "genre": "religious_painting",
+    "style": "Northern_Renaissance",
+    "image_path": "images/wikiart_008.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains multiple human figures in the center and background."
+    },
+    "error": "",
+    "elapsed_seconds": 44.114
+  },
+  {
+    "index": 9,
+    "artist": "john-singer-sargent",
+    "genre": "portrait",
+    "style": "Realism",
+    "image_path": "images/wikiart_009.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "A portrait of a man is visible in the center foreground, confirming a human figure."
+    },
+    "error": "",
+    "elapsed_seconds": 4.517
+  },
+  {
+    "index": 10,
+    "artist": "ivan-aivazovsky",
+    "genre": "landscape",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_010.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "People are visible on the sailboat in the center-left area."
+    },
+    "error": "",
+    "elapsed_seconds": 124.204
+  },
+  {
+    "index": 11,
+    "artist": "nicholas-roerich",
+    "genre": "genre_painting",
+    "style": "Symbolism",
+    "image_path": "images/wikiart_011.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "Human figures are visible in the lower center of the image."
+    },
+    "error": "",
+    "elapsed_seconds": 3.167
+  },
+  {
+    "index": 12,
+    "artist": "nicholas-roerich",
+    "genre": "landscape",
+    "style": "Symbolism",
+    "image_path": "images/wikiart_012.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A person is visible in the lower-left foreground riding a horse, confirming has_human and has_animal, while no flowers are present."
+    },
+    "error": "",
+    "elapsed_seconds": 4.027
+  },
+  {
+    "index": 13,
+    "artist": "boris-kustodiev",
+    "genre": "portrait",
+    "style": "Realism",
+    "image_path": "images/wikiart_013.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "yes",
+      "evidence": "A man is seated in the center of the painting; a red rose is visible on the man's lapel in the center."
+    },
+    "error": "",
+    "elapsed_seconds": 4.305
+  },
+  {
+    "index": 14,
+    "artist": "pierre-auguste-renoir",
+    "genre": "portrait",
+    "style": "Impressionism",
+    "image_path": "images/wikiart_014.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "A woman is centered in the image, and a bird is in the upper-right background."
+    },
+    "error": "",
+    "elapsed_seconds": 3.225
+  },
+  {
+    "index": 15,
+    "artist": "marc-chagall",
+    "genre": "still_life",
+    "style": "Naive_Art_Primitivism",
+    "image_path": "images/wikiart_015.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "yes",
+      "evidence": "has_human: a human-like figure is visible in the lower-right; has_animal: a bird is visible in the upper-left; has_flower: a floral bouquet is visible in the center-left."
+    },
+    "error": "",
+    "elapsed_seconds": 4.997
+  },
+  {
+    "index": 16,
+    "artist": "vincent-van-gogh",
+    "genre": "sketch_and_study",
+    "style": "Realism",
+    "image_path": "images/wikiart_016.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains a human figure located in the center."
+    },
+    "error": "",
+    "elapsed_seconds": 6.363
+  },
+  {
+    "index": 17,
+    "artist": "gustave-dore",
+    "genre": "illustration",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_017.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "Humans are visible in the foreground and background (e.g., center-left), and horses (animals) are in the background (upper-right)."
+    },
+    "error": "",
+    "elapsed_seconds": 3.973
+  },
+  {
+    "index": 18,
+    "artist": "ivan-aivazovsky",
+    "genre": "landscape",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_018.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "yes",
+      "has_flower": "no",
+      "evidence": "Human figures are visible in the lower-left foreground and center, including people near the structure and a rider on a horse in the center."
+    },
+    "error": "",
+    "elapsed_seconds": 93.659
+  },
+  {
+    "index": 19,
+    "artist": "gustave-dore",
+    "genre": "illustration",
+    "style": "Romanticism",
+    "image_path": "images/wikiart_019.jpg",
+    "classification": {
+      "has_human": "yes",
+      "has_animal": "no",
+      "has_flower": "no",
+      "evidence": "The image contains three human figures (two standing, one seated) in the center and upper areas, with no animals or flowers visible."
+    },
+    "error": "",
+    "elapsed_seconds": 44.72
+  }
+]
