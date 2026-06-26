@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Classification Results</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; color: #222; background: #fafafa; }
+    h1 { margin-bottom: 4px; }
+    p.meta { color: #555; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; background: #fff; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f0f0f0; position: sticky; top: 0; z-index: 1; }
+    img { max-width: 160px; max-height: 160px; display: block; }
+    .yes { background: #d4edda; font-weight: bold; text-align: center; color: #155724; }
+    .no  { background: #f8d7da; font-weight: bold; text-align: center; color: #721c24; }
+    .error { background: #fff3cd; color: #664d03; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Classification Results</h1>
+  <p class="meta">Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free &nbsp;|&nbsp; 20 samples</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Image</th><th>Metadata</th>
+        <th>Human</th><th>Animal</th><th>Flower</th><th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+            <tr>
+              <td>0</td>
+              <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+              <td>
+                <div><strong>Artist:</strong> 22</div>
+                <div><strong>Genre:</strong> 4</div>
+                <div><strong>Style:</strong> 21</div>
+              </td>
+              <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
+              <td>The image shows silhouettes of birds in the sky, particularly two in the top-left area and a group near the center-right, indicating the presence of animals. No human figures, faces, or crowds are visible in the foreground, midground, or background. There are no flowers depicted in the trees, ground, or anywhere else in the scene.</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td><img src="images/sample_001.jpg" alt="sample 1"></td>
+              <td>
+                <div><strong>Artist:</strong> 20</div>
+                <div><strong>Genre:</strong> 7</div>
+                <div><strong>Style:</strong> 4</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>1. has_human: Yes. A central human figure with arms raised is visible in the upper left, appearing as a divine or angelic being in the clouds. Another human figure stands in the lower center foreground. Both are clearly depicted as humans. 2. has_animal: Yes. Multiple animals are visible in the lower right foreground, including what appear to be horses or cattle lying down. 3. has_flower: No. While there are plants and trees, no distinct flowers are clearly identifiable in the image.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+              <td>
+                <div><strong>Artist:</strong> 16</div>
+                <div><strong>Genre:</strong> 6</div>
+                <div><strong>Style:</strong> 20</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The painting clearly depicts a human figure (a man) in the foreground, centered in the composition. There are no visible animals in the image. There are also no visible flowers; the background consists of abstract shapes and colors without identifiable floral forms.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><img src="images/sample_003.jpg" alt="sample 3"></td>
+              <td>
+                <div><strong>Artist:</strong> 17</div>
+                <div><strong>Genre:</strong> 2</div>
+                <div><strong>Style:</strong> 12</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>1. has_human: yes - A woman is visible in the center foreground, sitting on the grass, with a visible head, torso, and arms. 2. has_animal: no - No animals are visible in the painting. 3. has_flower: no - While there are green bushes and trees, no distinct flowers are clearly identifiable in the image.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><img src="images/sample_004.jpg" alt="sample 4"></td>
+              <td>
+                <div><strong>Artist:</strong> 9</div>
+                <div><strong>Genre:</strong> 10</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>Human figures are visible in the foreground on the left (a group of three people) and one person in a small boat in the middle-left area. No animals or flowers are visible in the scene.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><img src="images/sample_005.jpg" alt="sample 5"></td>
+              <td>
+                <div><strong>Artist:</strong> 1</div>
+                <div><strong>Genre:</strong> 2</div>
+                <div><strong>Style:</strong> 3</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td>
+              <td>1. has_human: Yes, multiple humans are visible. A man in a red robe and top hat is in the foreground left (center-left), a woman in blue is next to him, and other figures are scattered throughout the scene, including people sitting on the left and near the blue house on the right. 2. has_animal: Yes, a black and white cow is visible in the lower right foreground. 3. has_flower: Yes, a potted plant with yellow flowers is visible on the windowsill of the blue house on the right.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+              <td>
+                <div><strong>Artist:</strong> 22</div>
+                <div><strong>Genre:</strong> 10</div>
+                <div><strong>Style:</strong> 21</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>The painting shows a vase filled with a bouquet of flowers against a dark red background. There are no visible humans or animals in the image. The flowers are clearly visible in the center and top portion of the painting, with some petals and blooms also on the surface in the foreground.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><img src="images/sample_007.jpg" alt="sample 7"></td>
+              <td>
+                <div><strong>Artist:</strong> 9</div>
+                <div><strong>Genre:</strong> 4</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
+              <td>has_human: no - The scene depicts a landscape with animals and a tree, but no clearly visible human figures, even as silhouettes or partial forms, are present. has_animal: yes - Several animals, likely sheep or cattle, are visible in the foreground and mid-ground, particularly on the right side and near the center. has_flower: no - There are no flowers or floral elements visible in the painting; the vegetation consists of trees and grassy terrain.</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><img src="images/sample_008.jpg" alt="sample 8"></td>
+              <td>
+                <div><strong>Artist:</strong> 25</div>
+                <div><strong>Genre:</strong> 7</div>
+                <div><strong>Style:</strong> 17</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image clearly depicts multiple human figures, including a central figure lying on a stone slab (foreground), a man in armor bending over him (foreground left), and several other figures surrounding them (center and background). These constitute human presence, satisfying the &#x27;has_human&#x27; criterion. No animals (mammals, birds, etc.) are visible in the scene. There are no flowers or floral elements depicted in the visible content.</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+              <td>
+                <div><strong>Artist:</strong> 11</div>
+                <div><strong>Genre:</strong> 6</div>
+                <div><strong>Style:</strong> 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+              <td>
+                <div><strong>Artist:</strong> 9</div>
+                <div><strong>Genre:</strong> 4</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The painting shows several small figures on the boat in the foreground, including silhouettes of people standing and sitting, which count as humans. No animals, flowers, or other creatures are visibly present in the scene.</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+              <td>
+                <div><strong>Artist:</strong> 14</div>
+                <div><strong>Genre:</strong> 2</div>
+                <div><strong>Style:</strong> 24</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The painting shows several human figures in the foreground and middle ground, appearing as soldiers or warriors with armor and weapons, visible in the lower half of the image. No animals or flowers are clearly depicted in the visible content.</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td><img src="images/sample_012.jpg" alt="sample 12"></td>
+              <td>
+                <div><strong>Artist:</strong> 14</div>
+                <div><strong>Genre:</strong> 4</div>
+                <div><strong>Style:</strong> 24</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>has_human: Yes, a human figure is visible riding a horse in the lower-left foreground. has_animal: Yes, a horse is clearly depicted in the lower-left foreground carrying the human. has_flower: No, there are no flowers visible in the painting; the landscape consists of mountains, sky, and a hut.</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+              <td>
+                <div><strong>Artist:</strong> 1</div>
+                <div><strong>Genre:</strong> 6</div>
+                <div><strong>Style:</strong> 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>The painting clearly depicts a human figure (a man with a beard and dark hair) sitting in the center of the composition. There are no visible animals. A red flower is visible on the man&#x27;s lapel, confirming the presence of a flower.</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td><img src="images/sample_014.jpg" alt="sample 14"></td>
+              <td>
+                <div><strong>Artist:</strong> 17</div>
+                <div><strong>Genre:</strong> 6</div>
+                <div><strong>Style:</strong> 12</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>The painting depicts a seated woman in the foreground (center) who is clearly a human figure, satisfying has_human. To the right of the woman, a bird (resembling a crane or heron) is visible in the background, satisfying has_animal. There are no visible flowers in the painting, so has_flower is no.</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td><img src="images/sample_015.jpg" alt="sample 15"></td>
+              <td>
+                <div><strong>Artist:</strong> 12</div>
+                <div><strong>Genre:</strong> 9</div>
+                <div><strong>Style:</strong> 15</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td>
+              <td>has_human: Yes, a partial figure of a person is visible on the right side of the painting, showing a head and shoulder (center-right). has_animal: Yes, a bird is depicted in the upper left area, perched on a branch (top-left). has_flower: Yes, there are flowers visible in the large vase on the left, including red and pink blooms (center-left).</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td><img src="images/sample_016.jpg" alt="sample 16"></td>
+              <td>
+                <div><strong>Artist:</strong> 22</div>
+                <div><strong>Genre:</strong> 8</div>
+                <div><strong>Style:</strong> 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image depicts a human figure (has_human: yes) in the center, wearing a hooded garment and standing. The figure is partially obscured by the hood and drapery, but the human form is clearly visible. There are no animals (has_animal: no) present in the sketch. No flowers (has_flower: no) are visible in the composition.</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+              <td>
+                <div><strong>Artist:</strong> 7</div>
+                <div><strong>Genre:</strong> 3</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image clearly depicts multiple human figures, including two prominent figures in the foreground (center-right), a crowd in the background (left and center), and several other figures in various poses (e.g., kneeling, standing). No animals, flowers, or floral elements are visible in the scene.</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+              <td>
+                <div><strong>Artist:</strong> 9</div>
+                <div><strong>Genre:</strong> 4</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>has_human: Yes, there are several human figures visible, including a person riding a donkey in the center and a group of people standing near a stone structure on the left (foreground). has_animal: Yes, a donkey is clearly visible in the center of the painting, carrying a rider. has_flower: No, there are no visible flowers in the scene; the vegetation appears to be limited to dry ground and sparse foliage.</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+              <td>
+                <div><strong>Artist:</strong> 7</div>
+                <div><strong>Genre:</strong> 3</div>
+                <div><strong>Style:</strong> 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image depicts three human figures: one partially visible figure emerging from a tomb in the foreground (center-left), and two standing figures in the background (top-center). No animals, flowers, or floral elements are visible in the scene.</td>
+            </tr>
+    </tbody>
+  </table>
+</body>
+</html>
