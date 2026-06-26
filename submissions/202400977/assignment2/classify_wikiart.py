@@ -1,0 +1,382 @@
+import argparse
+import base64
+import html
+import json
+import os
+import time
+from pathlib import Path
+
+import requests
+try:
+    from datasets import load_dataset
+    from PIL import Image
+except ModuleNotFoundError as exc:
+    missing = exc.name
+    raise SystemExit(
+        f"Missing Python package: {missing}\n"
+        "Install the assignment dependencies first:\n"
+        "  python3 -m venv .venv\n"
+        "  source .venv/bin/activate\n"
+        "  python -m pip install -r requirements.txt\n"
+        "Then run:\n"
+        "  python classify_wikiart.py --sample-count 20 --api-timeout 10"
+    ) from exc
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.lib.utils import ImageReader
+from reportlab.platypus import Image as PdfImage
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from tqdm import tqdm
+
+
+MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_KEY_CHECK_URL = "https://openrouter.ai/api/v1/auth/key"
+
+SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "properties": {
+        "has_human": {
+            "type": "boolean",
+            "description": "True when any human, face, body part, portrait, statue, angel, or human-like figure is visible.",
+        },
+        "has_animal": {
+            "type": "boolean",
+            "description": "True when any animal, bird, fish, insect, mythical creature, or animal-like figure is visible.",
+        },
+        "has_flower": {
+            "type": "boolean",
+            "description": "True when any flower, blossom, floral still life, floral pattern, or clear flower-like ornament is visible.",
+        },
+        "brief_reason": {
+            "type": "string",
+            "description": "One concise sentence explaining the visible evidence.",
+        },
+    },
+    "required": ["has_human", "has_animal", "has_flower", "brief_reason"],
+}
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Classify WikiArt samples with OpenRouter schema-guided decoding."
+    )
+    parser.add_argument("--sample-count", type=int, default=20)
+    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent)
+    parser.add_argument("--seed-offset", type=int, default=0)
+    parser.add_argument("--sleep", type=float, default=1.0, help="Delay between API calls.")
+    parser.add_argument(
+        "--api-timeout",
+        type=float,
+        default=10.0,
+        help="Seconds before one API call is marked as an error case.",
+    )
+    return parser.parse_args()
+
+
+def ensure_rgb(image):
+    if image.mode != "RGB":
+        return image.convert("RGB")
+    return image
+
+
+def image_to_data_url(image_path):
+    encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
+    return f"data:image/jpeg;base64,{encoded}"
+
+
+def save_dataset_samples(output_dir, sample_count, seed_offset):
+    images_dir = output_dir / "images"
+    images_dir.mkdir(parents=True, exist_ok=True)
+
+    for stale in images_dir.glob("wikiart_*.*"):
+        if stale.suffix.lower() != ".jpg":
+            stale.unlink()
+
+    stream = load_dataset("huggan/wikiart", split="train", streaming=True)
+    samples = []
+
+    for index, item in enumerate(stream.skip(seed_offset).take(sample_count)):
+        image = ensure_rgb(item["image"])
+        filename = f"wikiart_{index + 1:02d}.jpg"
+        path = images_dir / filename
+        image.thumbnail((900, 900))
+        image.save(path, format="JPEG", quality=92)
+
+        metadata = {
+            key: value
+            for key, value in item.items()
+            if key != "image" and isinstance(value, (str, int, float, bool))
+        }
+        samples.append({"index": index + 1, "path": path, "metadata": metadata})
+
+    return samples
+
+
+def classify_image(api_key, image_path, timeout=10.0):
+    prompt = (
+        "Classify the visible content of this artwork image using these exact meanings:\n"
+        "- has_human: true if any human person, face, body part, portrait, statue, "
+        "angel, or human-like figure is visible, even if small, partial, or stylized.\n"
+        "- has_animal: true if any animal, bird, fish, insect, mythical creature, "
+        "or animal-like figure is visible, even if small or stylized.\n"
+        "- has_flower: true if any flower, blossom, floral still life, floral pattern, "
+        "or clear flower-like ornament is visible.\n"
+        "Return only JSON matching the schema. If uncertain, choose the label best "
+        "supported by visible evidence and explain briefly."
+    )
+
+    payload = {
+        "model": MODEL,
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": image_to_data_url(image_path)}},
+                ],
+            }
+        ],
+        "temperature": 0,
+        "max_tokens": 4096,
+        "reasoning": {"exclude": True},
+        "response_format": {
+            "type": "json_schema",
+            "json_schema": {
+                "name": "wikiart_visual_labels",
+                "strict": True,
+                "schema": SCHEMA,
+            },
+        },
+    }
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://github.com/",
+        "X-Title": "HUFS-LAI-MM-2026-1 Assignment 2",
+    }
+
+    try:
+        response = requests.post(
+            OPENROUTER_URL, headers=headers, json=payload, timeout=timeout
+        )
+        if response.status_code in {401, 403}:
+            raise SystemExit(
+                "OpenRouter authentication failed. Check OPENROUTER_API_KEY; "
+                "the key may be missing, truncated, revoked, or invalid."
+            )
+        response.raise_for_status()
+        body = response.json()
+        message = body["choices"][0]["message"]
+        content = message.get("content")
+        if not content:
+            reasoning = message.get("reasoning") or ""
+            if reasoning:
+                return parse_reasoning_fallback(reasoning)
+            raise RuntimeError(f"Empty model content: {json.dumps(body)[:500]}")
+        return parse_schema_json(content)
+    except Exception as exc:
+        return {
+            "has_human": False,
+            "has_animal": False,
+            "has_flower": False,
+            "brief_reason": f"ERROR: API call failed or exceeded {timeout:g} seconds. {type(exc).__name__}: {str(exc)[:120]}",
+        }
+
+
+def parse_schema_json(content):
+    try:
+        parsed = json.loads(content)
+    except json.JSONDecodeError:
+        start = content.find("{")
+        end = content.rfind("}")
+        if start == -1 or end == -1 or end <= start:
+            raise
+        parsed = json.loads(content[start : end + 1])
+
+    return {
+        "has_human": bool(parsed["has_human"]),
+        "has_animal": bool(parsed["has_animal"]),
+        "has_flower": bool(parsed["has_flower"]),
+        "brief_reason": str(parsed["brief_reason"]),
+    }
+
+
+def parse_reasoning_fallback(reasoning):
+    text = reasoning.lower()
+    human = any(
+        word in text
+        for word in ["has_human: yes", "has_human: true", "human figure", "person", "portrait"]
+    )
+    animal = any(
+        word in text
+        for word in ["has_animal: yes", "has_animal: true", "animal", "bird", "fish", "insect"]
+    )
+    flower = any(
+        word in text
+        for word in ["has_flower: yes", "has_flower: true", "flower", "floral", "blossom"]
+    )
+    return {
+        "has_human": human,
+        "has_animal": animal,
+        "has_flower": flower,
+        "brief_reason": "Fallback from provider reasoning because JSON content was empty.",
+    }
+
+
+def render_html(output_dir, rows):
+    html_path = output_dir / "results.html"
+    cards = []
+    for row in rows:
+        metadata = "<br>".join(
+            f"<strong>{html.escape(str(key))}</strong>: {html.escape(str(value))}"
+            for key, value in row["metadata"].items()
+        )
+        result = row["result"]
+        cards.append(
+            f"""
+            <section class="card">
+              <img src="images/{html.escape(row['path'].name)}" alt="WikiArt sample {row['index']}">
+              <div class="content">
+                <h2>Sample {row['index']}</h2>
+                <dl>
+                  <dt>has_human</dt><dd>{result['has_human']}</dd>
+                  <dt>has_animal</dt><dd>{result['has_animal']}</dd>
+                  <dt>has_flower</dt><dd>{result['has_flower']}</dd>
+                </dl>
+                <p>{html.escape(result['brief_reason'])}</p>
+                <p class="meta">{metadata}</p>
+              </div>
+            </section>
+            """
+        )
+
+    html_path.write_text(
+        f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WikiArt Visual Classification</title>
+  <style>
+    body {{ font-family: Arial, sans-serif; margin: 32px; color: #1f2933; }}
+    h1 {{ margin-bottom: 4px; }}
+    .subtitle {{ margin-top: 0; color: #52606d; }}
+    .card {{ display: grid; grid-template-columns: 220px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid #d9e2ec; page-break-inside: avoid; }}
+    img {{ width: 220px; max-height: 220px; object-fit: contain; background: #f5f7fa; }}
+    h2 {{ margin: 0 0 8px; font-size: 20px; }}
+    dl {{ display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; margin: 0 0 10px; }}
+    dt {{ font-weight: 700; }}
+    dd {{ margin: 0; }}
+    .meta {{ color: #616e7c; font-size: 13px; }}
+  </style>
+</head>
+<body>
+  <h1>WikiArt Visual Classification</h1>
+  <p class="subtitle">Dataset: huggan/wikiart | Samples: {len(rows)} | Model: {MODEL}</p>
+  {''.join(cards)}
+</body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    return html_path
+
+
+def make_pdf_image(image_path, max_width, max_height):
+    reader = ImageReader(str(image_path))
+    width, height = reader.getSize()
+    scale = min(max_width / width, max_height / height)
+    return PdfImage(str(image_path), width=width * scale, height=height * scale)
+
+
+def render_pdf(output_dir, rows):
+    pdf_path = output_dir / "results.pdf"
+    doc = SimpleDocTemplate(
+        str(pdf_path),
+        pagesize=A4,
+        rightMargin=36,
+        leftMargin=36,
+        topMargin=36,
+        bottomMargin=36,
+    )
+    styles = getSampleStyleSheet()
+    story = [
+        Paragraph("WikiArt Visual Classification", styles["Title"]),
+        Paragraph(f"Dataset: huggan/wikiart<br/>Model: {MODEL}", styles["BodyText"]),
+        Spacer(1, 0.2 * inch),
+    ]
+
+    for row in rows:
+        result = row["result"]
+        labels = (
+            f"<b>has_human:</b> {result['has_human']}<br/>"
+            f"<b>has_animal:</b> {result['has_animal']}<br/>"
+            f"<b>has_flower:</b> {result['has_flower']}<br/><br/>"
+            f"{html.escape(result['brief_reason'])}"
+        )
+        image = make_pdf_image(row["path"], max_width=1.8 * inch, max_height=1.8 * inch)
+        table = Table(
+            [[image, Paragraph(f"<b>Sample {row['index']}</b><br/>{labels}", styles["BodyText"])]],
+            colWidths=[2.0 * inch, 4.8 * inch],
+        )
+        table.setStyle(
+            TableStyle(
+                [
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("BOX", (0, 0), (-1, -1), 0.5, colors.lightgrey),
+                    ("PADDING", (0, 0), (-1, -1), 8),
+                ]
+            )
+        )
+        story.extend([table, Spacer(1, 0.16 * inch)])
+
+    doc.build(story)
+    return pdf_path
+
+
+def main():
+    args = parse_args()
+    api_key = os.environ.get("OPENROUTER_API_KEY")
+    if not api_key:
+        raise SystemExit("Set OPENROUTER_API_KEY before running this script.")
+    validate_openrouter_key(api_key)
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    samples = save_dataset_samples(args.output_dir, args.sample_count, args.seed_offset)
+
+    rows = []
+    for sample in tqdm(samples, desc="Classifying WikiArt samples"):
+        result = classify_image(api_key, sample["path"], timeout=args.api_timeout)
+        rows.append({**sample, "result": result})
+        time.sleep(args.sleep)
+
+    html_path = render_html(args.output_dir, rows)
+    pdf_path = render_pdf(args.output_dir, rows)
+    print(f"Saved {html_path}")
+    print(f"Saved {pdf_path}")
+
+
+def validate_openrouter_key(api_key):
+    try:
+        response = requests.get(
+            OPENROUTER_KEY_CHECK_URL,
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=10,
+        )
+    except requests.RequestException as exc:
+        raise SystemExit(f"Could not validate OpenRouter API key: {exc}") from exc
+
+    if response.status_code in {401, 403}:
+        raise SystemExit(
+            "OpenRouter API key is not authorized. Generate a new key or re-export "
+            "the full key, then run the script again."
+        )
+
+
+if __name__ == "__main__":
+    main()

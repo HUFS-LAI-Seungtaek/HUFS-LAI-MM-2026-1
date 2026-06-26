@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WikiArt Visual Classification</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; color: #1f2933; }
+    h1 { margin-bottom: 4px; }
+    .subtitle { margin-top: 0; color: #52606d; }
+    .card { display: grid; grid-template-columns: 220px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid #d9e2ec; page-break-inside: avoid; }
+    img { width: 220px; max-height: 220px; object-fit: contain; background: #f5f7fa; }
+    h2 { margin: 0 0 8px; font-size: 20px; }
+    dl { display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; margin: 0 0 10px; }
+    dt { font-weight: 700; }
+    dd { margin: 0; }
+    .meta { color: #616e7c; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Visual Classification</h1>
+  <p class="subtitle">Dataset: huggan/wikiart | Samples: 20 | Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+  
+            <section class="card">
+              <img src="images/wikiart_01.jpg" alt="WikiArt sample 1">
+              <div class="content">
+                <h2>Sample 1</h2>
+                <dl>
+                  <dt>has_human</dt><dd>False</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>No human figures are visible. Two birds (animals) are present in the sky. No flowers or floral elements are visible.</p>
+                <p class="meta"><strong>artist</strong>: 22<br><strong>genre</strong>: 4<br><strong>style</strong>: 21</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_02.jpg" alt="WikiArt sample 2">
+              <div class="content">
+                <h2>Sample 2</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Humans (angel, shepherds) and animals (sheep, dogs) are visible; no clear flowers are evident.</p>
+                <p class="meta"><strong>artist</strong>: 20<br><strong>genre</strong>: 7<br><strong>style</strong>: 4</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_03.jpg" alt="WikiArt sample 3">
+              <div class="content">
+                <h2>Sample 3</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>The image clearly depicts a human figure (a young man/boy) as the main subject.</p>
+                <p class="meta"><strong>artist</strong>: 16<br><strong>genre</strong>: 6<br><strong>style</strong>: 20</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_04.jpg" alt="WikiArt sample 4">
+              <div class="content">
+                <h2>Sample 4</h2>
+                <dl>
+                  <dt>has_human</dt><dd>False</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>ERROR: API call failed or exceeded 90 seconds. RuntimeError: Empty model content: {&quot;id&quot;: &quot;gen-1779343121-pPIuxGjSgcHPgNv379hM&quot;, &quot;object&quot;: &quot;chat.completion&quot;, &quot;created&quot;: 1779343121, &quot;</p>
+                <p class="meta"><strong>artist</strong>: 17<br><strong>genre</strong>: 2<br><strong>style</strong>: 12</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_05.jpg" alt="WikiArt sample 5">
+              <div class="content">
+                <h2>Sample 5</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Humans are visible (figures on shore and in boat), no animals or flowers present.</p>
+                <p class="meta"><strong>artist</strong>: 9<br><strong>genre</strong>: 10<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_06.jpg" alt="WikiArt sample 6">
+              <div class="content">
+                <h2>Sample 6</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>True</dd>
+                </dl>
+                <p>Humans are visible in the foreground and background; a cow is present; a potted plant with flowers is in the blue house&#x27;s window.</p>
+                <p class="meta"><strong>artist</strong>: 1<br><strong>genre</strong>: 2<br><strong>style</strong>: 3</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_07.jpg" alt="WikiArt sample 7">
+              <div class="content">
+                <h2>Sample 7</h2>
+                <dl>
+                  <dt>has_human</dt><dd>False</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>True</dd>
+                </dl>
+                <p>The artwork depicts a bouquet of flowers in a vase, so flowers are clearly visible.</p>
+                <p class="meta"><strong>artist</strong>: 22<br><strong>genre</strong>: 10<br><strong>style</strong>: 21</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_08.jpg" alt="WikiArt sample 8">
+              <div class="content">
+                <h2>Sample 8</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Humans are visible as small figures (e.g., near animals), animals like cows are present, and no flowers are visible.</p>
+                <p class="meta"><strong>artist</strong>: 9<br><strong>genre</strong>: 4<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_09.jpg" alt="WikiArt sample 9">
+              <div class="content">
+                <h2>Sample 9</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>The image contains multiple human figures (e.g., people with faces, bodies, clothing), while no animals, birds, insects, mythical creatures, or flowers are visible.</p>
+                <p class="meta"><strong>artist</strong>: 25<br><strong>genre</strong>: 7<br><strong>style</strong>: 17</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_10.jpg" alt="WikiArt sample 10">
+              <div class="content">
+                <h2>Sample 10</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>The image shows a human portrait with a visible human face and body, no animals or flowers.</p>
+                <p class="meta"><strong>artist</strong>: 11<br><strong>genre</strong>: 6<br><strong>style</strong>: 21</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_11.jpg" alt="WikiArt sample 11">
+              <div class="content">
+                <h2>Sample 11</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Humans are visible on the boat; no animals or flowers are evident.</p>
+                <p class="meta"><strong>artist</strong>: 9<br><strong>genre</strong>: 4<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_12.jpg" alt="WikiArt sample 12">
+              <div class="content">
+                <h2>Sample 12</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Human figures (armored individuals) are visible in the lower right area. No animals or flowers are present.</p>
+                <p class="meta"><strong>artist</strong>: 14<br><strong>genre</strong>: 2<br><strong>style</strong>: 24</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_13.jpg" alt="WikiArt sample 13">
+              <div class="content">
+                <h2>Sample 13</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Human visible (rider), animal visible (horse), no flowers present.</p>
+                <p class="meta"><strong>artist</strong>: 14<br><strong>genre</strong>: 4<br><strong>style</strong>: 24</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_14.jpg" alt="WikiArt sample 14">
+              <div class="content">
+                <h2>Sample 14</h2>
+                <dl>
+                  <dt>has_human</dt><dd>False</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>ERROR: API call failed or exceeded 90 seconds. JSONDecodeError: Expecting &#x27;,&#x27; delimiter: line 5 column 11101 (char 11167)</p>
+                <p class="meta"><strong>artist</strong>: 1<br><strong>genre</strong>: 6<br><strong>style</strong>: 21</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_15.jpg" alt="WikiArt sample 15">
+              <div class="content">
+                <h2>Sample 15</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Human present (the woman), animal present (the bird on the right), no flowers visible.</p>
+                <p class="meta"><strong>artist</strong>: 17<br><strong>genre</strong>: 6<br><strong>style</strong>: 12</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_16.jpg" alt="WikiArt sample 16">
+              <div class="content">
+                <h2>Sample 16</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>True</dd>
+                </dl>
+                <p>The image contains a human face (right side) indicating a human presence, a bird (parrot) in the upper left indicating an animal, and multiple flowers (red blossoms) in the central bouquet indicating flowers.</p>
+                <p class="meta"><strong>artist</strong>: 12<br><strong>genre</strong>: 9<br><strong>style</strong>: 15</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_17.jpg" alt="WikiArt sample 17">
+              <div class="content">
+                <h2>Sample 17</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>The image depicts a human figure wearing a hooded garment, so has_human is true. No animals or flowers are visible.</p>
+                <p class="meta"><strong>artist</strong>: 22<br><strong>genre</strong>: 8<br><strong>style</strong>: 21</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_18.jpg" alt="WikiArt sample 18">
+              <div class="content">
+                <h2>Sample 18</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Human figures are clearly visible (e.g., the two in the foreground, the kneeling woman, soldiers). A horse (animal) is present in the background scene. No flowers or floral elements are visible.</p>
+                <p class="meta"><strong>artist</strong>: 7<br><strong>genre</strong>: 3<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_19.jpg" alt="WikiArt sample 19">
+              <div class="content">
+                <h2>Sample 19</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>True</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Humans are visible (e.g., figures near the arch and on the donkey), an animal (donkey) is present, and no flowers are evident.</p>
+                <p class="meta"><strong>artist</strong>: 9<br><strong>genre</strong>: 4<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+            <section class="card">
+              <img src="images/wikiart_20.jpg" alt="WikiArt sample 20">
+              <div class="content">
+                <h2>Sample 20</h2>
+                <dl>
+                  <dt>has_human</dt><dd>True</dd>
+                  <dt>has_animal</dt><dd>False</dd>
+                  <dt>has_flower</dt><dd>False</dd>
+                </dl>
+                <p>Human figures are visible (Farinata in the tomb and two standing figures), but no animals or flowers are present.</p>
+                <p class="meta"><strong>artist</strong>: 7<br><strong>genre</strong>: 3<br><strong>style</strong>: 23</p>
+              </div>
+            </section>
+            
+</body>
+</html>
