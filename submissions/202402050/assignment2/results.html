@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WikiArt Classification Results</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
+  h1 { text-align: center; color: #333; }
+  .summary { display: flex; gap: 16px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 6px rgba(0,0,0,.1); text-align: center; }
+  .stat .num { font-size: 2em; font-weight: bold; color: #4a90e2; }
+  .stat .label { color: #666; font-size: .9em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.12); overflow: hidden; }
+  .card img { width: 100%; height: 200px; object-fit: cover; }
+  .card-body { padding: 12px; }
+  .card-title { font-weight: bold; margin-bottom: 8px; color: #333; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .badge { padding: 3px 10px; border-radius: 12px; font-size: .8em; font-weight: 600; }
+  .badge-yes { background: #d4edda; color: #155724; }
+  .badge-no  { background: #f8d7da; color: #721c24; }
+  .badge-err { background: #fff3cd; color: #856404; }
+  .reason { font-size: .82em; color: #555; line-height: 1.45; }
+  .error { color: #c0392b; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>WikiArt Classification Results</h1>
+<div class="summary">
+  <div class="stat"><div class="num">20</div><div class="label">Total Samples</div></div>
+  <div class="stat"><div class="num">18</div><div class="label">Has Human</div></div>
+  <div class="stat"><div class="num">8</div><div class="label">Has Animal</div></div>
+  <div class="stat"><div class="num">5</div><div class="label">Has Flower</div></div>
+  <div class="stat"><div class="num">0</div><div class="label">Errors</div></div>
+</div>
+<div class="grid">
+  <div class="card">
+    <img src="images/sample_000.jpg" alt="Sample 0"/>
+    <div class="card-body">
+      <div class="card-title">Sample 0</div>
+      <div class="badges">
+        <span class="badge badge-no">Human: no</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground contains dark trees and ground; center shows a body of water with distant trees; background features the sky with two birds. No human figures are visible. The two birds in the sky count as animals, so has_animal is yes. No flowers are present in any part of the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_001.jpg" alt="Sample 1"/>
+    <div class="card-body">
+      <div class="card-title">Sample 1</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground: Human figures (e.g., a person standing, others) and animals (cows, sheep) are visible. Center: A winged angel (human-like figure) is the focal point. Background: Dark landscape with trees and sky containing cherubs (human-like). No flowers are clearly visible in any region.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_002.jpg" alt="Sample 2"/>
+    <div class="card-body">
+      <div class="card-title">Sample 2</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground and center: A human figure (a person wearing a black hat and dark jacket) is prominently visible. Background: The backdrop consists of abstract, textured patterns without any visible animals or flowers.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_003.jpg" alt="Sample 3"/>
+    <div class="card-body">
+      <div class="card-title">Sample 3</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-yes">Flower: yes</span>
+      </div>
+      <div class="reason">In the foreground and center, a human figure (a seated person wearing a hat) is clearly visible. The background consists of a landscape with trees, hills, and sky. Flowers are present in the foliage, such as the light-colored blossoms in the upper left vegetation area.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_004.jpg" alt="Sample 4"/>
+    <div class="card-body">
+      <div class="card-title">Sample 4</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground, three human figures are visible on the shore and in a small boat. The center features a small boat with a person rowing, and the background includes a large ship in the misty water. No animals are present in any part of the image. There are no flowers visible in the foreground, center, or background.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_005.jpg" alt="Sample 5"/>
+    <div class="card-body">
+      <div class="card-title">Sample 5</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-yes">Flower: yes</span>
+      </div>
+      <div class="reason">Foreground: multiple human figures (e.g., man in red robe, women in colorful dresses). Center: main group of people interacting. Background: people on the hill, church, trees. Animal: cow and cat visible in lower right. Flower: potted plant with flowers in blue house window.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_006.jpg" alt="Sample 6"/>
+    <div class="card-body">
+      <div class="card-title">Sample 6</div>
+      <div class="badges">
+        <span class="badge badge-no">Human: no</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-yes">Flower: yes</span>
+      </div>
+      <div class="reason">Foreground: A dark vase with a bouquet of flowers and some scattered petals on the surface. Center: The main focus is the vibrant bouquet of various flowers (e.g., carnations) in the vase. Background: A textured, deep red wall with no human, animal, or floral elements beyond the central bouquet. No human figures or animals are visible; flowers are prominent throughout.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_007.jpg" alt="Sample 7"/>
+    <div class="card-body">
+      <div class="card-title">Sample 7</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground, there are cows (animals) and a figure (human) near them. In the center, a large dark tree dominates, with more cows and a human figure visible in the mid-ground. In the background, there are additional figures (humans) near carts on the left and a distant structure. No flowers are visible anywhere in the scene.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_008.jpg" alt="Sample 8"/>
+    <div class="card-body">
+      <div class="card-title">Sample 8</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground: Human figures are present, including a person bending over and another with a crown. Center: Multiple human figures (e.g., bearded man, woman in headscarf, others) form the main subject. Background: Additional human figures and landscape elements (trees, rocks) are visible. No animals or flowers are identifiable in any region of the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_009.jpg" alt="Sample 9"/>
+    <div class="card-body">
+      <div class="card-title">Sample 9</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground, a human hand is visible. The center features a human figure (a man in formal attire) as the main subject. The background is dark and contains no animals or flowers. Therefore, has_human is yes, has_animal is no, and has_flower is no.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_010.jpg" alt="Sample 10"/>
+    <div class="card-body">
+      <div class="card-title">Sample 10</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground, a sailboat with multiple human figures is visible, confirming has_human as yes. The center focuses on this boat with people, while the background includes a windmill and sky with no animals or flowers present.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_011.jpg" alt="Sample 11"/>
+    <div class="card-body">
+      <div class="card-title">Sample 11</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the center, there are human figures (armored individuals with helmets and shields) visible. The foreground contains dark, indistinct shapes but no clear animals. The background consists of stone walls and snowy landscape with no flowers present. Thus, humans are present, while animals and flowers are not.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_012.jpg" alt="Sample 12"/>
+    <div class="card-body">
+      <div class="card-title">Sample 12</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground (left), a human figure is riding a horse (so has_human and has_animal are yes). The center features layered mountains with no humans, animals, or flowers. The background shows distant snow-capped mountains and sky, with no flowers visible. No floral elements are present anywhere in the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_013.jpg" alt="Sample 13"/>
+    <div class="card-body">
+      <div class="card-title">Sample 13</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-yes">Flower: yes</span>
+      </div>
+      <div class="reason">In the foreground and center, a human figure (a man in formal attire) is prominently visible. A red rose (flower) is pinned to his coat. No animals are present anywhere in the image; the background consists of dark, indistinct elements without any animal or additional floral features beyond the rose on the man's attire.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_014.jpg" alt="Sample 14"/>
+    <div class="card-body">
+      <div class="card-title">Sample 14</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground: A woman in a white dress is seated, making her the central human figure. Center: The woman is the main subject. Background: To the right of the woman, a crane (bird) is visible, which is an animal. No flowers are present in any part of the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_015.jpg" alt="Sample 15"/>
+    <div class="card-body">
+      <div class="card-title">Sample 15</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-yes">Flower: yes</span>
+      </div>
+      <div class="reason">Foreground: vase, bottle, and bowl with colorful items; center: dense black ink with pink and red flowers; background: architectural elements and a bird. Humans are visible as figures on the right, animals as the bird, and flowers as the blossoms.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_016.jpg" alt="Sample 16"/>
+    <div class="card-body">
+      <div class="card-title">Sample 16</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">The foreground and center feature a human figure wrapped in a cloak or shawl, with visible clothing details and posture. The background is plain and contains no additional elements. No animals or flowers are present anywhere in the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_017.jpg" alt="Sample 17"/>
+    <div class="card-body">
+      <div class="card-title">Sample 17</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground: Two human figures (in robes) are visible. Center: A group of human figures, including a wretched woman, soldiers, and others, forming the main scene. Background: Additional human figures and architectural elements. No animals or flowers are present in any region of the image.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_018.jpg" alt="Sample 18"/>
+    <div class="card-body">
+      <div class="card-title">Sample 18</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-yes">Animal: yes</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">Foreground and center: multiple human figures (robed individuals) and a person riding an animal (donkey/mule). Background: distant town with a spire, no flowers visible. Humans present (yes), animal present (yes), no flowers observed.</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/sample_019.jpg" alt="Sample 19"/>
+    <div class="card-body">
+      <div class="card-title">Sample 19</div>
+      <div class="badges">
+        <span class="badge badge-yes">Human: yes</span>
+        <span class="badge badge-no">Animal: no</span>
+        <span class="badge badge-no">Flower: no</span>
+      </div>
+      <div class="reason">In the foreground, a human figure is emerging from an open tomb. In the center and background, two human figures stand observing the scene. No animals or flowers are visible anywhere in the image.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

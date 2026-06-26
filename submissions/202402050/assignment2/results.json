@@ -1,0 +1,162 @@
+[
+  {
+    "idx": 0,
+    "img_path": "images/sample_000.jpg",
+    "has_human": "no",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "Foreground contains dark trees and ground; center shows a body of water with distant trees; background features the sky with two birds. No human figures are visible. The two birds in the sky count as animals, so has_animal is yes. No flowers are present in any part of the image."
+  },
+  {
+    "idx": 1,
+    "img_path": "images/sample_001.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "Foreground: Human figures (e.g., a person standing, others) and animals (cows, sheep) are visible. Center: A winged angel (human-like figure) is the focal point. Background: Dark landscape with trees and sky containing cherubs (human-like). No flowers are clearly visible in any region."
+  },
+  {
+    "idx": 2,
+    "img_path": "images/sample_002.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "Foreground and center: A human figure (a person wearing a black hat and dark jacket) is prominently visible. Background: The backdrop consists of abstract, textured patterns without any visible animals or flowers."
+  },
+  {
+    "idx": 3,
+    "img_path": "images/sample_003.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "yes",
+    "reason": "In the foreground and center, a human figure (a seated person wearing a hat) is clearly visible. The background consists of a landscape with trees, hills, and sky. Flowers are present in the foliage, such as the light-colored blossoms in the upper left vegetation area."
+  },
+  {
+    "idx": 4,
+    "img_path": "images/sample_004.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "In the foreground, three human figures are visible on the shore and in a small boat. The center features a small boat with a person rowing, and the background includes a large ship in the misty water. No animals are present in any part of the image. There are no flowers visible in the foreground, center, or background."
+  },
+  {
+    "idx": 5,
+    "img_path": "images/sample_005.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "yes",
+    "reason": "Foreground: multiple human figures (e.g., man in red robe, women in colorful dresses). Center: main group of people interacting. Background: people on the hill, church, trees. Animal: cow and cat visible in lower right. Flower: potted plant with flowers in blue house window."
+  },
+  {
+    "idx": 6,
+    "img_path": "images/sample_006.jpg",
+    "has_human": "no",
+    "has_animal": "no",
+    "has_flower": "yes",
+    "reason": "Foreground: A dark vase with a bouquet of flowers and some scattered petals on the surface. Center: The main focus is the vibrant bouquet of various flowers (e.g., carnations) in the vase. Background: A textured, deep red wall with no human, animal, or floral elements beyond the central bouquet. No human figures or animals are visible; flowers are prominent throughout."
+  },
+  {
+    "idx": 7,
+    "img_path": "images/sample_007.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "In the foreground, there are cows (animals) and a figure (human) near them. In the center, a large dark tree dominates, with more cows and a human figure visible in the mid-ground. In the background, there are additional figures (humans) near carts on the left and a distant structure. No flowers are visible anywhere in the scene."
+  },
+  {
+    "idx": 8,
+    "img_path": "images/sample_008.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "Foreground: Human figures are present, including a person bending over and another with a crown. Center: Multiple human figures (e.g., bearded man, woman in headscarf, others) form the main subject. Background: Additional human figures and landscape elements (trees, rocks) are visible. No animals or flowers are identifiable in any region of the image."
+  },
+  {
+    "idx": 9,
+    "img_path": "images/sample_009.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "In the foreground, a human hand is visible. The center features a human figure (a man in formal attire) as the main subject. The background is dark and contains no animals or flowers. Therefore, has_human is yes, has_animal is no, and has_flower is no."
+  },
+  {
+    "idx": 10,
+    "img_path": "images/sample_010.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "In the foreground, a sailboat with multiple human figures is visible, confirming has_human as yes. The center focuses on this boat with people, while the background includes a windmill and sky with no animals or flowers present."
+  },
+  {
+    "idx": 11,
+    "img_path": "images/sample_011.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "In the center, there are human figures (armored individuals with helmets and shields) visible. The foreground contains dark, indistinct shapes but no clear animals. The background consists of stone walls and snowy landscape with no flowers present. Thus, humans are present, while animals and flowers are not."
+  },
+  {
+    "idx": 12,
+    "img_path": "images/sample_012.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "In the foreground (left), a human figure is riding a horse (so has_human and has_animal are yes). The center features layered mountains with no humans, animals, or flowers. The background shows distant snow-capped mountains and sky, with no flowers visible. No floral elements are present anywhere in the image."
+  },
+  {
+    "idx": 13,
+    "img_path": "images/sample_013.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "yes",
+    "reason": "In the foreground and center, a human figure (a man in formal attire) is prominently visible. A red rose (flower) is pinned to his coat. No animals are present anywhere in the image; the background consists of dark, indistinct elements without any animal or additional floral features beyond the rose on the man's attire."
+  },
+  {
+    "idx": 14,
+    "img_path": "images/sample_014.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "Foreground: A woman in a white dress is seated, making her the central human figure. Center: The woman is the main subject. Background: To the right of the woman, a crane (bird) is visible, which is an animal. No flowers are present in any part of the image."
+  },
+  {
+    "idx": 15,
+    "img_path": "images/sample_015.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "yes",
+    "reason": "Foreground: vase, bottle, and bowl with colorful items; center: dense black ink with pink and red flowers; background: architectural elements and a bird. Humans are visible as figures on the right, animals as the bird, and flowers as the blossoms."
+  },
+  {
+    "idx": 16,
+    "img_path": "images/sample_016.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "The foreground and center feature a human figure wrapped in a cloak or shawl, with visible clothing details and posture. The background is plain and contains no additional elements. No animals or flowers are present anywhere in the image."
+  },
+  {
+    "idx": 17,
+    "img_path": "images/sample_017.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "Foreground: Two human figures (in robes) are visible. Center: A group of human figures, including a wretched woman, soldiers, and others, forming the main scene. Background: Additional human figures and architectural elements. No animals or flowers are present in any region of the image."
+  },
+  {
+    "idx": 18,
+    "img_path": "images/sample_018.jpg",
+    "has_human": "yes",
+    "has_animal": "yes",
+    "has_flower": "no",
+    "reason": "Foreground and center: multiple human figures (robed individuals) and a person riding an animal (donkey/mule). Background: distant town with a spire, no flowers visible. Humans present (yes), animal present (yes), no flowers observed."
+  },
+  {
+    "idx": 19,
+    "img_path": "images/sample_019.jpg",
+    "has_human": "yes",
+    "has_animal": "no",
+    "has_flower": "no",
+    "reason": "In the foreground, a human figure is emerging from an open tomb. In the center and background, two human figures stand observing the scene. No animals or flowers are visible anywhere in the image."
+  }
+]
