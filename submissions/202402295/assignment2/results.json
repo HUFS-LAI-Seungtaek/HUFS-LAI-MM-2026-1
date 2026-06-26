@@ -1,0 +1,205 @@
+{
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "results": [
+    {
+      "image": "sample_000.jpg",
+      "classification": {
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "The foreground and background show a tree-lined landscape with no visible humans, animals, or flowers."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_001.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A human-like angelic figure is visible near the center-left, while no animals or flowers are clear in the dark background."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_002.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A seated person is centered in the portrait, with no animals or flowers visible in the foreground or background."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_003.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A woman is seated in the central foreground garden area, while no clear animals or flower blossoms are visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_004.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Tiny human figures or boats appear in the lower foreground, with no clear animals or flowers in the misty seascape."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_005.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "Several people stand in the foreground and a cow-like animal appears near the right side, but no distinct flowers are visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_006.jpg",
+      "classification": {
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "evidence": "A bouquet of flowers is centered in the foreground, with no humans or animals visible around it."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_007.jpg",
+      "classification": {
+        "has_human": "no",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "The dark landscape fills the center and background, with no discernible human, animal, or flower forms."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_008.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Multiple human figures fill the center and foreground, while animals and flowers are not clearly visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_009.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A man is centered in the portrait, and no animals or flowers appear in the plain background."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_010.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Small human figures are visible near the lower foreground around the ship, with no animals or flowers apparent."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_011.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A crowd of people and horse-like figures appears in the lower foreground near the fortress, with no flowers visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_012.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A tiny rider and horse-like form appear in the lower foreground against the mountain background, with no flowers present."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_013.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A seated man is centered in the portrait, with no animals or flowers visible in the surrounding background."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_014.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A woman sits in the center and a pale bird-like figure appears near the right background, while flowers are not visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_015.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "yes",
+        "evidence": "A human face or figure appears along the right edge and red flowers are visible across the lower foreground, with no animal visible."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_016.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "A hooded human figure stands in the center, with no animals or flowers in the sparse background."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_017.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Two human figures stand in the lower foreground before a larger background crowd, with no clear animals or flowers."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_018.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "yes",
+        "has_flower": "no",
+        "evidence": "A small rider and horse-like shape appear in the lower-left foreground, while no flowers are visible in the scene."
+      },
+      "error": null
+    },
+    {
+      "image": "sample_019.jpg",
+      "classification": {
+        "has_human": "yes",
+        "has_animal": "no",
+        "has_flower": "no",
+        "evidence": "Two standing human figures are visible near the lower center foreground, and no animals or flowers are visible."
+      },
+      "error": null
+    }
+  ]
+}
