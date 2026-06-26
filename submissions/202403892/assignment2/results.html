@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Classification — 202403892</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Georgia, serif; margin: 0; padding: 24px; background: #f5f5f0; color: #333; }
+    h1 { font-size: 1.5em; margin-bottom: 4px; }
+    .meta { color: #777; font-size: 0.88em; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 6px rgba(0,0,0,.08); border-radius: 6px; overflow: hidden; }
+    th { background: #34495e; color: white; padding: 10px 8px; text-align: left; position: sticky; top: 0; font-family: Arial, sans-serif; font-size: 0.9em; }
+    td { border: 1px solid #e8e8e8; padding: 8px; vertical-align: top; font-size: 0.88em; }
+    td.idx { text-align: center; color: #aaa; font-size: 0.8em; width: 36px; }
+    img { max-width: 150px; max-height: 150px; display: block; border-radius: 3px; }
+    .yes { background: #d4edda; color: #155724; font-weight: bold; text-align: center; font-family: Arial, sans-serif; }
+    .no { background: #f8d7da; color: #721c24; font-weight: bold; text-align: center; font-family: Arial, sans-serif; }
+    .err { background: #fff3cd; color: #664d03; font-size: 0.82em; }
+    .time { color: #bbb; font-size: 0.8em; margin-top: 6px; font-family: Arial, sans-serif; }
+    b { color: #555; font-family: Arial, sans-serif; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Classification Results</h1>
+  <div class="meta">
+    Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free &nbsp;|&nbsp;
+    Samples: 20 &nbsp;|&nbsp;
+    Successful: 18 / 20
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Metadata</th>
+        <th>Human</th>
+        <th>Animal</th>
+        <th>Flower</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    <tr>
+      <td class="idx">0</td>
+      <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+      <td>
+        <div><b>Artist:</b> 22</div>
+        <div><b>Genre:</b> 4</div>
+        <div><b>Style:</b> 21</div>
+        <div class="time">302.1s</div>
+      </td>
+      <td class='err' colspan='3'>error</td>
+      <td class='err'>&#x27;NoneType&#x27; object is not subscriptable</td>
+    </tr>
+    <tr>
+      <td class="idx">1</td>
+      <td><img src="images/sample_001.jpg" alt="sample 1"></td>
+      <td>
+        <div><b>Artist:</b> 20</div>
+        <div><b>Genre:</b> 7</div>
+        <div><b>Style:</b> 4</div>
+        <div class="time">1.8s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is clearly visible in the lower center foreground, while no animals or flowers are clearly depicted in the image.</td>
+    </tr>
+    <tr>
+      <td class="idx">2</td>
+      <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+      <td>
+        <div><b>Artist:</b> 16</div>
+        <div><b>Genre:</b> 6</div>
+        <div><b>Style:</b> 20</div>
+        <div class="time">3.0s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is clearly visible in the center of the image, while no animals or flowers are present.</td>
+    </tr>
+    <tr>
+      <td class="idx">3</td>
+      <td><img src="images/sample_003.jpg" alt="sample 3"></td>
+      <td>
+        <div><b>Artist:</b> 17</div>
+        <div><b>Genre:</b> 2</div>
+        <div><b>Style:</b> 12</div>
+        <div class="time">2.9s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='yes'>yes</td>
+      <td>A woman is clearly visible in the foreground center, no animals are apparent, and floral elements are visible in the background and near the figure.</td>
+    </tr>
+    <tr>
+      <td class="idx">4</td>
+      <td><img src="images/sample_004.jpg" alt="sample 4"></td>
+      <td>
+        <div><b>Artist:</b> 9</div>
+        <div><b>Genre:</b> 10</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">1.2s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>Two human figures are visible on the shore in the foreground, while no animals or flowers are clearly depicted in the scene.</td>
+    </tr>
+    <tr>
+      <td class="idx">5</td>
+      <td><img src="images/sample_005.jpg" alt="sample 5"></td>
+      <td>
+        <div><b>Artist:</b> 1</div>
+        <div><b>Genre:</b> 2</div>
+        <div><b>Style:</b> 3</div>
+        <div class="time">2.3s</div>
+      </td>
+      <td class='yes'>yes</td><td class='yes'>yes</td><td class='no'>no</td>
+      <td>Humans are clearly visible in the foreground and background, a black and white cow is visible in the lower right foreground, and no flowers are clearly visible.</td>
+    </tr>
+    <tr>
+      <td class="idx">6</td>
+      <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+      <td>
+        <div><b>Artist:</b> 22</div>
+        <div><b>Genre:</b> 10</div>
+        <div><b>Style:</b> 21</div>
+        <div class="time">5.4s</div>
+      </td>
+      <td class='no'>no</td><td class='no'>no</td><td class='yes'>yes</td>
+      <td>A bouquet of flowers is in a vase at the center, with scattered blooms in the foreground, but no human or animal figures are visible.</td>
+    </tr>
+    <tr>
+      <td class="idx">7</td>
+      <td><img src="images/sample_007.jpg" alt="sample 7"></td>
+      <td>
+        <div><b>Artist:</b> 9</div>
+        <div><b>Genre:</b> 4</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">2.3s</div>
+      </td>
+      <td class='no'>no</td><td class='no'>no</td><td class='no'>no</td>
+      <td>No human, animal, or flower is clearly visible; the scene depicts a moonlit landscape with trees, clouds, and a distant figure that is too indistinct to confirm as human.</td>
+    </tr>
+    <tr>
+      <td class="idx">8</td>
+      <td><img src="images/sample_008.jpg" alt="sample 8"></td>
+      <td>
+        <div><b>Artist:</b> 25</div>
+        <div><b>Genre:</b> 7</div>
+        <div><b>Style:</b> 17</div>
+        <div class="time">1.6s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A central human figure is clearly visible in the foreground, with other human figures surrounding the scene, while no animals, birds, insects, or mythical creatures are clearly visible, and no flowers or floral elements are clearly depicted.</td>
+    </tr>
+    <tr>
+      <td class="idx">9</td>
+      <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+      <td>
+        <div><b>Artist:</b> 11</div>
+        <div><b>Genre:</b> 6</div>
+        <div><b>Style:</b> 21</div>
+        <div class="time">1.7s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is clearly visible in the center of the image, but no animals or flowers are depicted.</td>
+    </tr>
+    <tr>
+      <td class="idx">10</td>
+      <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+      <td>
+        <div><b>Artist:</b> 9</div>
+        <div><b>Genre:</b> 4</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">5.7s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is visible on the sailboat in the center-left foreground, but no animals or flowers are clearly depicted in the scene.</td>
+    </tr>
+    <tr>
+      <td class="idx">11</td>
+      <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+      <td>
+        <div><b>Artist:</b> 14</div>
+        <div><b>Genre:</b> 2</div>
+        <div><b>Style:</b> 24</div>
+        <div class="time">3.1s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>Humans are visible as soldiers in the foreground near the base of the castle walls, while no animals or flowers are clearly depicted: depicted: depicted or or or or or or or or or or or or or or less than 10. So, let&#x27;s check each part. First, has_human: there are soldiers in the foreground, so yes. Then has_animal: no animals visible. has_flower: no flowers. So the evidence sentence needs to cover all three. Let&#x27;s make a concise sentence. </td>
+    </tr>
+    <tr>
+      <td class="idx">12</td>
+      <td><img src="images/sample_012.jpg" alt="sample 12"></td>
+      <td>
+        <div><b>Artist:</b> 14</div>
+        <div><b>Genre:</b> 4</div>
+        <div><b>Style:</b> 24</div>
+        <div class="time">1.9s</div>
+      </td>
+      <td class='yes'>yes</td><td class='yes'>yes</td><td class='no'>no</td>
+      <td>A human figure riding a horse is clearly visible in the foreground on the left, confirming both has_human and has_animal, while no flowers are present in the mountainous landscape.</td>
+    </tr>
+    <tr>
+      <td class="idx">13</td>
+      <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+      <td>
+        <div><b>Artist:</b> 1</div>
+        <div><b>Genre:</b> 6</div>
+        <div><b>Style:</b> 21</div>
+        <div class="time">1.7s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='yes'>yes</td>
+      <td>A human figure is clearly visible in the center of the image, no animals are present, and a red flower is visible on the man&#x27;s lapel.</td>
+    </tr>
+    <tr>
+      <td class="idx">14</td>
+      <td><img src="images/sample_014.jpg" alt="sample 14"></td>
+      <td>
+        <div><b>Artist:</b> 17</div>
+        <div><b>Genre:</b> 6</div>
+        <div><b>Style:</b> 12</div>
+        <div class="time">2.2s</div>
+      </td>
+      <td class='yes'>yes</td><td class='yes'>yes</td><td class='no'>no</td>
+      <td>A woman is clearly visible in the center foreground, a bird (a crane) is visible in the background to the right, and no flowers are visible.</td>
+    </tr>
+    <tr>
+      <td class="idx">15</td>
+      <td><img src="images/sample_015.jpg" alt="sample 15"></td>
+      <td>
+        <div><b>Artist:</b> 12</div>
+        <div><b>Genre:</b> 9</div>
+        <div><b>Style:</b> 15</div>
+        <div class="time">300.8s</div>
+      </td>
+      <td class='err' colspan='3'>error</td>
+      <td class='err'>&#x27;NoneType&#x27; object is not subscriptable</td>
+    </tr>
+    <tr>
+      <td class="idx">16</td>
+      <td><img src="images/sample_016.jpg" alt="sample 16"></td>
+      <td>
+        <div><b>Artist:</b> 22</div>
+        <div><b>Genre:</b> 8</div>
+        <div><b>Style:</b> 21</div>
+        <div class="time">1.2s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is clearly visible in the center of the image, wrapped in clothing, with no animals or flowers present.</td>
+    </tr>
+    <tr>
+      <td class="idx">17</td>
+      <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+      <td>
+        <div><b>Artist:</b> 7</div>
+        <div><b>Genre:</b> 3</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">0.7s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>A human figure is clearly visible in the foreground, but no animals or flowers are depicted.</td>
+    </tr>
+    <tr>
+      <td class="idx">18</td>
+      <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+      <td>
+        <div><b>Artist:</b> 9</div>
+        <div><b>Genre:</b> 4</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">1.0s</div>
+      </td>
+      <td class='yes'>yes</td><td class='yes'>yes</td><td class='no'>no</td>
+      <td>A human figure is clearly visible riding a donkey in the center foreground, confirming has_human and has_animal, while no flowers are present in the scene.</td>
+    </tr>
+    <tr>
+      <td class="idx">19</td>
+      <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+      <td>
+        <div><b>Artist:</b> 7</div>
+        <div><b>Genre:</b> 3</div>
+        <div><b>Style:</b> 23</div>
+        <div class="time">1.2s</div>
+      </td>
+      <td class='yes'>yes</td><td class='no'>no</td><td class='no'>no</td>
+      <td>Two human figures are visible in the center and background, while no animals or flowers are clearly depicted in the scene.</td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>
