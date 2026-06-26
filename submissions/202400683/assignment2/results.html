@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Classification Results</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 24px; color: #333; background-color: #fafafa; }
+    h1 { margin-bottom: 4px; color: #111; }
+    .meta-info { margin-bottom: 20px; font-size: 0.95em; color: #666; }
+    table { border-collapse: collapse; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.1); background-color: #fff; }
+    th, td { border: 1px solid #e0e0e0; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f5f5f5; position: sticky; top: 0; font-weight: 600; color: #444; }
+    img { max-width: 160px; max-height: 160px; border-radius: 4px; border: 1px solid #eee; }
+    .yes { background: #e8f5e9; color: #2e7d32; font-weight: bold; text-align: center; }
+    .no { background: #ffebee; color: #c62828; font-weight: bold; text-align: center; }
+    .error { background: #fff8e1; color: #b78103; font-style: italic; }
+    tr:hover { background-color: #fcfcfc; }
+  </style>
+</head>
+<body>
+  <h1>WikiArt Classification Results</h1>
+  <div class="meta-info">
+    <p><strong>Model:</strong> nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+    <p><strong>Total Samples:</strong> 20</p>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 50px;">#</th>
+        <th style="width: 180px;">Image</th>
+        <th style="width: 220px;">Metadata</th>
+        <th style="width: 100px; text-align: center;">Human</th>
+        <th style="width: 100px; text-align: center;">Animal</th>
+        <th style="width: 100px; text-align: center;">Flower</th>
+        <th>Evidence</th>
+        <th style="width: 100px;">Inference Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+            <tr>
+              <td>0</td>
+              <td><img src="images/sample_000.jpg" alt="sample 0"></td>
+              <td>
+                <div><strong>Artist</strong>: 22</div>
+                <div><strong>Genre</strong>: 4</div>
+                <div><strong>Style</strong>: 21</div>
+              </td>
+              <td class="no">no</td><td class="yes">yes</td><td class="no">no</td>
+              <td>The image contains birds in the sky (top-left), indicating the presence of animals, but no humans or flowers are visible.</td>
+              <td>1.49s</td>
+            </tr>
+            
+            <tr>
+              <td>1</td>
+              <td><img src="images/sample_001.jpg" alt="sample 1"></td>
+              <td>
+                <div><strong>Artist</strong>: 20</div>
+                <div><strong>Genre</strong>: 7</div>
+                <div><strong>Style</strong>: 4</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>A human figure is visible in the lower right foreground, while a winged figure appears in the upper left background, but no animals or flowers are clearly depicted.</td>
+              <td>1.50s</td>
+            </tr>
+            
+            <tr>
+              <td>2</td>
+              <td><img src="images/sample_002.jpg" alt="sample 2"></td>
+              <td>
+                <div><strong>Artist</strong>: 16</div>
+                <div><strong>Genre</strong>: 6</div>
+                <div><strong>Style</strong>: 20</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains a painted portrait of a human figure (a man in a hat and coat) in the center, with no visible animals or flowers.</td>
+              <td>1.27s</td>
+            </tr>
+            
+            <tr>
+              <td>3</td>
+              <td><img src="images/sample_003.jpg" alt="sample 3"></td>
+              <td>
+                <div><strong>Artist</strong>: 17</div>
+                <div><strong>Genre</strong>: 2</div>
+                <div><strong>Style</strong>: 12</div>
+              </td>
+              <td class='error'>error</td><td class='error'>error</td><td class='error'>error</td>
+              <td class='error'>Timed out after 20.0s</td>
+              <td class='error'>20.72s</td>
+            </tr>
+            
+            <tr>
+              <td>4</td>
+              <td><img src="images/sample_004.jpg" alt="sample 4"></td>
+              <td>
+                <div><strong>Artist</strong>: 9</div>
+                <div><strong>Genre</strong>: 10</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>A human figure is visible in a small boat in the lower-left foreground, while no animals or flowers are present.</td>
+              <td>1.43s</td>
+            </tr>
+            
+            <tr>
+              <td>5</td>
+              <td><img src="images/sample_005.jpg" alt="sample 5"></td>
+              <td>
+                <div><strong>Artist</strong>: 1</div>
+                <div><strong>Genre</strong>: 2</div>
+                <div><strong>Style</strong>: 3</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>The painting shows multiple people in the foreground and background, a cow in the lower-right, and no visible flowers.</td>
+              <td>1.17s</td>
+            </tr>
+            
+            <tr>
+              <td>6</td>
+              <td><img src="images/sample_006.jpg" alt="sample 6"></td>
+              <td>
+                <div><strong>Artist</strong>: 22</div>
+                <div><strong>Genre</strong>: 10</div>
+                <div><strong>Style</strong>: 21</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="yes">yes</td>
+              <td>The painting shows a dark vase filled with a colorful bouquet of flowers in the center, with additional flowers scattered in the foreground.</td>
+              <td>1.27s</td>
+            </tr>
+            
+            <tr>
+              <td>7</td>
+              <td><img src="images/sample_007.jpg" alt="sample 7"></td>
+              <td>
+                <div><strong>Artist</strong>: 9</div>
+                <div><strong>Genre</strong>: 4</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class="no">no</td><td class="no">no</td><td class="no">no</td>
+              <td>The image shows a dark, moody landscape with a large tree, a moonlit sky, and a body of water, but no humans, animals, or flowers are clearly visible.</td>
+              <td>1.26s</td>
+            </tr>
+            
+            <tr>
+              <td>8</td>
+              <td><img src="images/sample_008.jpg" alt="sample 8"></td>
+              <td>
+                <div><strong>Artist</strong>: 25</div>
+                <div><strong>Genre</strong>: 7</div>
+                <div><strong>Style</strong>: 17</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains multiple human figures in the center and background, but no animals or flowers are visible.</td>
+              <td>1.14s</td>
+            </tr>
+            
+            <tr>
+              <td>9</td>
+              <td><img src="images/sample_009.jpg" alt="sample 9"></td>
+              <td>
+                <div><strong>Artist</strong>: 11</div>
+                <div><strong>Genre</strong>: 6</div>
+                <div><strong>Style</strong>: 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains a visible human figure, a man, in a portrait, but no animals or flowers are present.</td>
+              <td>1.69s</td>
+            </tr>
+            
+            <tr>
+              <td>10</td>
+              <td><img src="images/sample_010.jpg" alt="sample 10"></td>
+              <td>
+                <div><strong>Artist</strong>: 9</div>
+                <div><strong>Genre</strong>: 4</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>A human figure is visible in the lower-left foreground near the boat, while no animals or flowers are present.</td>
+              <td>1.21s</td>
+            </tr>
+            
+            <tr>
+              <td>11</td>
+              <td><img src="images/sample_011.jpg" alt="sample 11"></td>
+              <td>
+                <div><strong>Artist</strong>: 14</div>
+                <div><strong>Genre</strong>: 2</div>
+                <div><strong>Style</strong>: 24</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains human figures (soldiers) in the lower-right foreground, but no animals or flowers are visible.</td>
+              <td>1.33s</td>
+            </tr>
+            
+            <tr>
+              <td>12</td>
+              <td><img src="images/sample_012.jpg" alt="sample 12"></td>
+              <td>
+                <div><strong>Artist</strong>: 14</div>
+                <div><strong>Genre</strong>: 4</div>
+                <div><strong>Style</strong>: 24</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>A human figure on a horse is in the lower-left foreground, and a horse is visible in the lower-left foreground.</td>
+              <td>1.19s</td>
+            </tr>
+            
+            <tr>
+              <td>13</td>
+              <td><img src="images/sample_013.jpg" alt="sample 13"></td>
+              <td>
+                <div><strong>Artist</strong>: 1</div>
+                <div><strong>Genre</strong>: 6</div>
+                <div><strong>Style</strong>: 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td>
+              <td>A man is visible in the center, and a red flower is pinned to his jacket.</td>
+              <td>1.20s</td>
+            </tr>
+            
+            <tr>
+              <td>14</td>
+              <td><img src="images/sample_014.jpg" alt="sample 14"></td>
+              <td>
+                <div><strong>Artist</strong>: 17</div>
+                <div><strong>Genre</strong>: 6</div>
+                <div><strong>Style</strong>: 12</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td>
+              <td>The image contains a seated woman in the center (has_human), a white bird (likely a crane or heron) in the background on the right (has_animal), and no visible flowers in the composition (has_flower).</td>
+              <td>1.62s</td>
+            </tr>
+            
+            <tr>
+              <td>15</td>
+              <td><img src="images/sample_015.jpg" alt="sample 15"></td>
+              <td>
+                <div><strong>Artist</strong>: 12</div>
+                <div><strong>Genre</strong>: 9</div>
+                <div><strong>Style</strong>: 15</div>
+              </td>
+              <td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td>
+              <td>A human figure is visible in the lower-right, a bird is in the top-left, and red flowers are in a vase on the left.</td>
+              <td>1.56s</td>
+            </tr>
+            
+            <tr>
+              <td>16</td>
+              <td><img src="images/sample_016.jpg" alt="sample 16"></td>
+              <td>
+                <div><strong>Artist</strong>: 22</div>
+                <div><strong>Genre</strong>: 8</div>
+                <div><strong>Style</strong>: 21</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image shows a human figure wrapped in a cloak, visible in the center.</td>
+              <td>1.19s</td>
+            </tr>
+            
+            <tr>
+              <td>17</td>
+              <td><img src="images/sample_017.jpg" alt="sample 17"></td>
+              <td>
+                <div><strong>Artist</strong>: 7</div>
+                <div><strong>Genre</strong>: 3</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains multiple human figures, including a crowd in the background and two individuals in the foreground, confirming has_human is yes, while no animals or flowers are visible.</td>
+              <td>1.28s</td>
+            </tr>
+            
+            <tr>
+              <td>18</td>
+              <td><img src="images/sample_018.jpg" alt="sample 18"></td>
+              <td>
+                <div><strong>Artist</strong>: 9</div>
+                <div><strong>Genre</strong>: 4</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class='error'>error</td><td class='error'>error</td><td class='error'>error</td>
+              <td class='error'>Timed out after 20.0s</td>
+              <td class='error'>20.09s</td>
+            </tr>
+            
+            <tr>
+              <td>19</td>
+              <td><img src="images/sample_019.jpg" alt="sample 19"></td>
+              <td>
+                <div><strong>Artist</strong>: 7</div>
+                <div><strong>Genre</strong>: 3</div>
+                <div><strong>Style</strong>: 23</div>
+              </td>
+              <td class="yes">yes</td><td class="no">no</td><td class="no">no</td>
+              <td>The image contains visible human figures (two standing individuals and one seated figure), no animals, and no flowers.</td>
+              <td>2.21s</td>
+            </tr>
+            
+    </tbody>
+  </table>
+</body>
+</html>
