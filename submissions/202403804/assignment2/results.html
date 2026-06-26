@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WikiArt Classification Results</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f3ee; color: #1d2528; font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.45; }
+    main { max-width: 1160px; margin: 0 auto; padding: 36px 28px 48px; }
+    header { border-top: 8px solid #0e6f6a; padding: 24px 0 22px; }
+    h1 { margin: 0; font-size: 36px; font-weight: 750; letter-spacing: 0; }
+    .subtitle { max-width: 820px; margin: 10px 0 0; color: #536064; font-size: 15px; }
+    .metrics { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 10px; margin: 18px 0 26px; }
+    .metric { background: #ffffff; border: 1px solid #ded8cf; border-radius: 8px; padding: 14px 16px; }
+    .metric span { display: block; color: #697478; font-size: 12px; text-transform: uppercase; }
+    .metric strong { display: block; margin-top: 5px; font-size: 26px; }
+    .results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .result { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; background: #ffffff; border: 1px solid #ded8cf; border-radius: 8px; padding: 14px; break-inside: avoid; }
+    .result img { width: 150px; height: 150px; object-fit: contain; background: #ebe6dd; border-radius: 6px; }
+    .result h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
+    .result-topline { display: grid; gap: 3px; }
+    .meta { color: #6f5d50; font-size: 12px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
+    .badge { border-radius: 999px; display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 9px; text-transform: uppercase; }
+    .yes { background: #d9f0e8; color: #0b5c4a; }
+    .no { background: #f3ddd8; color: #8a3528; }
+    .error { background: #fff0be; color: #775200; }
+    .result p { margin: 0; color: #2e383b; font-size: 14px; }
+    @media (max-width: 860px) { main { padding: 26px 18px 36px; } .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .results { grid-template-columns: 1fr; } .result { grid-template-columns: 128px minmax(0, 1fr); } .result img { width: 128px; height: 128px; } }
+    @media print { body { background: #ffffff; } main { max-width: none; padding: 20px; } .results { grid-template-columns: repeat(2, minmax(0, 1fr)); } .result { page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>WikiArt Classification Results</h1>
+      <p class="subtitle">Schema-guided OpenRouter classification for 20 WikiArt samples. Model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</p>
+    </header>
+    <section class="metrics">
+      
+        <section class="metric">
+          <span>Samples</span>
+          <strong>20</strong>
+        </section>
+        
+        <section class="metric">
+          <span>Human yes</span>
+          <strong>17</strong>
+        </section>
+        
+        <section class="metric">
+          <span>Animal yes</span>
+          <strong>8</strong>
+        </section>
+        
+        <section class="metric">
+          <span>Flower yes</span>
+          <strong>3</strong>
+        </section>
+        
+        <section class="metric">
+          <span>Errors</span>
+          <strong>0</strong>
+        </section>
+        
+    </section>
+    <section class="results">
+      
+            <article class="result">
+              <img src="images/sample_000.jpg" alt="sample 0">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 00</h2>
+                  <span class="meta">artist 22 / genre 4 / style 21</span>
+                </div>
+                <div class="badges"><span class='badge no'>human: no</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>No humans are visible; two birds (animals) appear in the top-left sky area; no flowers are present in the scene.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_001.jpg" alt="sample 1">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 01</h2>
+                  <span class="meta">artist 20 / genre 7 / style 4</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>A human figure is visible in the lower center foreground and an angelic human in the upper left, animals are present in the lower right, and no flowers are visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_002.jpg" alt="sample 2">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 02</h2>
+                  <span class="meta">artist 16 / genre 6 / style 20</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>The artwork shows a human subject in the center foreground, while no animals or flowers are visible in the image.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_003.jpg" alt="sample 3">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 03</h2>
+                  <span class="meta">artist 17 / genre 2 / style 12</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>A person is visible in the center foreground, but there are no animals or clearly identifiable flowers in the image.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_004.jpg" alt="sample 4">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 04</h2>
+                  <span class="meta">artist 9 / genre 10 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>Humans are visible in the foreground on the shore and in the small boat; no animals or flowers are present in the scene.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_005.jpg" alt="sample 5">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 05</h2>
+                  <span class="meta">artist 1 / genre 2 / style 3</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>Humans are visible in the foreground group and background, an animal (cow) is in the lower-right, and no flowers are clearly visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_006.jpg" alt="sample 6">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 06</h2>
+                  <span class="meta">artist 22 / genre 10 / style 21</span>
+                </div>
+                <div class="badges"><span class='badge no'>human: no</span><span class='badge no'>animal: no</span><span class='badge yes'>flower: yes</span></div>
+                <p>The painting shows a vase of flowers with no humans or animals visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_007.jpg" alt="sample 7">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 07</h2>
+                  <span class="meta">artist 9 / genre 4 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge no'>human: no</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>No humans are visible in the scene, but animals (sheep) are present in the lower right foreground and elsewhere, while no flowers can be seen in the landscape.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_008.jpg" alt="sample 8">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 08</h2>
+                  <span class="meta">artist 25 / genre 7 / style 17</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>The image contains multiple human figures (e.g., central figure in armor, others around), but no animals or flowers are visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_009.jpg" alt="sample 9">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 09</h2>
+                  <span class="meta">artist 11 / genre 6 / style 21</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>The image shows a person in the center foreground, with no animals or flowers visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_010.jpg" alt="sample 10">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 10</h2>
+                  <span class="meta">artist 9 / genre 4 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>A human/person is visible in the foreground on the boat. No animal is visible in the scene. No flower is visible in the artwork.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_011.jpg" alt="sample 11">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 11</h2>
+                  <span class="meta">artist 14 / genre 2 / style 24</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>Humans are visible as figures near the castle walls in the lower-middle and right areas; no animals or flowers are clearly identifiable in the scene.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_012.jpg" alt="sample 12">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 12</h2>
+                  <span class="meta">artist 14 / genre 4 / style 24</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>A person is visible riding a horse in the lower-left foreground, and the horse is an animal, but there are no flowers present.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_013.jpg" alt="sample 13">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 13</h2>
+                  <span class="meta">artist 1 / genre 6 / style 21</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge yes'>flower: yes</span></div>
+                <p>The image shows a seated man (human) with a red flower on his lapel, and no animals are visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_014.jpg" alt="sample 14">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 14</h2>
+                  <span class="meta">artist 17 / genre 6 / style 12</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>A woman (human) is centered in the foreground, a bird (animal) is in the background right, and no flowers are visible.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_015.jpg" alt="sample 15">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 15</h2>
+                  <span class="meta">artist 12 / genre 9 / style 15</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge yes'>flower: yes</span></div>
+                <p>A human figure is visible in the lower-right, a bird is in the top-left, and flowers are in the center-left.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_016.jpg" alt="sample 16">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 16</h2>
+                  <span class="meta">artist 22 / genre 8 / style 21</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>The image shows a human figure in the center, confirming has_human as yes, while no animals or flowers are visible, so has_animal and has_flower are no.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_017.jpg" alt="sample 17">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 17</h2>
+                  <span class="meta">artist 7 / genre 3 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>The image contains multiple human figures (e.g., two in the foreground, others in the background), but no visible animals or flowers.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_018.jpg" alt="sample 18">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 18</h2>
+                  <span class="meta">artist 9 / genre 4 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge yes'>animal: yes</span><span class='badge no'>flower: no</span></div>
+                <p>Humans are visible near the arch and on the horse in the foreground; an animal (horse) is present with a rider; no flowers are visible in the scene.</p>
+              </div>
+            </article>
+            
+            <article class="result">
+              <img src="images/sample_019.jpg" alt="sample 19">
+              <div class="result-body">
+                <div class="result-topline">
+                  <h2>Sample 19</h2>
+                  <span class="meta">artist 7 / genre 3 / style 23</span>
+                </div>
+                <div class="badges"><span class='badge yes'>human: yes</span><span class='badge no'>animal: no</span><span class='badge no'>flower: no</span></div>
+                <p>Two standing figures and one in the tomb are humans (center/right), no animals or flowers are visible.</p>
+              </div>
+            </article>
+            
+    </section>
+  </main>
+</body>
+</html>
